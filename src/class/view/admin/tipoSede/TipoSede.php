@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/tipoSede/Main.php");
 
-class TipoSedeViewAdmin extends EntityViewAdmin {
+class TipoSedeViewAdmin extends TipoSedeViewAdminMain {
 
 }

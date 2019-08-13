@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/toma/Main.php");
 
-class TomaViewAdmin extends EntityViewAdmin {
+class TomaViewAdmin extends TomaViewAdminMain {
 
 }

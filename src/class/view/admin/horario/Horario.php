@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/horario/Main.php");
 
-class HorarioViewAdmin extends EntityViewAdmin {
+class HorarioViewAdmin extends HorarioViewAdminMain {
 
 }

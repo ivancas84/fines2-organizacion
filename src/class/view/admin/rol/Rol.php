@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/rol/Main.php");
 
-class RolViewAdmin extends EntityViewAdmin {
+class RolViewAdmin extends RolViewAdminMain {
 
 }

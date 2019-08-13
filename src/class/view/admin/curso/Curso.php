@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/curso/Main.php");
 
-class CursoViewAdmin extends EntityViewAdmin {
+class CursoViewAdmin extends CursoViewAdminMain {
 
 }

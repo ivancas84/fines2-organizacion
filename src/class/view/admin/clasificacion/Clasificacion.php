@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/clasificacion/Main.php");
 
-class ClasificacionViewAdmin extends EntityViewAdmin {
+class ClasificacionViewAdmin extends ClasificacionViewAdminMain {
 
 }

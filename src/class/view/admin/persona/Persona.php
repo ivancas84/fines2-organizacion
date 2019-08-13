@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/persona/Main.php");
 
-class PersonaViewAdmin extends EntityViewAdmin {
+class PersonaViewAdmin extends PersonaViewAdminMain {
 
 }

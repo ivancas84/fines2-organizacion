@@ -1,7 +1,7 @@
 <?php
 
-require_once("class/view/Admin.php");
+require_once("class/view/admin/coordinador/Main.php");
 
-class CoordinadorViewAdmin extends EntityViewAdmin {
+class CoordinadorViewAdmin extends CoordinadorViewAdminMain {
 
 }
