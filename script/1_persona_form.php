@@ -19,7 +19,7 @@ textarea {
   <br>id:<br>
   <input type="text" name="id" value="vud"/>
   <br>Encabezados:<br>
-  <textarea name="headers">numero_documento,apellidos,nombres,genero,telefono,email
+  <textarea name="headers">region, distrito, localidad, programa, inscripcion_men, cens, sede, comision, tramo, identificador, numero_inscripcion, numero_documento, apellidos, nombres, genero, telefono, correo, trayectoria_educativa, turno, pc_escritorio, net_notebook, tablet, pc_tablet, impresora, conexion_internet_paga, telefono_celular
   </textarea>
   <br>Source:<br>
   <textarea name="source"></textarea>

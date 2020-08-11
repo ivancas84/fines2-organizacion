@@ -3,7 +3,6 @@ require_once("class/import/Import.php");
 require_once("class/import/persona/PersonaElement.php");
 require_once("class/tools/Validation.php");
 
-
 class ImportPersona extends Import {
   
   public function element($i, $data){
@@ -30,7 +29,7 @@ class ImportPersona extends Import {
   }        
    
   public function query(){
-    $this->queryEntityField_("persona","numero_documento");
+    $this->queryEntityField("persona","numero_documento");
   }
 
   public function process(){
@@ -39,18 +38,25 @@ class ImportPersona extends Import {
 
   public function processPersonas(){
     foreach($this->elements as &$element) {
-      if($element->logs->isError()) continue;
+      if(!$element->process) continue;
 
+      if(!$element->entities["persona"]->_check()){
+        $element->process = false;
+        continue;
+      }      
       if(key_exists($element->entities["persona"]->numeroDocumento(), $this->dbs["persona"])){
         $personaExistente = EntityValues::getInstanceRequire("persona");
         $dni= $element->entities["persona"]->numeroDocumento();
         $personaExistente->_fromArray($this->dbs["persona"][$dni]);
-        if(!$element->entities["persona"]->checkNombresParecidos($personaExistente)){                    
-            $element->logs->addLog("persona", "error", "En la base existe una persona cuyos datos no coinciden");
-            continue;
+        if(!$element->entities["persona"]->checkNombresParecidos($personaExistente)){
+          $element->process = false;                    
+          $element->logs->addLog("persona", "error", "En la base existe una persona cuyos datos no coinciden");
+          continue;
         }
       }
-      $element->sql .= $this->processSource_("persona", $element->entities, $element->entities["persona"]->numeroDocumento());
+      $element->entities["persona"]->_reset();
+      
+      $element->sql .= $this->processSource("persona", $element->entities, $element->entities["persona"]->numeroDocumento());
     }
   }
 

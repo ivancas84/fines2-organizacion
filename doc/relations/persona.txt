@@ -1,16 +1,28 @@
 id (id): string pk. NOT NULL. MAIN. UNIQUE.
-nombres (nom): string nf.
+region (reg): string nf. NOT NULL. DEFAULT: '1'.
+distrito (dis): string nf. NOT NULL. DEFAULT: 'La Plata'.
+localidad (loc): string nf.
+programa (pro): string nf.
+inscripcion_men (im): boolean nf.
+cens (cen): string nf.
+sede (sed): string nf.
+comision (com): string nf.
+tramo (tra): string nf.
+identificador (ide): string nf.
+numero_inscripcion (ni): string nf.
+numero_documento (nd): string nf.
 apellidos (ape): string nf.
+nombres (nom): string nf.
 genero (gen): string nf.
 telefono (tel): string nf.
-email (ema): string nf.
+correo (cor): string nf.
 trayectoria_educativa (te): string nf.
 turno (tur): string nf.
 pc_escritorio (pe): boolean nf.
-net_netbook (nn): boolean nf.
+net_notebook (nn): boolean nf.
 tablet (tab): boolean nf.
-pc_o_tablet (pot): boolean nf.
+pc_tablet (pt): boolean nf.
 impresora (imp): boolean nf.
 conexion_internet_paga (cip): boolean nf.
 telefono_celular (tc): string nf.
-numero_documento (nd): string nf.
+comision_2020 (c2): string nf.
