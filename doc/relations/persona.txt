@@ -1,0 +1,16 @@
+id (id): string pk. NOT NULL. MAIN. UNIQUE.
+nombres (nom): string nf.
+apellidos (ape): string nf.
+genero (gen): string nf.
+telefono (tel): string nf.
+email (ema): string nf.
+trayectoria_educativa (te): string nf.
+turno (tur): string nf.
+pc_escritorio (pe): boolean nf.
+net_netbook (nn): boolean nf.
+tablet (tab): boolean nf.
+pc_o_tablet (pot): boolean nf.
+impresora (imp): boolean nf.
+conexion_internet_paga (cip): boolean nf.
+telefono_celular (tc): string nf.
+numero_documento (nd): string nf.

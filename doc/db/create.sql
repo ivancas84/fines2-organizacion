@@ -1,0 +1,23 @@
+
+CREATE SCHEMA IF NOT EXISTS `fines2_organizacion` DEFAULT CHARACTER SET utf8 COLLATE utf8_spanish_ci ;
+
+CREATE TABLE IF NOT EXISTS `fines2_organizacion`.`persona` (
+  `id` VARCHAR(45) NOT NULL,
+  `nombres` VARCHAR(255) NULL DEFAULT NULL,
+  `apellidos` VARCHAR(255) NULL DEFAULT NULL,
+  `genero` VARCHAR(45) NULL DEFAULT NULL,
+  `telefono` VARCHAR(45) NULL DEFAULT NULL,
+  `email` VARCHAR(45) NULL DEFAULT NULL,
+  `trayectoria_educativa` VARCHAR(45) NULL DEFAULT NULL,
+  `turno` VARCHAR(45) NULL DEFAULT NULL,
+  `pc_escritorio` TINYINT(4) NULL DEFAULT NULL,
+  `net_netbook` TINYINT(4) NULL DEFAULT NULL,
+  `tablet` TINYINT(4) NULL DEFAULT NULL,
+  `pc_o_tablet` TINYINT(4) NULL DEFAULT NULL,
+  `impresora` TINYINT(4) NULL DEFAULT NULL,
+  `conexion_internet_paga` TINYINT(4) NULL DEFAULT NULL,
+  `telefono_celular` VARCHAR(255) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_spanish_ci;
