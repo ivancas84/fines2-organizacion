@@ -2,7 +2,7 @@
 
 require_once("class/model/Field.php");
 
-class _FieldPersonaPcEscritorio extends Field {
+class _FieldPersonaArchivo2020 extends Field {
 
   public $type = "tinyint";
   public $fieldType = "nf";
@@ -11,8 +11,8 @@ class _FieldPersonaPcEscritorio extends Field {
   public $default = false;
   public $length = "3";
   public $main = false;
-  public $name = "pc_escritorio";
-  public $alias = "pe";
+  public $name = "archivo_2020";
+  public $alias = "a2a";
 
 
   public function getEntity(){ return Entity::getInstanceRequire('persona'); }

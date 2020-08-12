@@ -40,6 +40,8 @@ class _PersonaEntity extends Entity {
       Field::getInstanceRequire("persona", "conexion_internet_paga"),
       Field::getInstanceRequire("persona", "telefono_celular"),
       Field::getInstanceRequire("persona", "comision_2020"),
+      Field::getInstanceRequire("persona", "archivo_2019"),
+      Field::getInstanceRequire("persona", "archivo_2020"),
     );
   }
 
