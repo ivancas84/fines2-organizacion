@@ -14,40 +14,34 @@ class Persona extends _Persona {
   }
 
   public function checkNombresParecidos($existente){
+    $this->_logs->resetLogs("nombres_parecidos");
+
     if(!nombres_parecidos($this->nombre(), $existente->nombre())){
-      $this->_logs()->addLog("nombres_parecidos","error", "En la base existe una persona cuyos datos no coinciden");
+      $this->_logs->addLog("nombres_parecidos","error", "En la base existe una persona cuyos datos no coinciden");
       return false;
     }
+    
     return true;
   }
 
   public function checkNombres($value) { 
     $this->_logs->resetLogs("nombres");
-
-    //errores
-    $v = Validation::getInstanceValue($value)->string();
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres", "error", $error); }
-    $ret = $v->isSuccess();
-
+    if(Validation::is_undefined($value)) return null;
+    
     //advertencias
     $v = Validation::getInstanceValue($value)->empty()->name()->abbreviation();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres", "warning", $error); }
-    
-    return $ret;
+    return true;
   }
 
   public function checkApellidos($value) { 
     $this->_logs->resetLogs("apellidos");
-
-
+    if(Validation::is_undefined($value)) return null;
+    
     //advertencias
     $v = Validation::getInstanceValue($value)->empty()->name()->abbreviation();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("apellidos", "warning", $error); }
-    
-    //errores
-    $v = Validation::getInstanceValue($value)->string();
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("apellidos", "error", $error); }
-    return $v->isSuccess();
+    return true;
   }
 
   public function checkNombresApellidos(){
@@ -56,14 +50,16 @@ class Persona extends _Persona {
     //advertencias
     $v = Validation::getInstanceValue($this->nombres)->differentWords($this->apellidos);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres_apellidos", "warning", $error); }
-
     return true;
   }
 
   public function checkNumeroDocumento($value) { 
     $this->_logs->resetLogs("numero_documento");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required()->string()->min(7)->pattern("int");
+    $v = Validation::getInstanceValue($value)->min(7)->pattern("int");
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "warning", $error); }
+    
+    $v = Validation::getInstanceValue($value)->required();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
     return $v->isSuccess();
   }
@@ -74,7 +70,10 @@ class Persona extends _Persona {
     if(Validation::is_empty($value)) return true;
 
     $v = Validation::getInstanceValue($value)->min(6);
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("telefono", "warning", $error); }
+    if(!empty($v->getErrors())){
+      foreach($v->getErrors() as $error){ $this->_logs->addLog("telefono", "warning", $error . "(no será almacenado)"); }
+      $this->setTelefono(null);
+    }
     return true;
   }
 
@@ -83,7 +82,10 @@ class Persona extends _Persona {
     if(Validation::is_undefined($value)) return null;
     if(Validation::is_empty($value)) return true;
     $v = Validation::getInstanceValue($value)->email();
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("correo", "warning", $error); }
+    if(!empty($v->getErrors())){
+      foreach($v->getErrors() as $error){ $this->_logs->addLog("correo", "warning", $error . "(no será almacenado)"); }
+      $this->setTelefono(null);
+    }
     return true;
   }
 
@@ -101,10 +103,10 @@ class Persona extends _Persona {
     }
   }
 
-  public function resetEmail(){
-    if(!Validation::is_empty($this->email)){  
+  public function resetCorreo(){
+    if(!Validation::is_empty($this->correo)){  
       parent::resetNumeroDocumento();  
-      $this->email = strto($this->email, "xxyy");
+      $this->correo = strto($this->correo, "xxyy");
     }
   }
 

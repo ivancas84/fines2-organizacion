@@ -326,8 +326,11 @@ class _Persona extends EntityValues {
   }
 
   public function checkNumeroDocumento($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("numero_documento");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkApellidos($value) { 

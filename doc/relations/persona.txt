@@ -10,7 +10,7 @@ comision (com): string nf.
 tramo (tra): string nf.
 identificador (ide): string nf.
 numero_inscripcion (ni): string nf.
-numero_documento (nd): string nf.
+numero_documento (nd): string nf. NOT NULL. UNIQUE.
 apellidos (ape): string nf.
 nombres (nom): string nf.
 genero (gen): string nf.
