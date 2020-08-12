@@ -6,7 +6,10 @@ require_once("class/model/values/_Persona.php");
 class Persona extends _Persona {
 
   public function nombre(){
-    return trim($this->nombres() . " " . $this->apellidos());
+    $array = []
+    if(!Validation::is_undefined($this->nombres) array_push($array, $this->nombres());
+    if(!Validation::is_undefined($this->apellidos) array_push($array, $this->apellidos());
+    return empty($array) ? UNDEFINED : implode(" ", $array);
   }
 
   public function checkNombresParecidos($existente){
@@ -108,6 +111,42 @@ class Persona extends _Persona {
       parent::resetTelefono();
       $this->telefono = preg_replace( '/[^0-9]/i', '', $this->telefono);
       if($this->telefono[0] == "0") $this->telefono = substr($this->telefono, 1); 
+  }
+
+
+  public function _equalTo(EntityValues $entityValues, $strict = false){
+    $a = $this->_toArray();
+    $b = $entityValues->_toArray();    
+    if($strict) return (empty(array_diff_assoc($a, $b)) && empty(array_diff_assoc($b, $a)))? true : false;
+    
+    if(!Validation::is_undefined($this->getNombre()) && !Validation::is_undefined($entityValues->getNombre())){
+      if(!nombres_parecidos($this->nombre(), $existente->nombre())) return false;
+    }
+
+    foreach($a as $ka => $va) {
+      switch($ka){
+        case "inscripcion_men":
+        case "identificador":
+        case "numero_inscripcion":
+        case "turno":
+        case "pc_escritorio":
+        case "net_notebook":
+        case "tablet":
+        case "pc_tablet":
+        case "impresora":
+        case "conexion_internet_paga":
+        case "telefono_celular":
+        case "archivo_2019":
+        case "archivo_2020":
+        case "nombres":
+        case "apellidos":  
+          continue;
+      }
+      if(is_null($va) || !key_exists($ka, $b)) continue;
+      if($b[$ka] !== $va) return false;
+      
+    }
+    return true;
   }
   
   
