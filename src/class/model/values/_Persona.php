@@ -32,6 +32,8 @@ class _Persona extends EntityValues {
   protected $conexionInternetPaga = UNDEFINED;
   protected $telefonoCelular = UNDEFINED;
   protected $comision2020 = UNDEFINED;
+  protected $archivo2019 = UNDEFINED;
+  protected $archivo2020 = UNDEFINED;
 
   public function _setDefault(){
     if($this->id == UNDEFINED) $this->setId(null);
@@ -62,6 +64,8 @@ class _Persona extends EntityValues {
     if($this->conexionInternetPaga == UNDEFINED) $this->setConexionInternetPaga(null);
     if($this->telefonoCelular == UNDEFINED) $this->setTelefonoCelular(null);
     if($this->comision2020 == UNDEFINED) $this->setComision2020(null);
+    if($this->archivo2019 == UNDEFINED) $this->setArchivo2019(null);
+    if($this->archivo2020 == UNDEFINED) $this->setArchivo2020(null);
     return $this;
   }
 
@@ -95,6 +99,8 @@ class _Persona extends EntityValues {
     if(isset($row[$p."conexion_internet_paga"])) $this->setConexionInternetPaga($row[$p."conexion_internet_paga"]);
     if(isset($row[$p."telefono_celular"])) $this->setTelefonoCelular($row[$p."telefono_celular"]);
     if(isset($row[$p."comision_2020"])) $this->setComision2020($row[$p."comision_2020"]);
+    if(isset($row[$p."archivo_2019"])) $this->setArchivo2019($row[$p."archivo_2019"]);
+    if(isset($row[$p."archivo_2020"])) $this->setArchivo2020($row[$p."archivo_2020"]);
     return $this;
   }
 
@@ -128,6 +134,8 @@ class _Persona extends EntityValues {
     if($this->conexionInternetPaga !== UNDEFINED) $row[$p."conexion_internet_paga"] = $this->conexionInternetPaga();
     if($this->telefonoCelular !== UNDEFINED) $row[$p."telefono_celular"] = $this->telefonoCelular();
     if($this->comision2020 !== UNDEFINED) $row[$p."comision_2020"] = $this->comision2020();
+    if($this->archivo2019 !== UNDEFINED) $row[$p."archivo_2019"] = $this->archivo2019();
+    if($this->archivo2020 !== UNDEFINED) $row[$p."archivo_2020"] = $this->archivo2020();
     return $row;
   }
 
@@ -160,6 +168,8 @@ class _Persona extends EntityValues {
     if(!Validation::is_empty($this->conexionInternetPaga)) return false;
     if(!Validation::is_empty($this->telefonoCelular)) return false;
     if(!Validation::is_empty($this->comision2020)) return false;
+    if(!Validation::is_empty($this->archivo2019)) return false;
+    if(!Validation::is_empty($this->archivo2020)) return false;
     return true;
   }
 
@@ -191,6 +201,8 @@ class _Persona extends EntityValues {
   public function conexionInternetPaga($format = null) { return Format::boolean($this->conexionInternetPaga, $format); }
   public function telefonoCelular($format = null) { return Format::convertCase($this->telefonoCelular, $format); }
   public function comision2020($format = null) { return Format::convertCase($this->comision2020, $format); }
+  public function archivo2019($format = null) { return Format::boolean($this->archivo2019, $format); }
+  public function archivo2020($format = null) { return Format::boolean($this->archivo2020, $format); }
 
   public function setId($p) { $this->id = (is_null($p)) ? null : (string)$p; }
   public function setRegion($p) { $this->region = (is_null($p)) ? null : (string)$p; }
@@ -220,6 +232,8 @@ class _Persona extends EntityValues {
   public function setConexionInternetPaga($p) { $this->conexionInternetPaga = settypebool($p); }
   public function setTelefonoCelular($p) { $this->telefonoCelular = (is_null($p)) ? null : (string)$p; }
   public function setComision2020($p) { $this->comision2020 = (is_null($p)) ? null : (string)$p; }
+  public function setArchivo2019($p) { $this->archivo2019 = settypebool($p); }
+  public function setArchivo2020($p) { $this->archivo2020 = settypebool($p); }
 
   public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
   public function resetDistrito() { if(!Validation::is_empty($this->distrito)) $this->distrito = preg_replace('/\s\s+/', ' ', trim($this->distrito)); }
@@ -274,8 +288,11 @@ class _Persona extends EntityValues {
   }
 
   public function checkInscripcionMen($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("inscripcion_men");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("inscripcion_men", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkCens($value) { 
@@ -349,33 +366,51 @@ class _Persona extends EntityValues {
   }
 
   public function checkPcEscritorio($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("pc_escritorio");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("pc_escritorio", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkNetNotebook($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("net_notebook");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("net_notebook", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkTablet($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("tablet");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("tablet", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkPcTablet($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("pc_tablet");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("pc_tablet", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkImpresora($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("impresora");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("impresora", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkConexionInternetPaga($value) { 
-      if(Validation::is_undefined($value) return null;
-      return true; 
+    $this->_logs->resetLogs("conexion_internet_paga");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("conexion_internet_paga", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkTelefonoCelular($value) { 
@@ -386,6 +421,22 @@ class _Persona extends EntityValues {
   public function checkComision2020($value) { 
       if(Validation::is_undefined($value) return null;
       return true; 
+  }
+
+  public function checkArchivo2019($value) { 
+    $this->_logs->resetLogs("archivo_2019");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("archivo_2019", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkArchivo2020($value) { 
+    $this->_logs->resetLogs("archivo_2020");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("archivo_2020", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function _check(){
@@ -417,6 +468,8 @@ class _Persona extends EntityValues {
     $this->checkConexionInternetPaga($this->conexionInternetPaga);
     $this->checkTelefonoCelular($this->telefonoCelular);
     $this->checkComision2020($this->comision2020);
+    $this->checkArchivo2019($this->archivo2019);
+    $this->checkArchivo2020($this->archivo2020);
     return !$this->_getLogs()->isError();
   }
 

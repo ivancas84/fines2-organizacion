@@ -40,6 +40,8 @@ class _PersonaSqlo extends EntitySqlo {
     $sql .= "conexion_internet_paga, " ;
     $sql .= "telefono_celular, " ;
     $sql .= "comision_2020, " ;
+    $sql .= "archivo_2019, " ;
+    $sql .= "archivo_2020, " ;
     $sql = substr($sql, 0, -2); //eliminar ultima coma
 
     $sql .= ")
@@ -72,6 +74,8 @@ VALUES ( ";
     $sql .= $row['conexion_internet_paga'] . ", " ;
     $sql .= $row['telefono_celular'] . ", " ;
     $sql .= $row['comision_2020'] . ", " ;
+    $sql .= $row['archivo_2019'] . ", " ;
+    $sql .= $row['archivo_2020'] . ", " ;
     $sql = substr($sql, 0, -2); //eliminar ultima coma
 
     $sql .= ");
@@ -111,6 +115,8 @@ UPDATE " . $this->entity->sn_() . " SET
     if (isset($row['conexion_internet_paga'] )) $sql .= "conexion_internet_paga = " . $row['conexion_internet_paga'] . " ," ;
     if (isset($row['telefono_celular'] )) $sql .= "telefono_celular = " . $row['telefono_celular'] . " ," ;
     if (isset($row['comision_2020'] )) $sql .= "comision_2020 = " . $row['comision_2020'] . " ," ;
+    if (isset($row['archivo_2019'] )) $sql .= "archivo_2019 = " . $row['archivo_2019'] . " ," ;
+    if (isset($row['archivo_2020'] )) $sql .= "archivo_2020 = " . $row['archivo_2020'] . " ," ;
     //eliminar ultima coma
     $sql = substr($sql, 0, -2);
 

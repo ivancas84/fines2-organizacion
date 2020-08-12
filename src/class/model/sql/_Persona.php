@@ -43,6 +43,8 @@ class _PersonaSql extends EntitySql{
       case $p.'conexion_internet_paga': return $t.".conexion_internet_paga";
       case $p.'telefono_celular': return $t.".telefono_celular";
       case $p.'comision_2020': return $t.".comision_2020";
+      case $p.'archivo_2019': return $t.".archivo_2019";
+      case $p.'archivo_2020': return $t.".archivo_2020";
 
       case $p.'min_id': return "MIN({$t}.id)";
       case $p.'max_id': return "MAX({$t}.id)";
@@ -156,6 +158,14 @@ class _PersonaSql extends EntitySql{
       case $p.'max_comision_2020': return "MAX({$t}.comision_2020)";
       case $p.'count_comision_2020': return "COUNT({$t}.comision_2020)";
 
+      case $p.'min_archivo_2019': return "MIN({$t}.archivo_2019)";
+      case $p.'max_archivo_2019': return "MAX({$t}.archivo_2019)";
+      case $p.'count_archivo_2019': return "COUNT({$t}.archivo_2019)";
+
+      case $p.'min_archivo_2020': return "MIN({$t}.archivo_2020)";
+      case $p.'max_archivo_2020': return "MAX({$t}.archivo_2020)";
+      case $p.'count_archivo_2020': return "COUNT({$t}.archivo_2020)";
+
       case $p.'_label': return "CONCAT_WS(' ', {$t}.id)";
       default: return null;
     }
@@ -165,13 +175,13 @@ class _PersonaSql extends EntitySql{
     //No todos los campos se extraen de la entidad, por eso es necesario mapearlos
     $p = $this->prf();
     return '
-' . $this->_mappingField($p.'id') . ' AS ' . $p.'id, ' . $this->_mappingField($p.'region') . ' AS ' . $p.'region, ' . $this->_mappingField($p.'distrito') . ' AS ' . $p.'distrito, ' . $this->_mappingField($p.'localidad') . ' AS ' . $p.'localidad, ' . $this->_mappingField($p.'programa') . ' AS ' . $p.'programa, ' . $this->_mappingField($p.'inscripcion_men') . ' AS ' . $p.'inscripcion_men, ' . $this->_mappingField($p.'cens') . ' AS ' . $p.'cens, ' . $this->_mappingField($p.'sede') . ' AS ' . $p.'sede, ' . $this->_mappingField($p.'comision') . ' AS ' . $p.'comision, ' . $this->_mappingField($p.'tramo') . ' AS ' . $p.'tramo, ' . $this->_mappingField($p.'identificador') . ' AS ' . $p.'identificador, ' . $this->_mappingField($p.'numero_inscripcion') . ' AS ' . $p.'numero_inscripcion, ' . $this->_mappingField($p.'numero_documento') . ' AS ' . $p.'numero_documento, ' . $this->_mappingField($p.'apellidos') . ' AS ' . $p.'apellidos, ' . $this->_mappingField($p.'nombres') . ' AS ' . $p.'nombres, ' . $this->_mappingField($p.'genero') . ' AS ' . $p.'genero, ' . $this->_mappingField($p.'telefono') . ' AS ' . $p.'telefono, ' . $this->_mappingField($p.'correo') . ' AS ' . $p.'correo, ' . $this->_mappingField($p.'trayectoria_educativa') . ' AS ' . $p.'trayectoria_educativa, ' . $this->_mappingField($p.'turno') . ' AS ' . $p.'turno, ' . $this->_mappingField($p.'pc_escritorio') . ' AS ' . $p.'pc_escritorio, ' . $this->_mappingField($p.'net_notebook') . ' AS ' . $p.'net_notebook, ' . $this->_mappingField($p.'tablet') . ' AS ' . $p.'tablet, ' . $this->_mappingField($p.'pc_tablet') . ' AS ' . $p.'pc_tablet, ' . $this->_mappingField($p.'impresora') . ' AS ' . $p.'impresora, ' . $this->_mappingField($p.'conexion_internet_paga') . ' AS ' . $p.'conexion_internet_paga, ' . $this->_mappingField($p.'telefono_celular') . ' AS ' . $p.'telefono_celular, ' . $this->_mappingField($p.'comision_2020') . ' AS ' . $p.'comision_2020';
+' . $this->_mappingField($p.'id') . ' AS ' . $p.'id, ' . $this->_mappingField($p.'region') . ' AS ' . $p.'region, ' . $this->_mappingField($p.'distrito') . ' AS ' . $p.'distrito, ' . $this->_mappingField($p.'localidad') . ' AS ' . $p.'localidad, ' . $this->_mappingField($p.'programa') . ' AS ' . $p.'programa, ' . $this->_mappingField($p.'inscripcion_men') . ' AS ' . $p.'inscripcion_men, ' . $this->_mappingField($p.'cens') . ' AS ' . $p.'cens, ' . $this->_mappingField($p.'sede') . ' AS ' . $p.'sede, ' . $this->_mappingField($p.'comision') . ' AS ' . $p.'comision, ' . $this->_mappingField($p.'tramo') . ' AS ' . $p.'tramo, ' . $this->_mappingField($p.'identificador') . ' AS ' . $p.'identificador, ' . $this->_mappingField($p.'numero_inscripcion') . ' AS ' . $p.'numero_inscripcion, ' . $this->_mappingField($p.'numero_documento') . ' AS ' . $p.'numero_documento, ' . $this->_mappingField($p.'apellidos') . ' AS ' . $p.'apellidos, ' . $this->_mappingField($p.'nombres') . ' AS ' . $p.'nombres, ' . $this->_mappingField($p.'genero') . ' AS ' . $p.'genero, ' . $this->_mappingField($p.'telefono') . ' AS ' . $p.'telefono, ' . $this->_mappingField($p.'correo') . ' AS ' . $p.'correo, ' . $this->_mappingField($p.'trayectoria_educativa') . ' AS ' . $p.'trayectoria_educativa, ' . $this->_mappingField($p.'turno') . ' AS ' . $p.'turno, ' . $this->_mappingField($p.'pc_escritorio') . ' AS ' . $p.'pc_escritorio, ' . $this->_mappingField($p.'net_notebook') . ' AS ' . $p.'net_notebook, ' . $this->_mappingField($p.'tablet') . ' AS ' . $p.'tablet, ' . $this->_mappingField($p.'pc_tablet') . ' AS ' . $p.'pc_tablet, ' . $this->_mappingField($p.'impresora') . ' AS ' . $p.'impresora, ' . $this->_mappingField($p.'conexion_internet_paga') . ' AS ' . $p.'conexion_internet_paga, ' . $this->_mappingField($p.'telefono_celular') . ' AS ' . $p.'telefono_celular, ' . $this->_mappingField($p.'comision_2020') . ' AS ' . $p.'comision_2020, ' . $this->_mappingField($p.'archivo_2019') . ' AS ' . $p.'archivo_2019, ' . $this->_mappingField($p.'archivo_2020') . ' AS ' . $p.'archivo_2020';
   }
 
   public function _fieldsExclusive(){
     $p = $this->prf();
     return '
-' . $this->_mappingField($p.'id') . ', ' . $this->_mappingField($p.'region') . ', ' . $this->_mappingField($p.'distrito') . ', ' . $this->_mappingField($p.'localidad') . ', ' . $this->_mappingField($p.'programa') . ', ' . $this->_mappingField($p.'inscripcion_men') . ', ' . $this->_mappingField($p.'cens') . ', ' . $this->_mappingField($p.'sede') . ', ' . $this->_mappingField($p.'comision') . ', ' . $this->_mappingField($p.'tramo') . ', ' . $this->_mappingField($p.'identificador') . ', ' . $this->_mappingField($p.'numero_inscripcion') . ', ' . $this->_mappingField($p.'numero_documento') . ', ' . $this->_mappingField($p.'apellidos') . ', ' . $this->_mappingField($p.'nombres') . ', ' . $this->_mappingField($p.'genero') . ', ' . $this->_mappingField($p.'telefono') . ', ' . $this->_mappingField($p.'correo') . ', ' . $this->_mappingField($p.'trayectoria_educativa') . ', ' . $this->_mappingField($p.'turno') . ', ' . $this->_mappingField($p.'pc_escritorio') . ', ' . $this->_mappingField($p.'net_notebook') . ', ' . $this->_mappingField($p.'tablet') . ', ' . $this->_mappingField($p.'pc_tablet') . ', ' . $this->_mappingField($p.'impresora') . ', ' . $this->_mappingField($p.'conexion_internet_paga') . ', ' . $this->_mappingField($p.'telefono_celular') . ', ' . $this->_mappingField($p.'comision_2020') . '';
+' . $this->_mappingField($p.'id') . ', ' . $this->_mappingField($p.'region') . ', ' . $this->_mappingField($p.'distrito') . ', ' . $this->_mappingField($p.'localidad') . ', ' . $this->_mappingField($p.'programa') . ', ' . $this->_mappingField($p.'inscripcion_men') . ', ' . $this->_mappingField($p.'cens') . ', ' . $this->_mappingField($p.'sede') . ', ' . $this->_mappingField($p.'comision') . ', ' . $this->_mappingField($p.'tramo') . ', ' . $this->_mappingField($p.'identificador') . ', ' . $this->_mappingField($p.'numero_inscripcion') . ', ' . $this->_mappingField($p.'numero_documento') . ', ' . $this->_mappingField($p.'apellidos') . ', ' . $this->_mappingField($p.'nombres') . ', ' . $this->_mappingField($p.'genero') . ', ' . $this->_mappingField($p.'telefono') . ', ' . $this->_mappingField($p.'correo') . ', ' . $this->_mappingField($p.'trayectoria_educativa') . ', ' . $this->_mappingField($p.'turno') . ', ' . $this->_mappingField($p.'pc_escritorio') . ', ' . $this->_mappingField($p.'net_notebook') . ', ' . $this->_mappingField($p.'tablet') . ', ' . $this->_mappingField($p.'pc_tablet') . ', ' . $this->_mappingField($p.'impresora') . ', ' . $this->_mappingField($p.'conexion_internet_paga') . ', ' . $this->_mappingField($p.'telefono_celular') . ', ' . $this->_mappingField($p.'comision_2020') . ', ' . $this->_mappingField($p.'archivo_2019') . ', ' . $this->_mappingField($p.'archivo_2020') . '';
   }
 
   public function _conditionFieldStruct($field, $option, $value){
@@ -207,6 +217,8 @@ class _PersonaSql extends EntitySql{
       case "{$p}conexion_internet_paga": return $this->format->conditionBoolean($f, $value);
       case "{$p}telefono_celular": return $this->format->conditionText($f, $value, $option);
       case "{$p}comision_2020": return $this->format->conditionText($f, $value, $option);
+      case "{$p}archivo_2019": return $this->format->conditionBoolean($f, $value);
+      case "{$p}archivo_2020": return $this->format->conditionBoolean($f, $value);
 
       case "{$p}max_id": return $this->format->conditionNumber($f, $value, $option);
       case "{$p}min_id": return $this->format->conditionNumber($f, $value, $option);
@@ -320,6 +332,14 @@ class _PersonaSql extends EntitySql{
       case "{$p}min_comision_2020": return $this->format->conditionNumber($f, $value, $option);
       case "{$p}count_comision_2020": return $this->format->conditionNumber($f, $value, $option);
 
+      case "{$p}max_archivo_2019": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}min_archivo_2019": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}count_archivo_2019": return $this->format->conditionNumber($f, $value, $option);
+
+      case "{$p}max_archivo_2020": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}min_archivo_2020": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}count_archivo_2020": return $this->format->conditionNumber($f, $value, $option);
+
       default: return $this->_conditionFieldStructMain($field, $option, $value);
     }
   }
@@ -355,6 +375,8 @@ class _PersonaSql extends EntitySql{
     if(array_key_exists('conexion_internet_paga', $row)) $row_['conexion_internet_paga'] = $this->format->boolean($row['conexion_internet_paga']);
     if(array_key_exists('telefono_celular', $row)) $row_['telefono_celular'] = $this->format->string($row['telefono_celular']);
     if(array_key_exists('comision_2020', $row)) $row_['comision_2020'] = $this->format->string($row['comision_2020']);
+    if(array_key_exists('archivo_2019', $row)) $row_['archivo_2019'] = $this->format->boolean($row['archivo_2019']);
+    if(array_key_exists('archivo_2020', $row)) $row_['archivo_2020'] = $this->format->boolean($row['archivo_2020']);
 
     return $row_;
   }
