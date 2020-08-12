@@ -17,7 +17,7 @@ $import->id = $_REQUEST["id"]; //Identificacion del documento a procesar para al
 $import->headers = array_map('trim', explode(",",$_REQUEST["headers"])); //encabezados a procesar
 $import->source = $_REQUEST["source"]; //informacion a procesar
 $import->mode ="tab"; //modo de procesamiento
-$import->pathSummary = $_SERVER["DOCUMENT_ROOT"] ."/".PATH_ROOT . "/doc/import/" . $import->id; //resultados
+$import->pathSummary = $_SERVER["DOCUMENT_ROOT"] ."/".PATH_ROOT . "/info/import/" . $import->id; //resultados
 
 $import->main();
 
