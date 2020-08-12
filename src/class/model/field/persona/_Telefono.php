@@ -9,7 +9,7 @@ class _FieldPersonaTelefono extends Field {
   public $unique = false;
   public $notNull = false;
   public $default = false;
-  public $length = "45";
+  public $length = "255";
   public $main = false;
   public $name = "telefono";
   public $alias = "tel";

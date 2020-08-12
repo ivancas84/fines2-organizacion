@@ -9,7 +9,7 @@ class _FieldPersonaRegion extends Field {
   public $unique = false;
   public $notNull = true;
   public $default = "'1'";
-  public $length = "45";
+  public $length = "255";
   public $main = false;
   public $name = "region";
   public $alias = "reg";

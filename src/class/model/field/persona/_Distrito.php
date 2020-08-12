@@ -9,7 +9,7 @@ class _FieldPersonaDistrito extends Field {
   public $unique = false;
   public $notNull = true;
   public $default = "'La Plata'";
-  public $length = "45";
+  public $length = "255";
   public $main = false;
   public $name = "distrito";
   public $alias = "dis";

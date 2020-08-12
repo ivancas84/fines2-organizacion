@@ -1,14 +1,15 @@
 <?php
 
 require_once("function/nombres_parecidos.php");
+require_once("function/strto.php");
 require_once("class/model/values/_Persona.php");
 
 class Persona extends _Persona {
 
   public function nombre(){
-    $array = []
-    if(!Validation::is_undefined($this->nombres) array_push($array, $this->nombres());
-    if(!Validation::is_undefined($this->apellidos) array_push($array, $this->apellidos());
+    $array = [];
+    if(!Validation::is_undefined($this->nombres)) array_push($array, $this->nombres());
+    if(!Validation::is_undefined($this->apellidos)) array_push($array, $this->apellidos());
     return empty($array) ? UNDEFINED : implode(" ", $array);
   }
 
@@ -61,56 +62,73 @@ class Persona extends _Persona {
 
   public function checkNumeroDocumento($value) { 
     $this->_logs->resetLogs("numero_documento");
-    $v = Validation::getInstanceValue($val)->required()->string()->min(7)->pattern("int");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required()->string()->min(7)->pattern("int");
     foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
     return $v->isSuccess();
   }
 
   public function checkTelefono($value) { 
     $this->_logs->resetLogs("telefono");
-    $v = Validation::getInstanceValue($val)->min(6);
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "warning", $error); }
+    if(Validation::is_undefined($value)) return null;
+    if(Validation::is_empty($value)) return true;
+
+    $v = Validation::getInstanceValue($value)->min(6);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("telefono", "warning", $error); }
+    return true;
+  }
+
+  public function checkCorreo($value) { 
+    $this->_logs->resetLogs("correo");
+    if(Validation::is_undefined($value)) return null;
+    if(Validation::is_empty($value)) return true;
+    $v = Validation::getInstanceValue($value)->email();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("correo", "warning", $error); }
     return true;
   }
 
   public function resetGenero(){
     if(!Validation::is_empty($this->genero)) 
-      $this->genero = (strpos(strtolower($genero), 'f') !== false) ? "Femenino" : "Masculino";
+      $this->genero = (strpos(strtolower($this->genero), 'f') !== false) ? "Femenino" : "Masculino";
   }
 
   public function resetNumeroDocumento(){
     if(!Validation::is_empty($this->numeroDocumento)) { 
       parent::resetNumeroDocumento();
-      $this->numeroDocumento = strto("x", str_replace("-", "", str_replace(".", "", (string)$this->numeroDocumento)));
+      $this->numeroDocumento = strto(
+        str_replace("-", "", str_replace(".", "", (string)$this->numeroDocumento)), "x"
+      );
     }
   }
 
   public function resetEmail(){
     if(!Validation::is_empty($this->email)){  
       parent::resetNumeroDocumento();  
-      $this->email = strto("xxyy", $this->email);
+      $this->email = strto($this->email, "xxyy");
     }
   }
 
   public function resetNombres(){
     if(!Validation::is_empty($this->nombres)){
       parent::resetNombres();
-      $this->nombres = strto("Xx Yy", $this->nombres);
+      $this->nombres = strto($this->nombres, "Xx Yy");
     }
   }
   
   public function resetApellidos(){
     if(!Validation::is_empty($this->genero)){
       parent::resetApellidos(); 
-      $this->apellidos = strto("Xx Yy", $this->apellidos);
+      $this->apellidos = strto($this->apellidos, "Xx Yy");
     }
   }
 
   public function resetTelefono(){
-    if(!Validation::is_empty($this->genero)){
+    if(!Validation::is_empty($this->telefono)){
       parent::resetTelefono();
       $this->telefono = preg_replace( '/[^0-9]/i', '', $this->telefono);
-      if($this->telefono[0] == "0") $this->telefono = substr($this->telefono, 1); 
+      if(empty($this->telefono)) $this->telefono = null;
+      elseif($this->telefono[0] == "0") $this->telefono = substr($this->telefono, 1); 
+    }
   }
 
 
@@ -119,10 +137,12 @@ class Persona extends _Persona {
     $b = $entityValues->_toArray();    
     if($strict) return (empty(array_diff_assoc($a, $b)) && empty(array_diff_assoc($b, $a)))? true : false;
     
-    if(!Validation::is_undefined($this->getNombre()) && !Validation::is_undefined($entityValues->getNombre())){
-      if(!nombres_parecidos($this->nombre(), $existente->nombre())) return false;
+    if(!Validation::is_undefined($this->nombre()) && !Validation::is_undefined($entityValues->nombre())){
+      if(!nombres_parecidos($this->nombre(), $entityValues->nombre())) return false;
     }
-
+    //echo "<pre>";
+    //print_r($a);
+    //print_r($b);
     foreach($a as $ka => $va) {
       switch($ka){
         case "inscripcion_men":
@@ -140,10 +160,14 @@ class Persona extends _Persona {
         case "archivo_2020":
         case "nombres":
         case "apellidos":  
-          continue;
+          break;
+        default:
+          if(is_null($va) || !key_exists($ka, $b)) break;
+          if($b[$ka] !== $va) {
+            //echo "distinto" . $ka;
+            return false;
+          }
       }
-      if(is_null($va) || !key_exists($ka, $b)) continue;
-      if($b[$ka] !== $va) return false;
       
     }
     return true;
