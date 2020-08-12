@@ -193,198 +193,199 @@ class _Persona extends EntityValues {
   public function comision2020($format = null) { return Format::convertCase($this->comision2020, $format); }
 
   public function setId($p) { $this->id = (is_null($p)) ? null : (string)$p; }
-
   public function setRegion($p) { $this->region = (is_null($p)) ? null : (string)$p; }
-
   public function setDistrito($p) { $this->distrito = (is_null($p)) ? null : (string)$p; }
-
   public function setLocalidad($p) { $this->localidad = (is_null($p)) ? null : (string)$p; }
-
   public function setPrograma($p) { $this->programa = (is_null($p)) ? null : (string)$p; }
-
-  public function setInscripcionMen($p) { $this->inscripcionMen = settypebool(trim($p)); }
-
+  public function setInscripcionMen($p) { $this->inscripcionMen = settypebool($p); }
   public function setCens($p) { $this->cens = (is_null($p)) ? null : (string)$p; }
-
   public function setSede($p) { $this->sede = (is_null($p)) ? null : (string)$p; }
-
   public function setComision($p) { $this->comision = (is_null($p)) ? null : (string)$p; }
-
   public function setTramo($p) { $this->tramo = (is_null($p)) ? null : (string)$p; }
-
   public function setIdentificador($p) { $this->identificador = (is_null($p)) ? null : (string)$p; }
-
   public function setNumeroInscripcion($p) { $this->numeroInscripcion = (is_null($p)) ? null : (string)$p; }
-
   public function setNumeroDocumento($p) { $this->numeroDocumento = (is_null($p)) ? null : (string)$p; }
-
   public function setApellidos($p) { $this->apellidos = (is_null($p)) ? null : (string)$p; }
-
   public function setNombres($p) { $this->nombres = (is_null($p)) ? null : (string)$p; }
-
   public function setGenero($p) { $this->genero = (is_null($p)) ? null : (string)$p; }
-
   public function setTelefono($p) { $this->telefono = (is_null($p)) ? null : (string)$p; }
-
   public function setCorreo($p) { $this->correo = (is_null($p)) ? null : (string)$p; }
-
   public function setTrayectoriaEducativa($p) { $this->trayectoriaEducativa = (is_null($p)) ? null : (string)$p; }
-
   public function setTurno($p) { $this->turno = (is_null($p)) ? null : (string)$p; }
-
-  public function setPcEscritorio($p) { $this->pcEscritorio = settypebool(trim($p)); }
-
-  public function setNetNotebook($p) { $this->netNotebook = settypebool(trim($p)); }
-
-  public function setTablet($p) { $this->tablet = settypebool(trim($p)); }
-
-  public function setPcTablet($p) { $this->pcTablet = settypebool(trim($p)); }
-
-  public function setImpresora($p) { $this->impresora = settypebool(trim($p)); }
-
-  public function setConexionInternetPaga($p) { $this->conexionInternetPaga = settypebool(trim($p)); }
-
+  public function setPcEscritorio($p) { $this->pcEscritorio = settypebool($p); }
+  public function setNetNotebook($p) { $this->netNotebook = settypebool($p); }
+  public function setTablet($p) { $this->tablet = settypebool($p); }
+  public function setPcTablet($p) { $this->pcTablet = settypebool($p); }
+  public function setImpresora($p) { $this->impresora = settypebool($p); }
+  public function setConexionInternetPaga($p) { $this->conexionInternetPaga = settypebool($p); }
   public function setTelefonoCelular($p) { $this->telefonoCelular = (is_null($p)) ? null : (string)$p; }
-
   public function setComision2020($p) { $this->comision2020 = (is_null($p)) ? null : (string)$p; }
 
+  public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
+  public function resetDistrito() { if(!Validation::is_empty($this->distrito)) $this->distrito = preg_replace('/\s\s+/', ' ', trim($this->distrito)); }
+  public function resetLocalidad() { if(!Validation::is_empty($this->localidad)) $this->localidad = preg_replace('/\s\s+/', ' ', trim($this->localidad)); }
+  public function resetPrograma() { if(!Validation::is_empty($this->programa)) $this->programa = preg_replace('/\s\s+/', ' ', trim($this->programa)); }
+  public function resetCens() { if(!Validation::is_empty($this->cens)) $this->cens = preg_replace('/\s\s+/', ' ', trim($this->cens)); }
+  public function resetSede() { if(!Validation::is_empty($this->sede)) $this->sede = preg_replace('/\s\s+/', ' ', trim($this->sede)); }
+  public function resetComision() { if(!Validation::is_empty($this->comision)) $this->comision = preg_replace('/\s\s+/', ' ', trim($this->comision)); }
+  public function resetTramo() { if(!Validation::is_empty($this->tramo)) $this->tramo = preg_replace('/\s\s+/', ' ', trim($this->tramo)); }
+  public function resetIdentificador() { if(!Validation::is_empty($this->identificador)) $this->identificador = preg_replace('/\s\s+/', ' ', trim($this->identificador)); }
+  public function resetNumeroInscripcion() { if(!Validation::is_empty($this->numeroInscripcion)) $this->numeroInscripcion = preg_replace('/\s\s+/', ' ', trim($this->numeroInscripcion)); }
+  public function resetNumeroDocumento() { if(!Validation::is_empty($this->numeroDocumento)) $this->numeroDocumento = preg_replace('/\s\s+/', ' ', trim($this->numeroDocumento)); }
+  public function resetApellidos() { if(!Validation::is_empty($this->apellidos)) $this->apellidos = preg_replace('/\s\s+/', ' ', trim($this->apellidos)); }
+  public function resetNombres() { if(!Validation::is_empty($this->nombres)) $this->nombres = preg_replace('/\s\s+/', ' ', trim($this->nombres)); }
+  public function resetGenero() { if(!Validation::is_empty($this->genero)) $this->genero = preg_replace('/\s\s+/', ' ', trim($this->genero)); }
+  public function resetTelefono() { if(!Validation::is_empty($this->telefono)) $this->telefono = preg_replace('/\s\s+/', ' ', trim($this->telefono)); }
+  public function resetCorreo() { if(!Validation::is_empty($this->correo)) $this->correo = preg_replace('/\s\s+/', ' ', trim($this->correo)); }
+  public function resetTrayectoriaEducativa() { if(!Validation::is_empty($this->trayectoriaEducativa)) $this->trayectoriaEducativa = preg_replace('/\s\s+/', ' ', trim($this->trayectoriaEducativa)); }
+  public function resetTurno() { if(!Validation::is_empty($this->turno)) $this->turno = preg_replace('/\s\s+/', ' ', trim($this->turno)); }
+  public function resetTelefonoCelular() { if(!Validation::is_empty($this->telefonoCelular)) $this->telefonoCelular = preg_replace('/\s\s+/', ' ', trim($this->telefonoCelular)); }
+  public function resetComision2020() { if(!Validation::is_empty($this->comision2020)) $this->comision2020 = preg_replace('/\s\s+/', ' ', trim($this->comision2020)); }
+
   public function checkId($value) { 
+      if(Validation::is_undefined($value) return null;
       return true; 
   }
 
   public function checkRegion($value) { 
-    $v = Validation::getInstanceValue($value)->string()->required();
-    return $this->_setLogsValidation("region", $v);
+    $this->_logs->resetLogs("region");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("region", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkDistrito($value) { 
-    $v = Validation::getInstanceValue($value)->string()->required();
-    return $this->_setLogsValidation("distrito", $v);
+    $this->_logs->resetLogs("distrito");
+    if(Validation::is_undefined($value) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("distrito", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkLocalidad($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("localidad", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkPrograma($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("programa", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkInscripcionMen($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("inscripcion_men", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkCens($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("cens", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkSede($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("sede", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkComision($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("comision", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkTramo($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("tramo", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkIdentificador($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("identificador", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkNumeroInscripcion($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("numero_inscripcion", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkNumeroDocumento($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("numero_documento", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkApellidos($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("apellidos", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkNombres($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("nombres", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkGenero($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("genero", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkTelefono($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("telefono", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkCorreo($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("correo", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkTrayectoriaEducativa($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("trayectoria_educativa", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkTurno($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("turno", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkPcEscritorio($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("pc_escritorio", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkNetNotebook($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("net_notebook", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkTablet($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("tablet", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkPcTablet($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("pc_tablet", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkImpresora($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("impresora", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkConexionInternetPaga($value) { 
-    $v = Validation::getInstanceValue($value)->boolean();
-    return $this->_setLogsValidation("conexion_internet_paga", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkTelefonoCelular($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("telefono_celular", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function checkComision2020($value) { 
-    $v = Validation::getInstanceValue($value)->string();
-    return $this->_setLogsValidation("comision_2020", $v);
+      if(Validation::is_undefined($value) return null;
+      return true; 
   }
 
   public function _check(){
@@ -417,6 +418,30 @@ class _Persona extends EntityValues {
     $this->checkTelefonoCelular($this->telefonoCelular);
     $this->checkComision2020($this->comision2020);
     return !$this->_getLogs()->isError();
+  }
+
+  public function _reset(){
+    $this->resetRegion();
+    $this->resetDistrito();
+    $this->resetLocalidad();
+    $this->resetPrograma();
+    $this->resetCens();
+    $this->resetSede();
+    $this->resetComision();
+    $this->resetTramo();
+    $this->resetIdentificador();
+    $this->resetNumeroInscripcion();
+    $this->resetNumeroDocumento();
+    $this->resetApellidos();
+    $this->resetNombres();
+    $this->resetGenero();
+    $this->resetTelefono();
+    $this->resetCorreo();
+    $this->resetTrayectoriaEducativa();
+    $this->resetTurno();
+    $this->resetTelefonoCelular();
+    $this->resetComision2020();
+    return $this;
   }
 
 

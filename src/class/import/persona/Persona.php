@@ -40,7 +40,7 @@ class ImportPersona extends Import {
     foreach($this->elements as &$element) {
       if(!$element->process) continue;
 
-      if(!$element->entities["persona"]->_check()){
+      if(!$element->entities["persona"]->_reset()->_check()){
         $element->process = false;
         continue;
       }      
@@ -56,8 +56,18 @@ class ImportPersona extends Import {
       }
       $element->entities["persona"]->_reset();
       
-      $element->sql .= $this->processSource("persona", $element->entities, $element->entities["persona"]->numeroDocumento());
+      $this->processElement("persona", $element, $element->entities["persona"]->numeroDocumento());
     }
   }
+
+  protected function updateElement(&$element, $name, $existente){
+    $element->entities[$name]->setId($existente->id());
+    if(!$element->entities[$name]->_equalTo($existente)) {
+      $element->logs->addLog("persona","error","El registro debe ser actualizado, comparar");
+    } else {
+      $element->process = false;
+      $element->logs->addLog("persona","info","Registros existente, no será actualizado");
+    }
+}
 
 }

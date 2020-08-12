@@ -57,43 +57,58 @@ class Persona extends _Persona {
   }
 
   public function checkNumeroDocumento($value) { 
-    $val = trim(str_replace(" ", "", str_replace("-", "", str_replace(".", "", (string)$value))));
+    $this->_logs->resetLogs("numero_documento");
     $v = Validation::getInstanceValue($val)->required()->string()->min(7)->pattern("int");
     foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
     return $v->isSuccess();
   }
 
+  public function checkTelefono($value) { 
+    $this->_logs->resetLogs("telefono");
+    $v = Validation::getInstanceValue($val)->min(6);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "warning", $error); }
+    return true;
+  }
+
   public function resetGenero(){
-    if(!Validation::is_empty($this->genero) && $this->_logs->isErrorKey("genero")) 
+    if(!Validation::is_empty($this->genero)) 
       $this->genero = (strpos(strtolower($genero), 'f') !== false) ? "Femenino" : "Masculino";
   }
 
   public function resetNumeroDocumento(){
-    if(!Validation::is_empty($this->numeroDocumento) && $this->_logs->isErrorKey("numero_documento")) 
+    if(!Validation::is_empty($this->numeroDocumento)) { 
+      parent::resetNumeroDocumento();
       $this->numeroDocumento = strto("x", str_replace("-", "", str_replace(".", "", (string)$this->numeroDocumento)));
+    }
   }
 
   public function resetEmail(){
-    if(!Validation::is_empty($this->email) && $this->_logs->isErrorKey("email"))  
+    if(!Validation::is_empty($this->email)){  
+      parent::resetNumeroDocumento();  
       $this->email = strto("xxyy", $this->email);
+    }
   }
 
   public function resetNombres(){
-    if(!Validation::is_empty($this->nombres) && $this->_logs->isErrorKey("nombres")) 
+    if(!Validation::is_empty($this->nombres)){
+      parent::resetNombres();
       $this->nombres = strto("Xx Yy", $this->nombres);
+    }
   }
   
   public function resetApellidos(){
-    if(!Validation::is_empty($this->genero) && $this->_logs->isErrorKey("apellidos")) 
+    if(!Validation::is_empty($this->genero)){
+      parent::resetApellidos(); 
       $this->apellidos = strto("Xx Yy", $this->apellidos);
+    }
+  }
+
+  public function resetTelefono(){
+    if(!Validation::is_empty($this->genero)){
+      parent::resetTelefono();
+      $this->telefono = preg_replace( '/[^0-9]/i', '', $this->telefono);
+      if($this->telefono[0] == "0") $this->telefono = substr($this->telefono, 1); 
   }
   
-  public function reset(){
-    $this->resetGenero();
-    $this->resetNumeroDocumento();
-    $this->resetEmail();
-    $this->resetNombres();
-    $this->resetApellidos();
-  }
   
 }
