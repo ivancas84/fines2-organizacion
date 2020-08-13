@@ -34,6 +34,16 @@ class _Persona extends EntityValues {
   protected $comision2020 = UNDEFINED;
   protected $archivo2019 = UNDEFINED;
   protected $archivo2020 = UNDEFINED;
+  protected $drive = UNDEFINED;
+  protected $cuil = UNDEFINED;
+  protected $analiticoDni = UNDEFINED;
+  protected $analiticoCuil = UNDEFINED;
+  protected $analiticoPartida = UNDEFINED;
+  protected $analiticoCertificado = UNDEFINED;
+  protected $fechaNacimiento = UNDEFINED;
+  protected $ingreso = UNDEFINED;
+  protected $observaciones = UNDEFINED;
+  protected $activo = UNDEFINED;
 
   public function _setDefault(){
     if($this->id == UNDEFINED) $this->setId(null);
@@ -66,6 +76,16 @@ class _Persona extends EntityValues {
     if($this->comision2020 == UNDEFINED) $this->setComision2020(null);
     if($this->archivo2019 == UNDEFINED) $this->setArchivo2019(null);
     if($this->archivo2020 == UNDEFINED) $this->setArchivo2020(null);
+    if($this->drive == UNDEFINED) $this->setDrive(null);
+    if($this->cuil == UNDEFINED) $this->setCuil(null);
+    if($this->analiticoDni == UNDEFINED) $this->setAnaliticoDni(null);
+    if($this->analiticoCuil == UNDEFINED) $this->setAnaliticoCuil(null);
+    if($this->analiticoPartida == UNDEFINED) $this->setAnaliticoPartida(null);
+    if($this->analiticoCertificado == UNDEFINED) $this->setAnaliticoCertificado(null);
+    if($this->fechaNacimiento == UNDEFINED) $this->setFechaNacimiento(null);
+    if($this->ingreso == UNDEFINED) $this->setIngreso(null);
+    if($this->observaciones == UNDEFINED) $this->setObservaciones(null);
+    if($this->activo == UNDEFINED) $this->setActivo(1);
     return $this;
   }
 
@@ -101,6 +121,16 @@ class _Persona extends EntityValues {
     if(isset($row[$p."comision_2020"])) $this->setComision2020($row[$p."comision_2020"]);
     if(isset($row[$p."archivo_2019"])) $this->setArchivo2019($row[$p."archivo_2019"]);
     if(isset($row[$p."archivo_2020"])) $this->setArchivo2020($row[$p."archivo_2020"]);
+    if(isset($row[$p."drive"])) $this->setDrive($row[$p."drive"]);
+    if(isset($row[$p."cuil"])) $this->setCuil($row[$p."cuil"]);
+    if(isset($row[$p."analitico_dni"])) $this->setAnaliticoDni($row[$p."analitico_dni"]);
+    if(isset($row[$p."analitico_cuil"])) $this->setAnaliticoCuil($row[$p."analitico_cuil"]);
+    if(isset($row[$p."analitico_partida"])) $this->setAnaliticoPartida($row[$p."analitico_partida"]);
+    if(isset($row[$p."analitico_certificado"])) $this->setAnaliticoCertificado($row[$p."analitico_certificado"]);
+    if(isset($row[$p."fecha_nacimiento"])) $this->setFechaNacimiento($row[$p."fecha_nacimiento"]);
+    if(isset($row[$p."ingreso"])) $this->setIngreso($row[$p."ingreso"]);
+    if(isset($row[$p."observaciones"])) $this->setObservaciones($row[$p."observaciones"]);
+    if(isset($row[$p."activo"])) $this->setActivo($row[$p."activo"]);
     return $this;
   }
 
@@ -136,6 +166,16 @@ class _Persona extends EntityValues {
     if($this->comision2020 !== UNDEFINED) $row[$p."comision_2020"] = $this->comision2020();
     if($this->archivo2019 !== UNDEFINED) $row[$p."archivo_2019"] = $this->archivo2019();
     if($this->archivo2020 !== UNDEFINED) $row[$p."archivo_2020"] = $this->archivo2020();
+    if($this->drive !== UNDEFINED) $row[$p."drive"] = $this->drive();
+    if($this->cuil !== UNDEFINED) $row[$p."cuil"] = $this->cuil();
+    if($this->analiticoDni !== UNDEFINED) $row[$p."analitico_dni"] = $this->analiticoDni();
+    if($this->analiticoCuil !== UNDEFINED) $row[$p."analitico_cuil"] = $this->analiticoCuil();
+    if($this->analiticoPartida !== UNDEFINED) $row[$p."analitico_partida"] = $this->analiticoPartida();
+    if($this->analiticoCertificado !== UNDEFINED) $row[$p."analitico_certificado"] = $this->analiticoCertificado();
+    if($this->fechaNacimiento !== UNDEFINED) $row[$p."fecha_nacimiento"] = $this->fechaNacimiento("c");
+    if($this->ingreso !== UNDEFINED) $row[$p."ingreso"] = $this->ingreso();
+    if($this->observaciones !== UNDEFINED) $row[$p."observaciones"] = $this->observaciones();
+    if($this->activo !== UNDEFINED) $row[$p."activo"] = $this->activo();
     return $row;
   }
 
@@ -170,6 +210,16 @@ class _Persona extends EntityValues {
     if(!Validation::is_empty($this->comision2020)) return false;
     if(!Validation::is_empty($this->archivo2019)) return false;
     if(!Validation::is_empty($this->archivo2020)) return false;
+    if(!Validation::is_empty($this->drive)) return false;
+    if(!Validation::is_empty($this->cuil)) return false;
+    if(!Validation::is_empty($this->analiticoDni)) return false;
+    if(!Validation::is_empty($this->analiticoCuil)) return false;
+    if(!Validation::is_empty($this->analiticoPartida)) return false;
+    if(!Validation::is_empty($this->analiticoCertificado)) return false;
+    if(!Validation::is_empty($this->fechaNacimiento)) return false;
+    if(!Validation::is_empty($this->ingreso)) return false;
+    if(!Validation::is_empty($this->observaciones)) return false;
+    if(!Validation::is_empty($this->activo)) return false;
     return true;
   }
 
@@ -203,6 +253,16 @@ class _Persona extends EntityValues {
   public function comision2020($format = null) { return Format::convertCase($this->comision2020, $format); }
   public function archivo2019($format = null) { return Format::boolean($this->archivo2019, $format); }
   public function archivo2020($format = null) { return Format::boolean($this->archivo2020, $format); }
+  public function drive($format = null) { return Format::boolean($this->drive, $format); }
+  public function cuil($format = null) { return Format::convertCase($this->cuil, $format); }
+  public function analiticoDni($format = null) { return Format::boolean($this->analiticoDni, $format); }
+  public function analiticoCuil($format = null) { return Format::boolean($this->analiticoCuil, $format); }
+  public function analiticoPartida($format = null) { return Format::boolean($this->analiticoPartida, $format); }
+  public function analiticoCertificado($format = null) { return Format::boolean($this->analiticoCertificado, $format); }
+  public function fechaNacimiento($format = null) { return Format::date($this->fechaNacimiento, $format); }
+  public function ingreso($format = null) { return Format::convertCase($this->ingreso, $format); }
+  public function observaciones($format = null) { return Format::convertCase($this->observaciones, $format); }
+  public function activo($format = null) { return Format::boolean($this->activo, $format); }
 
   public function setId($p) { $this->id = (is_null($p)) ? null : (string)$p; }
   public function setRegion($p) { $this->region = (is_null($p)) ? null : (string)$p; }
@@ -234,6 +294,25 @@ class _Persona extends EntityValues {
   public function setComision2020($p) { $this->comision2020 = (is_null($p)) ? null : (string)$p; }
   public function setArchivo2019($p) { $this->archivo2019 = settypebool($p); }
   public function setArchivo2020($p) { $this->archivo2020 = settypebool($p); }
+  public function setDrive($p) { $this->drive = settypebool($p); }
+  public function setCuil($p) { $this->cuil = (is_null($p)) ? null : (string)$p; }
+  public function setAnaliticoDni($p) { $this->analiticoDni = settypebool($p); }
+  public function setAnaliticoCuil($p) { $this->analiticoCuil = settypebool($p); }
+  public function setAnaliticoPartida($p) { $this->analiticoPartida = settypebool($p); }
+  public function setAnaliticoCertificado($p) { $this->analiticoCertificado = settypebool($p); }
+  public function _setFechaNacimiento(DateTime $p = null) { $this->fechaNacimiento = $p; }
+
+  public function setFechaNacimiento($p) {
+    if(!is_null($p)) {
+      $p = new SpanishDateTime($p);    
+      if($p) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+    }
+    $this->fechaNacimiento = $p;  
+  }
+
+  public function setIngreso($p) { $this->ingreso = (is_null($p)) ? null : (string)$p; }
+  public function setObservaciones($p) { $this->observaciones = (is_null($p)) ? null : (string)$p; }
+  public function setActivo($p) { $this->activo = settypebool($p); }
 
   public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
   public function resetDistrito() { if(!Validation::is_empty($this->distrito)) $this->distrito = preg_replace('/\s\s+/', ' ', trim($this->distrito)); }
@@ -255,6 +334,9 @@ class _Persona extends EntityValues {
   public function resetTurno() { if(!Validation::is_empty($this->turno)) $this->turno = preg_replace('/\s\s+/', ' ', trim($this->turno)); }
   public function resetTelefonoCelular() { if(!Validation::is_empty($this->telefonoCelular)) $this->telefonoCelular = preg_replace('/\s\s+/', ' ', trim($this->telefonoCelular)); }
   public function resetComision2020() { if(!Validation::is_empty($this->comision2020)) $this->comision2020 = preg_replace('/\s\s+/', ' ', trim($this->comision2020)); }
+  public function resetCuil() { if(!Validation::is_empty($this->cuil)) $this->cuil = preg_replace('/\s\s+/', ' ', trim($this->cuil)); }
+  public function resetIngreso() { if(!Validation::is_empty($this->ingreso)) $this->ingreso = preg_replace('/\s\s+/', ' ', trim($this->ingreso)); }
+  public function resetObservaciones() { if(!Validation::is_empty($this->observaciones)) $this->observaciones = preg_replace('/\s\s+/', ' ', trim($this->observaciones)); }
 
   public function checkId($value) { 
       if(Validation::is_undefined($value)) return null;
@@ -442,6 +524,74 @@ class _Persona extends EntityValues {
     return $v->isSuccess();
   }
 
+  public function checkDrive($value) { 
+    $this->_logs->resetLogs("drive");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("drive", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkCuil($value) { 
+      if(Validation::is_undefined($value)) return null;
+      return true; 
+  }
+
+  public function checkAnaliticoDni($value) { 
+    $this->_logs->resetLogs("analitico_dni");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_dni", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkAnaliticoCuil($value) { 
+    $this->_logs->resetLogs("analitico_cuil");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_cuil", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkAnaliticoPartida($value) { 
+    $this->_logs->resetLogs("analitico_partida");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_partida", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkAnaliticoCertificado($value) { 
+    $this->_logs->resetLogs("analitico_certificado");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_certificado", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkFechaNacimiento($value) { 
+      if(Validation::is_undefined($value)) return null;
+      return true; 
+  }
+
+  public function checkIngreso($value) { 
+      if(Validation::is_undefined($value)) return null;
+      return true; 
+  }
+
+  public function checkObservaciones($value) { 
+      if(Validation::is_undefined($value)) return null;
+      return true; 
+  }
+
+  public function checkActivo($value) { 
+    $this->_logs->resetLogs("activo");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->required();
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("activo", "error", $error); }
+    return $v->isSuccess();
+  }
+
   public function _check(){
     $this->checkId($this->id);
     $this->checkRegion($this->region);
@@ -473,6 +623,16 @@ class _Persona extends EntityValues {
     $this->checkComision2020($this->comision2020);
     $this->checkArchivo2019($this->archivo2019);
     $this->checkArchivo2020($this->archivo2020);
+    $this->checkDrive($this->drive);
+    $this->checkCuil($this->cuil);
+    $this->checkAnaliticoDni($this->analiticoDni);
+    $this->checkAnaliticoCuil($this->analiticoCuil);
+    $this->checkAnaliticoPartida($this->analiticoPartida);
+    $this->checkAnaliticoCertificado($this->analiticoCertificado);
+    $this->checkFechaNacimiento($this->fechaNacimiento);
+    $this->checkIngreso($this->ingreso);
+    $this->checkObservaciones($this->observaciones);
+    $this->checkActivo($this->activo);
     return !$this->_getLogs()->isError();
   }
 
@@ -497,6 +657,9 @@ class _Persona extends EntityValues {
     $this->resetTurno();
     $this->resetTelefonoCelular();
     $this->resetComision2020();
+    $this->resetCuil();
+    $this->resetIngreso();
+    $this->resetObservaciones();
     return $this;
   }
 

@@ -28,3 +28,13 @@ telefono_celular (tc): string nf.
 comision_2020 (c2): string nf.
 archivo_2019 (a2): boolean nf. NOT NULL.
 archivo_2020 (a2a): boolean nf. NOT NULL.
+drive (dri): boolean nf. NOT NULL.
+cuil (cui): string nf.
+analitico_dni (ad): boolean nf. NOT NULL.
+analitico_cuil (ac): boolean nf. NOT NULL.
+analitico_partida (ap): boolean nf. NOT NULL.
+analitico_certificado (aca): boolean nf. NOT NULL.
+fecha_nacimiento (fn): date nf.
+ingreso (ing): string nf.
+observaciones (obs): string nf.
+activo (act): boolean nf. NOT NULL. DEFAULT: 1.

@@ -42,6 +42,16 @@ class _PersonaEntity extends Entity {
       Field::getInstanceRequire("persona", "comision_2020"),
       Field::getInstanceRequire("persona", "archivo_2019"),
       Field::getInstanceRequire("persona", "archivo_2020"),
+      Field::getInstanceRequire("persona", "drive"),
+      Field::getInstanceRequire("persona", "cuil"),
+      Field::getInstanceRequire("persona", "analitico_dni"),
+      Field::getInstanceRequire("persona", "analitico_cuil"),
+      Field::getInstanceRequire("persona", "analitico_partida"),
+      Field::getInstanceRequire("persona", "analitico_certificado"),
+      Field::getInstanceRequire("persona", "fecha_nacimiento"),
+      Field::getInstanceRequire("persona", "ingreso"),
+      Field::getInstanceRequire("persona", "observaciones"),
+      Field::getInstanceRequire("persona", "activo"),
     );
   }
 

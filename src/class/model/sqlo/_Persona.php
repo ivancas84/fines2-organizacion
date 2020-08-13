@@ -42,6 +42,16 @@ class _PersonaSqlo extends EntitySqlo {
     $sql .= "comision_2020, " ;
     $sql .= "archivo_2019, " ;
     $sql .= "archivo_2020, " ;
+    $sql .= "drive, " ;
+    $sql .= "cuil, " ;
+    $sql .= "analitico_dni, " ;
+    $sql .= "analitico_cuil, " ;
+    $sql .= "analitico_partida, " ;
+    $sql .= "analitico_certificado, " ;
+    $sql .= "fecha_nacimiento, " ;
+    $sql .= "ingreso, " ;
+    $sql .= "observaciones, " ;
+    $sql .= "activo, " ;
     $sql = substr($sql, 0, -2); //eliminar ultima coma
 
     $sql .= ")
@@ -76,6 +86,16 @@ VALUES ( ";
     $sql .= $row['comision_2020'] . ", " ;
     $sql .= $row['archivo_2019'] . ", " ;
     $sql .= $row['archivo_2020'] . ", " ;
+    $sql .= $row['drive'] . ", " ;
+    $sql .= $row['cuil'] . ", " ;
+    $sql .= $row['analitico_dni'] . ", " ;
+    $sql .= $row['analitico_cuil'] . ", " ;
+    $sql .= $row['analitico_partida'] . ", " ;
+    $sql .= $row['analitico_certificado'] . ", " ;
+    $sql .= $row['fecha_nacimiento'] . ", " ;
+    $sql .= $row['ingreso'] . ", " ;
+    $sql .= $row['observaciones'] . ", " ;
+    $sql .= $row['activo'] . ", " ;
     $sql = substr($sql, 0, -2); //eliminar ultima coma
 
     $sql .= ");
@@ -117,6 +137,16 @@ UPDATE " . $this->entity->sn_() . " SET
     if (isset($row['comision_2020'] )) $sql .= "comision_2020 = " . $row['comision_2020'] . " ," ;
     if (isset($row['archivo_2019'] )) $sql .= "archivo_2019 = " . $row['archivo_2019'] . " ," ;
     if (isset($row['archivo_2020'] )) $sql .= "archivo_2020 = " . $row['archivo_2020'] . " ," ;
+    if (isset($row['drive'] )) $sql .= "drive = " . $row['drive'] . " ," ;
+    if (isset($row['cuil'] )) $sql .= "cuil = " . $row['cuil'] . " ," ;
+    if (isset($row['analitico_dni'] )) $sql .= "analitico_dni = " . $row['analitico_dni'] . " ," ;
+    if (isset($row['analitico_cuil'] )) $sql .= "analitico_cuil = " . $row['analitico_cuil'] . " ," ;
+    if (isset($row['analitico_partida'] )) $sql .= "analitico_partida = " . $row['analitico_partida'] . " ," ;
+    if (isset($row['analitico_certificado'] )) $sql .= "analitico_certificado = " . $row['analitico_certificado'] . " ," ;
+    if (isset($row['fecha_nacimiento'] )) $sql .= "fecha_nacimiento = " . $row['fecha_nacimiento'] . " ," ;
+    if (isset($row['ingreso'] )) $sql .= "ingreso = " . $row['ingreso'] . " ," ;
+    if (isset($row['observaciones'] )) $sql .= "observaciones = " . $row['observaciones'] . " ," ;
+    if (isset($row['activo'] )) $sql .= "activo = " . $row['activo'] . " ," ;
     //eliminar ultima coma
     $sql = substr($sql, 0, -2);
 
