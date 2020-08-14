@@ -304,10 +304,11 @@ class _Persona extends EntityValues {
 
   public function setFechaNacimiento($p) {
     if(!is_null($p)) {
-      $p = new SpanishDateTime($p);    
+      $p = new SpanishDateTime($p);
       if($p) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+      $p->setTime(0,0,0);
     }
-    $this->fechaNacimiento = $p;  
+    $this->fechaNacimiento = $p;
   }
 
   public function setIngreso($p) { $this->ingreso = (is_null($p)) ? null : (string)$p; }

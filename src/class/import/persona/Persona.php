@@ -6,6 +6,7 @@ require_once("class/tools/Validation.php");
 class ImportPersona extends Import {
   
   public function element($i, $data){
+    
     /**
      * Definir elemento a procear
      */
@@ -24,7 +25,7 @@ class ImportPersona extends Import {
           continue;
       }
   
-      array_push($this->ids["persona"], $element->entities["persona"]->numeroDocumento());        
+      array_push($this->ids["persona"], $dni);        
     }
   }        
    
@@ -54,7 +55,7 @@ class ImportPersona extends Import {
       }
 
       $this->processElement($element, "persona", $dni);
-      if($element->process) $this->dbs["persona"][$value] = $element->entities["persona"]->_toArray();
+      if($element->process) $this->dbs["persona"][$dni] = $element->entities["persona"]->_toArray();
     }
   }
 

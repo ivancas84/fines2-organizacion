@@ -1,5 +1,5 @@
 <? require_once("../config/config.php"); 
-$headers = (isset($_GET["headers"]))? $_GET["headers"] : "region, distrito, localidad, programa, inscripcion_men, cens, sede, comision, tramo, identificador, numero_inscripcion, numero_documento, apellidos, nombres, genero, telefono, correo, trayectoria_educativa, turno, pc_escritorio, net_notebook, tablet, pc_tablet, impresora, conexion_internet_paga, telefono_celular, comision_2020, archivo_2019, archivo_2020"; 
+$headers = (isset($_GET["headers"]))? $_GET["headers"] : "apellidos, nombres, cuil_dni, fecha_nacimiento_aux, sexo, teléfono, analitico_dni, analitico_cuil, analitico_partida, analitico_certificado, ingreso, observaciones"; 
 ?>
 
 <!DOCTYPE html>
@@ -17,9 +17,11 @@ textarea {
 
 <h2>Importar Persona</h2>
 
-<form action="../script/1_persona.php" method="POST">
+<form action="../script/2_persona_drive.php" method="POST">
   <br>id:<br>
   <input type="text" name="id" value="<?=date('YmdHis')?>persona"/>
+  <br>Comisión:<br>
+  <input type="text" name="comision"></input>
   <br>Encabezados:<br>
   <textarea name="headers"><?=$headers?>
   </textarea>

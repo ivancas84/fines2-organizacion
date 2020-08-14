@@ -84,11 +84,15 @@ class Persona extends _Persona {
     }
 
     $fechaNacimiento = DateTime::createFromFormat("dmY",  $dia.$mes.$anio);
+    
     if(!$fechaNacimiento) {
       $this->_logs->addLog("fecha_nacimiento", "error", "No se pudo definir fecha de nacimiento");
       return;
     }
 
+    if($fechaNacimiento) $fechaNacimiento->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+    $fechaNacimiento->setTime(0,0,0);
+    
     if($fechaNacimiento->diff(new DateTime())->y < 18) {
       $this->_logs->addLog("fecha_nacimiento", "error", "Menor a 18 años");
       return;
@@ -134,6 +138,7 @@ class Persona extends _Persona {
     
     $v = Validation::getInstanceValue($value)->required()->name();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres", "error", $error); }
+    if(!$v->isSuccess()) echo $value;
     return $v->isSuccess();
   }
 
@@ -161,8 +166,9 @@ class Persona extends _Persona {
     $this->_logs->resetLogs("numero_documento");
    
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->min(7)->max(8)->pattern("int")->required();
+        $v = Validation::getInstanceValue($value)->min(7)->max(8)->pattern("int")->required();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
+    
     return $v->isSuccess();
   }
 
@@ -230,9 +236,15 @@ class Persona extends _Persona {
   }
   
   public function resetApellidos(){
-    if(!Validation::is_empty($this->genero)){
+    if(!Validation::is_empty($this->apellidos)){
       parent::resetApellidos(); 
       $this->apellidos = strto($this->apellidos, "Xx Yy");
+    }
+  }
+  public function resetDistrito(){
+    if(!Validation::is_empty($this->distrito)){
+      parent::resetApellidos(); 
+      $this->distrito = strto($this->distrito, "Xx Yy");
     }
   }
 
@@ -279,11 +291,13 @@ class Persona extends _Persona {
         case "analitico_certificado":
         case "ingreso":
         case "observaciones":
+        case "drive":
+        case "fecha_nacimiento":
           break;
         default:
           if(is_null($va) || !key_exists($ka, $b)) break;
           if($b[$ka] !== $va) {
-            return false;
+            return $ka;
           }
       }
       

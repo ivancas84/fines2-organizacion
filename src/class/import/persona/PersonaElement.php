@@ -11,10 +11,11 @@ class ImportPersonaElement extends ImportElement {
 
   public function update($name, $existente){
     $this->entities[$name]->setId($existente->id());
-    if(!$this->entities[$name]->_equalTo($existente)) {
+    $compare =  $this->entities[$name]->_equalTo($existente);
+    if($compare !== true) {
       $this->process = false;
       
-      $this->logs->addLog("persona","error","El registro debe ser actualizado, comparar");
+      $this->logs->addLog("persona","error","El registro debe ser actualizado, comparar {$compare}");
     } elseif (
         ($this->entities[$name]->archivo2019() && !$existente->archivo2019()) || 
         ($this->entities[$name]->archivo2020() && !$existente->archivo2020())
