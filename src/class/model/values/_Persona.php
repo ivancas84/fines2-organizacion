@@ -46,7 +46,7 @@ class _Persona extends EntityValues {
   protected $activo = UNDEFINED;
 
   public function _setDefault(){
-    if($this->id == UNDEFINED) $this->setId(null);
+    if($this->id == UNDEFINED) $this->setId(uniqid());
     if($this->region == UNDEFINED) $this->setRegion('1');
     if($this->distrito == UNDEFINED) $this->setDistrito('La Plata');
     if($this->localidad == UNDEFINED) $this->setLocalidad(null);
@@ -264,56 +264,133 @@ class _Persona extends EntityValues {
   public function observaciones($format = null) { return Format::convertCase($this->observaciones, $format); }
   public function activo($format = null) { return Format::boolean($this->activo, $format); }
 
-  public function setId($p) { $this->id = (is_null($p)) ? null : (string)$p; }
-  public function setRegion($p) { $this->region = (is_null($p)) ? null : (string)$p; }
-  public function setDistrito($p) { $this->distrito = (is_null($p)) ? null : (string)$p; }
-  public function setLocalidad($p) { $this->localidad = (is_null($p)) ? null : (string)$p; }
-  public function setPrograma($p) { $this->programa = (is_null($p)) ? null : (string)$p; }
-  public function setInscripcionMen($p) { $this->inscripcionMen = settypebool($p); }
-  public function setCens($p) { $this->cens = (is_null($p)) ? null : (string)$p; }
-  public function setSede($p) { $this->sede = (is_null($p)) ? null : (string)$p; }
-  public function setComision($p) { $this->comision = (is_null($p)) ? null : (string)$p; }
-  public function setTramo($p) { $this->tramo = (is_null($p)) ? null : (string)$p; }
-  public function setIdentificador($p) { $this->identificador = (is_null($p)) ? null : (string)$p; }
-  public function setNumeroInscripcion($p) { $this->numeroInscripcion = (is_null($p)) ? null : (string)$p; }
-  public function setNumeroDocumento($p) { $this->numeroDocumento = (is_null($p)) ? null : (string)$p; }
-  public function setApellidos($p) { $this->apellidos = (is_null($p)) ? null : (string)$p; }
-  public function setNombres($p) { $this->nombres = (is_null($p)) ? null : (string)$p; }
-  public function setGenero($p) { $this->genero = (is_null($p)) ? null : (string)$p; }
-  public function setTelefono($p) { $this->telefono = (is_null($p)) ? null : (string)$p; }
-  public function setCorreo($p) { $this->correo = (is_null($p)) ? null : (string)$p; }
-  public function setTrayectoriaEducativa($p) { $this->trayectoriaEducativa = (is_null($p)) ? null : (string)$p; }
-  public function setTurno($p) { $this->turno = (is_null($p)) ? null : (string)$p; }
-  public function setPcEscritorio($p) { $this->pcEscritorio = settypebool($p); }
-  public function setNetNotebook($p) { $this->netNotebook = settypebool($p); }
-  public function setTablet($p) { $this->tablet = settypebool($p); }
-  public function setPcTablet($p) { $this->pcTablet = settypebool($p); }
-  public function setImpresora($p) { $this->impresora = settypebool($p); }
-  public function setConexionInternetPaga($p) { $this->conexionInternetPaga = settypebool($p); }
-  public function setTelefonoCelular($p) { $this->telefonoCelular = (is_null($p)) ? null : (string)$p; }
-  public function setComision2020($p) { $this->comision2020 = (is_null($p)) ? null : (string)$p; }
-  public function setArchivo2019($p) { $this->archivo2019 = settypebool($p); }
-  public function setArchivo2020($p) { $this->archivo2020 = settypebool($p); }
-  public function setDrive($p) { $this->drive = settypebool($p); }
-  public function setCuil($p) { $this->cuil = (is_null($p)) ? null : (string)$p; }
-  public function setAnaliticoDni($p) { $this->analiticoDni = settypebool($p); }
-  public function setAnaliticoCuil($p) { $this->analiticoCuil = settypebool($p); }
-  public function setAnaliticoPartida($p) { $this->analiticoPartida = settypebool($p); }
-  public function setAnaliticoCertificado($p) { $this->analiticoCertificado = settypebool($p); }
-  public function _setFechaNacimiento(DateTime $p = null) { $this->fechaNacimiento = $p; }
+  public function _setId(string $p = null) { return $this->id = $p; }  
+  public function setId($p) { return $this->id = (is_null($p)) ? null : (string)$p; }
 
+  public function _setRegion(string $p = null) { return $this->region = $p; }  
+  public function setRegion($p) { return $this->region = (is_null($p)) ? null : (string)$p; }
+
+  public function _setDistrito(string $p = null) { return $this->distrito = $p; }  
+  public function setDistrito($p) { return $this->distrito = (is_null($p)) ? null : (string)$p; }
+
+  public function _setLocalidad(string $p = null) { return $this->localidad = $p; }  
+  public function setLocalidad($p) { return $this->localidad = (is_null($p)) ? null : (string)$p; }
+
+  public function _setPrograma(string $p = null) { return $this->programa = $p; }  
+  public function setPrograma($p) { return $this->programa = (is_null($p)) ? null : (string)$p; }
+
+  public function _setInscripcionMen(boolean $p = null) { return $this->inscripcionMen = $p; }  
+  public function setInscripcionMen($p) { return $this->inscripcionMen = settypebool($p); }
+
+  public function _setCens(string $p = null) { return $this->cens = $p; }  
+  public function setCens($p) { return $this->cens = (is_null($p)) ? null : (string)$p; }
+
+  public function _setSede(string $p = null) { return $this->sede = $p; }  
+  public function setSede($p) { return $this->sede = (is_null($p)) ? null : (string)$p; }
+
+  public function _setComision(string $p = null) { return $this->comision = $p; }  
+  public function setComision($p) { return $this->comision = (is_null($p)) ? null : (string)$p; }
+
+  public function _setTramo(string $p = null) { return $this->tramo = $p; }  
+  public function setTramo($p) { return $this->tramo = (is_null($p)) ? null : (string)$p; }
+
+  public function _setIdentificador(string $p = null) { return $this->identificador = $p; }  
+  public function setIdentificador($p) { return $this->identificador = (is_null($p)) ? null : (string)$p; }
+
+  public function _setNumeroInscripcion(string $p = null) { return $this->numeroInscripcion = $p; }  
+  public function setNumeroInscripcion($p) { return $this->numeroInscripcion = (is_null($p)) ? null : (string)$p; }
+
+  public function _setNumeroDocumento(string $p = null) { return $this->numeroDocumento = $p; }  
+  public function setNumeroDocumento($p) { return $this->numeroDocumento = (is_null($p)) ? null : (string)$p; }
+
+  public function _setApellidos(string $p = null) { return $this->apellidos = $p; }  
+  public function setApellidos($p) { return $this->apellidos = (is_null($p)) ? null : (string)$p; }
+
+  public function _setNombres(string $p = null) { return $this->nombres = $p; }  
+  public function setNombres($p) { return $this->nombres = (is_null($p)) ? null : (string)$p; }
+
+  public function _setGenero(string $p = null) { return $this->genero = $p; }  
+  public function setGenero($p) { return $this->genero = (is_null($p)) ? null : (string)$p; }
+
+  public function _setTelefono(string $p = null) { return $this->telefono = $p; }  
+  public function setTelefono($p) { return $this->telefono = (is_null($p)) ? null : (string)$p; }
+
+  public function _setCorreo(string $p = null) { return $this->correo = $p; }  
+  public function setCorreo($p) { return $this->correo = (is_null($p)) ? null : (string)$p; }
+
+  public function _setTrayectoriaEducativa(string $p = null) { return $this->trayectoriaEducativa = $p; }  
+  public function setTrayectoriaEducativa($p) { return $this->trayectoriaEducativa = (is_null($p)) ? null : (string)$p; }
+
+  public function _setTurno(string $p = null) { return $this->turno = $p; }  
+  public function setTurno($p) { return $this->turno = (is_null($p)) ? null : (string)$p; }
+
+  public function _setPcEscritorio(boolean $p = null) { return $this->pcEscritorio = $p; }  
+  public function setPcEscritorio($p) { return $this->pcEscritorio = settypebool($p); }
+
+  public function _setNetNotebook(boolean $p = null) { return $this->netNotebook = $p; }  
+  public function setNetNotebook($p) { return $this->netNotebook = settypebool($p); }
+
+  public function _setTablet(boolean $p = null) { return $this->tablet = $p; }  
+  public function setTablet($p) { return $this->tablet = settypebool($p); }
+
+  public function _setPcTablet(boolean $p = null) { return $this->pcTablet = $p; }  
+  public function setPcTablet($p) { return $this->pcTablet = settypebool($p); }
+
+  public function _setImpresora(boolean $p = null) { return $this->impresora = $p; }  
+  public function setImpresora($p) { return $this->impresora = settypebool($p); }
+
+  public function _setConexionInternetPaga(boolean $p = null) { return $this->conexionInternetPaga = $p; }  
+  public function setConexionInternetPaga($p) { return $this->conexionInternetPaga = settypebool($p); }
+
+  public function _setTelefonoCelular(string $p = null) { return $this->telefonoCelular = $p; }  
+  public function setTelefonoCelular($p) { return $this->telefonoCelular = (is_null($p)) ? null : (string)$p; }
+
+  public function _setComision2020(string $p = null) { return $this->comision2020 = $p; }  
+  public function setComision2020($p) { return $this->comision2020 = (is_null($p)) ? null : (string)$p; }
+
+  public function _setArchivo2019(boolean $p = null) { return $this->archivo2019 = $p; }  
+  public function setArchivo2019($p) { return $this->archivo2019 = settypebool($p); }
+
+  public function _setArchivo2020(boolean $p = null) { return $this->archivo2020 = $p; }  
+  public function setArchivo2020($p) { return $this->archivo2020 = settypebool($p); }
+
+  public function _setDrive(boolean $p = null) { return $this->drive = $p; }  
+  public function setDrive($p) { return $this->drive = settypebool($p); }
+
+  public function _setCuil(string $p = null) { return $this->cuil = $p; }  
+  public function setCuil($p) { return $this->cuil = (is_null($p)) ? null : (string)$p; }
+
+  public function _setAnaliticoDni(boolean $p = null) { return $this->analiticoDni = $p; }  
+  public function setAnaliticoDni($p) { return $this->analiticoDni = settypebool($p); }
+
+  public function _setAnaliticoCuil(boolean $p = null) { return $this->analiticoCuil = $p; }  
+  public function setAnaliticoCuil($p) { return $this->analiticoCuil = settypebool($p); }
+
+  public function _setAnaliticoPartida(boolean $p = null) { return $this->analiticoPartida = $p; }  
+  public function setAnaliticoPartida($p) { return $this->analiticoPartida = settypebool($p); }
+
+  public function _setAnaliticoCertificado(boolean $p = null) { return $this->analiticoCertificado = $p; }  
+  public function setAnaliticoCertificado($p) { return $this->analiticoCertificado = settypebool($p); }
+
+  public function _setFechaNacimiento(DateTime $p = null) { return $this->fechaNacimiento = $p; }
   public function setFechaNacimiento($p) {
-    if(!is_null($p)) {
-      $p = new SpanishDateTime($p);
-      if($p) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+    if(!is_null($p) && !($p instanceof DateTime)) $p = new SpanishDateTime($p);
+    if($p instanceof DateTime) {
+      $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
       $p->setTime(0,0,0);
     }
-    $this->fechaNacimiento = $p;
+    return $this->fechaNacimiento = $p;
   }
 
-  public function setIngreso($p) { $this->ingreso = (is_null($p)) ? null : (string)$p; }
-  public function setObservaciones($p) { $this->observaciones = (is_null($p)) ? null : (string)$p; }
-  public function setActivo($p) { $this->activo = settypebool($p); }
+  public function _setIngreso(string $p = null) { return $this->ingreso = $p; }  
+  public function setIngreso($p) { return $this->ingreso = (is_null($p)) ? null : (string)$p; }
+
+  public function _setObservaciones(string $p = null) { return $this->observaciones = $p; }  
+  public function setObservaciones($p) { return $this->observaciones = (is_null($p)) ? null : (string)$p; }
+
+  public function _setActivo(boolean $p = null) { return $this->activo = $p; }  
+  public function setActivo($p) { return $this->activo = settypebool($p); }
+
 
   public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
   public function resetDistrito() { if(!Validation::is_empty($this->distrito)) $this->distrito = preg_replace('/\s\s+/', ' ', trim($this->distrito)); }
@@ -571,8 +648,11 @@ class _Persona extends EntityValues {
   }
 
   public function checkFechaNacimiento($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("fecha_nacimiento");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->isA('DateTime');
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("fecha_nacimiento", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkIngreso($value) { 

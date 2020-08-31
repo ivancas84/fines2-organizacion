@@ -1,6 +1,6 @@
 id (id): string pk. NOT NULL. MAIN. UNIQUE.
-region (reg): string nf. NOT NULL. DEFAULT: '1'.
-distrito (dis): string nf. NOT NULL. DEFAULT: 'La Plata'.
+region (reg): string nf. NOT NULL. DEFAULT: 1.
+distrito (dis): string nf. NOT NULL. DEFAULT: La Plata.
 localidad (loc): string nf.
 programa (pro): string nf.
 inscripcion_men (im): boolean nf. NOT NULL.

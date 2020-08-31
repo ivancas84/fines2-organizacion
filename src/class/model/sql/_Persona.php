@@ -3,12 +3,6 @@ require_once("class/model/Sql.php");
 
 class _PersonaSql extends EntitySql{
 
-  public function __construct(){
-    parent::__construct();
-    $this->entity = Entity::getInstanceRequire('persona');
-  }
-
-
   public function _mappingField($field){
     $p = $this->prf();
     $t = $this->prt();
@@ -238,209 +232,530 @@ class _PersonaSql extends EntitySql{
   public function _conditionFieldStruct($field, $option, $value){
     $p = $this->prf();
 
-    $f = $this->_mappingField($field);
     switch ($field){
-      case "{$p}id": return $this->format->conditionText($f, $value, $option);
-      case "{$p}region": return $this->format->conditionText($f, $value, $option);
-      case "{$p}distrito": return $this->format->conditionText($f, $value, $option);
-      case "{$p}localidad": return $this->format->conditionText($f, $value, $option);
-      case "{$p}programa": return $this->format->conditionText($f, $value, $option);
-      case "{$p}inscripcion_men": return $this->format->conditionBoolean($f, $value);
-      case "{$p}cens": return $this->format->conditionText($f, $value, $option);
-      case "{$p}sede": return $this->format->conditionText($f, $value, $option);
-      case "{$p}comision": return $this->format->conditionText($f, $value, $option);
-      case "{$p}tramo": return $this->format->conditionText($f, $value, $option);
-      case "{$p}identificador": return $this->format->conditionText($f, $value, $option);
-      case "{$p}numero_inscripcion": return $this->format->conditionText($f, $value, $option);
-      case "{$p}numero_documento": return $this->format->conditionText($f, $value, $option);
-      case "{$p}apellidos": return $this->format->conditionText($f, $value, $option);
-      case "{$p}nombres": return $this->format->conditionText($f, $value, $option);
-      case "{$p}genero": return $this->format->conditionText($f, $value, $option);
-      case "{$p}telefono": return $this->format->conditionText($f, $value, $option);
-      case "{$p}correo": return $this->format->conditionText($f, $value, $option);
-      case "{$p}trayectoria_educativa": return $this->format->conditionText($f, $value, $option);
-      case "{$p}turno": return $this->format->conditionText($f, $value, $option);
-      case "{$p}pc_escritorio": return $this->format->conditionBoolean($f, $value);
-      case "{$p}net_notebook": return $this->format->conditionBoolean($f, $value);
-      case "{$p}tablet": return $this->format->conditionBoolean($f, $value);
-      case "{$p}pc_tablet": return $this->format->conditionBoolean($f, $value);
-      case "{$p}impresora": return $this->format->conditionBoolean($f, $value);
-      case "{$p}conexion_internet_paga": return $this->format->conditionBoolean($f, $value);
-      case "{$p}telefono_celular": return $this->format->conditionText($f, $value, $option);
-      case "{$p}comision_2020": return $this->format->conditionText($f, $value, $option);
-      case "{$p}archivo_2019": return $this->format->conditionBoolean($f, $value);
-      case "{$p}archivo_2020": return $this->format->conditionBoolean($f, $value);
-      case "{$p}drive": return $this->format->conditionBoolean($f, $value);
-      case "{$p}cuil": return $this->format->conditionText($f, $value, $option);
-      case "{$p}analitico_dni": return $this->format->conditionBoolean($f, $value);
-      case "{$p}analitico_cuil": return $this->format->conditionBoolean($f, $value);
-      case "{$p}analitico_partida": return $this->format->conditionBoolean($f, $value);
-      case "{$p}analitico_certificado": return $this->format->conditionBoolean($f, $value);
-      case "{$p}fecha_nacimiento": return $this->format->conditionDate($f, $value, $option);
-      case "{$p}ingreso": return $this->format->conditionText($f, $value, $option);
-      case "{$p}observaciones": return $this->format->conditionText($f, $value, $option);
-      case "{$p}activo": return $this->format->conditionBoolean($f, $value);
+      case "{$p}id": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}id_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}id"), $value, $option);
 
-      case "{$p}max_id": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_id": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_id": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}region": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}region_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}region"), $value, $option);
 
-      case "{$p}max_region": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_region": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_region": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}distrito": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}distrito_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}distrito"), $value, $option);
 
-      case "{$p}max_distrito": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_distrito": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_distrito": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}localidad": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}localidad_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}localidad"), $value, $option);
 
-      case "{$p}max_localidad": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_localidad": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_localidad": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}programa": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}programa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}programa"), $value, $option);
 
-      case "{$p}max_programa": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_programa": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_programa": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}inscripcion_men": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}inscripcion_men_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}inscripcion_men"), $value, $option);
 
-      case "{$p}max_inscripcion_men": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_inscripcion_men": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_inscripcion_men": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}cens": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}cens_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}cens"), $value, $option);
 
-      case "{$p}max_cens": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_cens": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_cens": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}sede": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}sede_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}sede"), $value, $option);
 
-      case "{$p}max_sede": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_sede": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_sede": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}comision": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}comision"), $value, $option);
 
-      case "{$p}max_comision": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_comision": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_comision": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}tramo": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}tramo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}tramo"), $value, $option);
 
-      case "{$p}max_tramo": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_tramo": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_tramo": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}identificador": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}identificador_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}identificador"), $value, $option);
 
-      case "{$p}max_identificador": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_identificador": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_identificador": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}numero_inscripcion": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}numero_inscripcion_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}numero_inscripcion"), $value, $option);
 
-      case "{$p}max_numero_inscripcion": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_numero_inscripcion": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_numero_inscripcion": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}numero_documento": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}numero_documento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}numero_documento"), $value, $option);
 
-      case "{$p}max_numero_documento": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_numero_documento": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_numero_documento": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}apellidos": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}apellidos_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}apellidos"), $value, $option);
 
-      case "{$p}max_apellidos": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_apellidos": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_apellidos": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}nombres": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}nombres_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}nombres"), $value, $option);
 
-      case "{$p}max_nombres": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_nombres": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_nombres": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}genero": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}genero_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}genero"), $value, $option);
 
-      case "{$p}max_genero": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_genero": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_genero": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}telefono": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}telefono_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}telefono"), $value, $option);
 
-      case "{$p}max_telefono": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_telefono": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_telefono": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}correo": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}correo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}correo"), $value, $option);
 
-      case "{$p}max_correo": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_correo": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_correo": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}trayectoria_educativa": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}trayectoria_educativa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}trayectoria_educativa"), $value, $option);
 
-      case "{$p}max_trayectoria_educativa": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_trayectoria_educativa": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_trayectoria_educativa": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}turno": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}turno_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}turno"), $value, $option);
 
-      case "{$p}max_turno": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_turno": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_turno": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}pc_escritorio": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}pc_escritorio_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}pc_escritorio"), $value, $option);
 
-      case "{$p}max_pc_escritorio": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_pc_escritorio": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_pc_escritorio": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}net_notebook": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}net_notebook_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}net_notebook"), $value, $option);
 
-      case "{$p}max_net_notebook": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_net_notebook": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_net_notebook": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}tablet": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}tablet"), $value, $option);
 
-      case "{$p}max_tablet": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_tablet": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_tablet": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}pc_tablet": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}pc_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}pc_tablet"), $value, $option);
 
-      case "{$p}max_pc_tablet": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_pc_tablet": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_pc_tablet": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}impresora": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}impresora_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}impresora"), $value, $option);
 
-      case "{$p}max_impresora": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_impresora": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_impresora": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}conexion_internet_paga": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}conexion_internet_paga_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}conexion_internet_paga"), $value, $option);
 
-      case "{$p}max_conexion_internet_paga": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_conexion_internet_paga": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_conexion_internet_paga": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}telefono_celular": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}telefono_celular_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}telefono_celular"), $value, $option);
 
-      case "{$p}max_telefono_celular": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_telefono_celular": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_telefono_celular": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}comision_2020": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}comision_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}comision_2020"), $value, $option);
 
-      case "{$p}max_comision_2020": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_comision_2020": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_comision_2020": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}archivo_2019": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}archivo_2019_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}archivo_2019"), $value, $option);
 
-      case "{$p}max_archivo_2019": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_archivo_2019": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_archivo_2019": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}archivo_2020": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}archivo_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}archivo_2020"), $value, $option);
 
-      case "{$p}max_archivo_2020": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_archivo_2020": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_archivo_2020": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}drive": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}drive_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}drive"), $value, $option);
 
-      case "{$p}max_drive": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_drive": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_drive": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}cuil": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}cuil"), $value, $option);
 
-      case "{$p}max_cuil": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_cuil": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_cuil": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}analitico_dni": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}analitico_dni_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}analitico_dni"), $value, $option);
 
-      case "{$p}max_analitico_dni": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_analitico_dni": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_analitico_dni": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}analitico_cuil": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}analitico_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}analitico_cuil"), $value, $option);
 
-      case "{$p}max_analitico_cuil": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_analitico_cuil": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_analitico_cuil": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}analitico_partida": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}analitico_partida_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}analitico_partida"), $value, $option);
 
-      case "{$p}max_analitico_partida": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_analitico_partida": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_analitico_partida": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}analitico_certificado": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}analitico_certificado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}analitico_certificado"), $value, $option);
 
-      case "{$p}max_analitico_certificado": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_analitico_certificado": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_analitico_certificado": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}fecha_nacimiento": return $this->format->conditionDate($this->_mappingField($field), $value, $option);
+      case "{$p}fecha_nacimiento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}fecha_nacimiento"), $value, $option);
 
-      case "{$p}avg_fecha_nacimiento": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}max_fecha_nacimiento": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_fecha_nacimiento": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_fecha_nacimiento": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}ingreso": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}ingreso_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}ingreso"), $value, $option);
 
-      case "{$p}max_ingreso": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_ingreso": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_ingreso": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}observaciones": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}observaciones_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}observaciones"), $value, $option);
 
-      case "{$p}max_observaciones": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_observaciones": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_observaciones": return $this->format->conditionNumber($f, $value, $option);
+      case "{$p}activo": return $this->format->conditionBoolean($this->_mappingField($field), $value);
+    case "{$p}activo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}activo"), $value, $option);
 
-      case "{$p}max_activo": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}min_activo": return $this->format->conditionNumber($f, $value, $option);
-      case "{$p}count_activo": return $this->format->conditionNumber($f, $value, $option);
+
+      case "{$p}max_id": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_id_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_id"), $value, $option);
+
+      case "{$p}min_id": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_id_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_id"), $value, $option);
+
+      case "{$p}count_id": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_id_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_id"), $value, $option);
+
+
+      case "{$p}max_region": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_region_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_region"), $value, $option);
+
+      case "{$p}min_region": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_region_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_region"), $value, $option);
+
+      case "{$p}count_region": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_region_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_region"), $value, $option);
+
+
+      case "{$p}max_distrito": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_distrito_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_distrito"), $value, $option);
+
+      case "{$p}min_distrito": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_distrito_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_distrito"), $value, $option);
+
+      case "{$p}count_distrito": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_distrito_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_distrito"), $value, $option);
+
+
+      case "{$p}max_localidad": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_localidad_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_localidad"), $value, $option);
+
+      case "{$p}min_localidad": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_localidad_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_localidad"), $value, $option);
+
+      case "{$p}count_localidad": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_localidad_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_localidad"), $value, $option);
+
+
+      case "{$p}max_programa": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_programa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_programa"), $value, $option);
+
+      case "{$p}min_programa": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_programa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_programa"), $value, $option);
+
+      case "{$p}count_programa": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_programa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_programa"), $value, $option);
+
+
+      case "{$p}max_inscripcion_men": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_inscripcion_men_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_inscripcion_men"), $value, $option);
+
+      case "{$p}min_inscripcion_men": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_inscripcion_men_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_inscripcion_men"), $value, $option);
+
+      case "{$p}count_inscripcion_men": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_inscripcion_men_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_inscripcion_men"), $value, $option);
+
+
+      case "{$p}max_cens": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_cens_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_cens"), $value, $option);
+
+      case "{$p}min_cens": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_cens_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_cens"), $value, $option);
+
+      case "{$p}count_cens": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_cens_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_cens"), $value, $option);
+
+
+      case "{$p}max_sede": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_sede_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_sede"), $value, $option);
+
+      case "{$p}min_sede": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_sede_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_sede"), $value, $option);
+
+      case "{$p}count_sede": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_sede_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_sede"), $value, $option);
+
+
+      case "{$p}max_comision": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_comision"), $value, $option);
+
+      case "{$p}min_comision": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_comision"), $value, $option);
+
+      case "{$p}count_comision": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_comision"), $value, $option);
+
+
+      case "{$p}max_tramo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_tramo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_tramo"), $value, $option);
+
+      case "{$p}min_tramo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_tramo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_tramo"), $value, $option);
+
+      case "{$p}count_tramo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_tramo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_tramo"), $value, $option);
+
+
+      case "{$p}max_identificador": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_identificador_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_identificador"), $value, $option);
+
+      case "{$p}min_identificador": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_identificador_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_identificador"), $value, $option);
+
+      case "{$p}count_identificador": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_identificador_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_identificador"), $value, $option);
+
+
+      case "{$p}max_numero_inscripcion": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_numero_inscripcion_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_numero_inscripcion"), $value, $option);
+
+      case "{$p}min_numero_inscripcion": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_numero_inscripcion_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_numero_inscripcion"), $value, $option);
+
+      case "{$p}count_numero_inscripcion": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_numero_inscripcion_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_numero_inscripcion"), $value, $option);
+
+
+      case "{$p}max_numero_documento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_numero_documento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_numero_documento"), $value, $option);
+
+      case "{$p}min_numero_documento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_numero_documento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_numero_documento"), $value, $option);
+
+      case "{$p}count_numero_documento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_numero_documento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_numero_documento"), $value, $option);
+
+
+      case "{$p}max_apellidos": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_apellidos_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_apellidos"), $value, $option);
+
+      case "{$p}min_apellidos": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_apellidos_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_apellidos"), $value, $option);
+
+      case "{$p}count_apellidos": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_apellidos_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_apellidos"), $value, $option);
+
+
+      case "{$p}max_nombres": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_nombres_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_nombres"), $value, $option);
+
+      case "{$p}min_nombres": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_nombres_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_nombres"), $value, $option);
+
+      case "{$p}count_nombres": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_nombres_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_nombres"), $value, $option);
+
+
+      case "{$p}max_genero": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_genero_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_genero"), $value, $option);
+
+      case "{$p}min_genero": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_genero_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_genero"), $value, $option);
+
+      case "{$p}count_genero": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_genero_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_genero"), $value, $option);
+
+
+      case "{$p}max_telefono": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_telefono_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_telefono"), $value, $option);
+
+      case "{$p}min_telefono": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_telefono_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_telefono"), $value, $option);
+
+      case "{$p}count_telefono": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_telefono_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_telefono"), $value, $option);
+
+
+      case "{$p}max_correo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_correo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_correo"), $value, $option);
+
+      case "{$p}min_correo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_correo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_correo"), $value, $option);
+
+      case "{$p}count_correo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_correo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_correo"), $value, $option);
+
+
+      case "{$p}max_trayectoria_educativa": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_trayectoria_educativa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_trayectoria_educativa"), $value, $option);
+
+      case "{$p}min_trayectoria_educativa": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_trayectoria_educativa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_trayectoria_educativa"), $value, $option);
+
+      case "{$p}count_trayectoria_educativa": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_trayectoria_educativa_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_trayectoria_educativa"), $value, $option);
+
+
+      case "{$p}max_turno": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_turno_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_turno"), $value, $option);
+
+      case "{$p}min_turno": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_turno_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_turno"), $value, $option);
+
+      case "{$p}count_turno": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_turno_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_turno"), $value, $option);
+
+
+      case "{$p}max_pc_escritorio": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_pc_escritorio_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_pc_escritorio"), $value, $option);
+
+      case "{$p}min_pc_escritorio": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_pc_escritorio_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_pc_escritorio"), $value, $option);
+
+      case "{$p}count_pc_escritorio": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_pc_escritorio_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_pc_escritorio"), $value, $option);
+
+
+      case "{$p}max_net_notebook": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_net_notebook_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_net_notebook"), $value, $option);
+
+      case "{$p}min_net_notebook": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_net_notebook_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_net_notebook"), $value, $option);
+
+      case "{$p}count_net_notebook": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_net_notebook_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_net_notebook"), $value, $option);
+
+
+      case "{$p}max_tablet": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_tablet"), $value, $option);
+
+      case "{$p}min_tablet": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_tablet"), $value, $option);
+
+      case "{$p}count_tablet": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_tablet"), $value, $option);
+
+
+      case "{$p}max_pc_tablet": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_pc_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_pc_tablet"), $value, $option);
+
+      case "{$p}min_pc_tablet": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_pc_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_pc_tablet"), $value, $option);
+
+      case "{$p}count_pc_tablet": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_pc_tablet_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_pc_tablet"), $value, $option);
+
+
+      case "{$p}max_impresora": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_impresora_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_impresora"), $value, $option);
+
+      case "{$p}min_impresora": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_impresora_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_impresora"), $value, $option);
+
+      case "{$p}count_impresora": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_impresora_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_impresora"), $value, $option);
+
+
+      case "{$p}max_conexion_internet_paga": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_conexion_internet_paga_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_conexion_internet_paga"), $value, $option);
+
+      case "{$p}min_conexion_internet_paga": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_conexion_internet_paga_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_conexion_internet_paga"), $value, $option);
+
+      case "{$p}count_conexion_internet_paga": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_conexion_internet_paga_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_conexion_internet_paga"), $value, $option);
+
+
+      case "{$p}max_telefono_celular": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_telefono_celular_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_telefono_celular"), $value, $option);
+
+      case "{$p}min_telefono_celular": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_telefono_celular_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_telefono_celular"), $value, $option);
+
+      case "{$p}count_telefono_celular": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_telefono_celular_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_telefono_celular"), $value, $option);
+
+
+      case "{$p}max_comision_2020": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_comision_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_comision_2020"), $value, $option);
+
+      case "{$p}min_comision_2020": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_comision_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_comision_2020"), $value, $option);
+
+      case "{$p}count_comision_2020": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_comision_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_comision_2020"), $value, $option);
+
+
+      case "{$p}max_archivo_2019": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_archivo_2019_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_archivo_2019"), $value, $option);
+
+      case "{$p}min_archivo_2019": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_archivo_2019_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_archivo_2019"), $value, $option);
+
+      case "{$p}count_archivo_2019": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_archivo_2019_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_archivo_2019"), $value, $option);
+
+
+      case "{$p}max_archivo_2020": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_archivo_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_archivo_2020"), $value, $option);
+
+      case "{$p}min_archivo_2020": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_archivo_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_archivo_2020"), $value, $option);
+
+      case "{$p}count_archivo_2020": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_archivo_2020_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_archivo_2020"), $value, $option);
+
+
+      case "{$p}max_drive": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_drive_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_drive"), $value, $option);
+
+      case "{$p}min_drive": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_drive_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_drive"), $value, $option);
+
+      case "{$p}count_drive": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_drive_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_drive"), $value, $option);
+
+
+      case "{$p}max_cuil": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_cuil"), $value, $option);
+
+      case "{$p}min_cuil": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_cuil"), $value, $option);
+
+      case "{$p}count_cuil": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_cuil"), $value, $option);
+
+
+      case "{$p}max_analitico_dni": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_analitico_dni_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_analitico_dni"), $value, $option);
+
+      case "{$p}min_analitico_dni": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_analitico_dni_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_analitico_dni"), $value, $option);
+
+      case "{$p}count_analitico_dni": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_analitico_dni_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_analitico_dni"), $value, $option);
+
+
+      case "{$p}max_analitico_cuil": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_analitico_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_analitico_cuil"), $value, $option);
+
+      case "{$p}min_analitico_cuil": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_analitico_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_analitico_cuil"), $value, $option);
+
+      case "{$p}count_analitico_cuil": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_analitico_cuil_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_analitico_cuil"), $value, $option);
+
+
+      case "{$p}max_analitico_partida": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_analitico_partida_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_analitico_partida"), $value, $option);
+
+      case "{$p}min_analitico_partida": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_analitico_partida_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_analitico_partida"), $value, $option);
+
+      case "{$p}count_analitico_partida": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_analitico_partida_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_analitico_partida"), $value, $option);
+
+
+      case "{$p}max_analitico_certificado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_analitico_certificado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_analitico_certificado"), $value, $option);
+
+      case "{$p}min_analitico_certificado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_analitico_certificado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_analitico_certificado"), $value, $option);
+
+      case "{$p}count_analitico_certificado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_analitico_certificado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_analitico_certificado"), $value, $option);
+
+
+      case "{$p}avg_fecha_nacimiento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}avg_fecha_nacimiento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}avg_fecha_nacimiento"), $value, $option);
+
+      case "{$p}max_fecha_nacimiento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_fecha_nacimiento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_fecha_nacimiento"), $value, $option);
+
+      case "{$p}min_fecha_nacimiento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_fecha_nacimiento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_fecha_nacimiento"), $value, $option);
+
+      case "{$p}count_fecha_nacimiento": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_fecha_nacimiento_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_fecha_nacimiento"), $value, $option);
+
+
+      case "{$p}max_ingreso": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_ingreso_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_ingreso"), $value, $option);
+
+      case "{$p}min_ingreso": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_ingreso_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_ingreso"), $value, $option);
+
+      case "{$p}count_ingreso": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_ingreso_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_ingreso"), $value, $option);
+
+
+      case "{$p}max_observaciones": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_observaciones_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_observaciones"), $value, $option);
+
+      case "{$p}min_observaciones": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_observaciones_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_observaciones"), $value, $option);
+
+      case "{$p}count_observaciones": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_observaciones_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_observaciones"), $value, $option);
+
+
+      case "{$p}max_activo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_activo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_activo"), $value, $option);
+
+      case "{$p}min_activo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_activo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_activo"), $value, $option);
+
+      case "{$p}count_activo": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_activo_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_activo"), $value, $option);
+
 
       default: return $this->_conditionFieldStructMain($field, $option, $value);
     }
