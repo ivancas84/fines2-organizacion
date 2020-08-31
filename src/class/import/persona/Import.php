@@ -1,16 +1,17 @@
 <?php
 require_once("class/import/Import.php");
-require_once("class/import/persona/PersonaElement.php");
+require_once("class/Container.php");
 require_once("class/tools/Validation.php");
 
-class ImportPersona extends Import {
+class PersonaImport extends Import {
   
   public function element($i, $data){
     
     /**
      * Definir elemento a procear
      */
-    $element = new ImportPersonaElement($i, $data); 
+    $element = $this->container->getImportElement("persona", $i);; 
+    $element->setEntities($data);
     array_push($this->elements, $element);
   }
 

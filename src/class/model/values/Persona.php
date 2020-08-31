@@ -293,6 +293,8 @@ class Persona extends _Persona {
         case "observaciones":
         case "drive":
         case "fecha_nacimiento":
+        case "comision":
+        case "sede":
           break;
         default:
           if(is_null($va) || !key_exists($ka, $b)) break;

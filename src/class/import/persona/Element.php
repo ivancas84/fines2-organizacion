@@ -1,7 +1,7 @@
 <?php
 require_once("class/import/Element.php");
 
-class ImportPersonaElement extends ImportElement {
+class PersonaElementImport extends ImportElement {
     
   public function setEntities($row) {
       $this->entities["persona"] = null;
@@ -20,12 +20,16 @@ class ImportPersonaElement extends ImportElement {
         ($this->entities[$name]->archivo2019() && !$existente->archivo2019()) || 
         ($this->entities[$name]->archivo2020() && !$existente->archivo2020())
     ) {
-        $this->logs->addLog("persona","info","Registro existente, se actualizara el campo archivo");
+        $this->logs->addLog("persona","info","Registro existente, se actualizara campos de identificacion de comision");
 
         $persona = EntityValues::getInstanceRequire("persona");
         $persona->setId($this->entities[$name]->id());
         if(!Validation::is_empty($this->entities[$name]->archivo2019())) $persona->setArchivo2019($this->entities[$name]->archivo2019());
         if(!Validation::is_empty($this->entities[$name]->archivo2020())) $persona->setArchivo2020($this->entities[$name]->archivo2020());
+        $persona->setComision($this->entities[$name]->comision());
+        $persona->setSede($this->entities[$name]->sede());
+        $persona->setCens($this->entities[$name]->cens());
+
         $persist = EntitySqlo::getInstanceRequire($name)->update($persona->_toArray());
         $this->sql .= $persist["sql"];
     } else {
