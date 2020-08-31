@@ -8,14 +8,14 @@ class _FieldPersonaPcEscritorio extends Field {
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = true;
-  public $default = false;
+  public $default = "0";
   public $length = "3";
   public $main = false;
   public $name = "pc_escritorio";
   public $alias = "pe";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }

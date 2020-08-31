@@ -1,9 +1,10 @@
 <?php
 
-require_once("class/model/Entity.php");
+require_once("class/Container.php");
 
+$container = new Container();
 $structure = array (
-  Entity::getInstanceRequire("persona"),
+  $container->getEntity("persona"),
 );
 
   Entity::setStructure($structure);

@@ -8,14 +8,14 @@ class _FieldPersonaTramo extends Field {
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = false;
-  public $default = false;
+  public $default = null;
   public $length = "45";
   public $main = false;
   public $name = "tramo";
   public $alias = "tra";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }

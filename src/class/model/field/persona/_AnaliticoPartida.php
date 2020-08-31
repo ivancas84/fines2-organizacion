@@ -8,14 +8,14 @@ class _FieldPersonaAnaliticoPartida extends Field {
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = true;
-  public $default = false;
+  public $default = "0";
   public $length = "3";
   public $main = false;
   public $name = "analitico_partida";
   public $alias = "ap";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }

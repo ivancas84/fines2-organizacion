@@ -8,14 +8,14 @@ class _FieldPersonaCens extends Field {
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = false;
-  public $default = false;
+  public $default = null;
   public $length = "255";
   public $main = false;
   public $name = "cens";
   public $alias = "cen";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }

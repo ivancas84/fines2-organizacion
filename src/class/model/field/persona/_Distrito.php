@@ -8,14 +8,14 @@ class _FieldPersonaDistrito extends Field {
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = true;
-  public $default = "'La Plata'";
+  public $default = "La Plata";
   public $length = "255";
   public $main = false;
   public $name = "distrito";
   public $alias = "dis";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }

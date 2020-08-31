@@ -8,14 +8,14 @@ class _FieldPersonaRegion extends Field {
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = true;
-  public $default = "'1'";
+  public $default = "1";
   public $length = "255";
   public $main = false;
   public $name = "region";
   public $alias = "reg";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }

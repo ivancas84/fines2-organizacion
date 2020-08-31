@@ -15,7 +15,7 @@ class _FieldPersonaActivo extends Field {
   public $alias = "act";
 
 
-  public function getEntity(){ return Entity::getInstanceRequire('persona'); }
+  public function getEntity(){ return $this->container->getEntity('persona'); }
 
 
 }
