@@ -36,10 +36,11 @@ class ImportPersonaDriveElement extends ImportPersonaElement {
       echo $this->entities[$name]->fechaNacimiento("Y-m-d His");
       echo "<br><br>";
       $this->logs->addLog("persona","error","El registro debe ser actualizado, comparar {$compare}");
-    } elseif (!$existente->drive()) {
-        $this->logs->addLog("persona","info","Registro existente, se actualizara el campo drive");
+    } elseif (!$existente->drive() || Validation::is_empty($existente->comision())) {
+        $this->logs->addLog("persona","info","Registro existente, se actualizara los campos");
 
         $persona = EntityValues::getInstanceRequire("persona");
+        $persona->setComision($this->entities[$name]->comision());
         $persona->setId($this->entities[$name]->id());
         $persona->setCuil($this->entities[$name]->cuil());
         $persona->_setFechaNacimiento($this->entities[$name]->fechaNacimiento());
