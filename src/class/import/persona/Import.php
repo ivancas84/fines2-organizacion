@@ -19,11 +19,18 @@ class PersonaImport extends Import {
     $this->ids["persona"] = [];
 
     foreach($this->elements as &$element){
+      $element->entities["persona"]->resetNumeroDocumento();
       $dni = $element->entities["persona"]->numeroDocumento();
       if(Validation::is_empty($dni)){
           $element->process = false;                
           $element->logs->addLog("persona", "error", "El número de documento no se encuentra definido");
           continue;
+      }
+
+      if(in_array($dni, $this->ids["persona"])) {
+        $element->process = false;                
+        $element->logs->addLog("persona", "error", "El número de documento está duplicado");
+        continue;
       }
   
       array_push($this->ids["persona"], $dni);        
@@ -46,7 +53,7 @@ class PersonaImport extends Import {
       $dni= $element->entities["persona"]->numeroDocumento();
 
       if(key_exists($element->entities["persona"]->numeroDocumento(), $this->dbs["persona"])){
-        $personaExistente = EntityValues::getInstanceRequire("persona");
+        $personaExistente = $this->container->getValues("persona");
         $personaExistente->_fromArray($this->dbs["persona"][$dni]);
         if(!$element->entities["persona"]->checkNombresParecidos($personaExistente)){
           $element->process = false;                    
@@ -59,6 +66,7 @@ class PersonaImport extends Import {
       if($element->process) $this->dbs["persona"][$dni] = $element->entities["persona"]->_toArray();
     }
   }
+  
 
   
 

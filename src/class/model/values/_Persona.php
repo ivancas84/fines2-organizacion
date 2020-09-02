@@ -424,7 +424,7 @@ class _Persona extends EntityValues {
   public function checkRegion($value) { 
     $this->_logs->resetLogs("region");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(255);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("region", "error", $error); }
     return $v->isSuccess();
   }
@@ -432,106 +432,151 @@ class _Persona extends EntityValues {
   public function checkDistrito($value) { 
     $this->_logs->resetLogs("distrito");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(255);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("distrito", "error", $error); }
     return $v->isSuccess();
   }
 
   public function checkLocalidad($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("localidad");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("localidad", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkPrograma($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("programa");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("programa", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkInscripcionMen($value) { 
     $this->_logs->resetLogs("inscripcion_men");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("inscripcion_men", "error", $error); }
     return $v->isSuccess();
   }
 
   public function checkCens($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("cens");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("cens", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkSede($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("sede");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("sede", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkComision($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("comision");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("comision", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkTramo($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("tramo");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("tramo", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkIdentificador($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("identificador");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("identificador", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkNumeroInscripcion($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("numero_inscripcion");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_inscripcion", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkNumeroDocumento($value) { 
     $this->_logs->resetLogs("numero_documento");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(45);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
     return $v->isSuccess();
   }
 
   public function checkApellidos($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("apellidos");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("apellidos", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkNombres($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("nombres");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkGenero($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("genero");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("genero", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkTelefono($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("telefono");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255)->min(6);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("telefono", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkCorreo($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("correo");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("correo", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkTrayectoriaEducativa($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("trayectoria_educativa");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("trayectoria_educativa", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkTurno($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("turno");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("turno", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkPcEscritorio($value) { 
     $this->_logs->resetLogs("pc_escritorio");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("pc_escritorio", "error", $error); }
     return $v->isSuccess();
   }
@@ -539,7 +584,7 @@ class _Persona extends EntityValues {
   public function checkNetNotebook($value) { 
     $this->_logs->resetLogs("net_notebook");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("net_notebook", "error", $error); }
     return $v->isSuccess();
   }
@@ -547,7 +592,7 @@ class _Persona extends EntityValues {
   public function checkTablet($value) { 
     $this->_logs->resetLogs("tablet");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("tablet", "error", $error); }
     return $v->isSuccess();
   }
@@ -555,7 +600,7 @@ class _Persona extends EntityValues {
   public function checkPcTablet($value) { 
     $this->_logs->resetLogs("pc_tablet");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("pc_tablet", "error", $error); }
     return $v->isSuccess();
   }
@@ -563,7 +608,7 @@ class _Persona extends EntityValues {
   public function checkImpresora($value) { 
     $this->_logs->resetLogs("impresora");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("impresora", "error", $error); }
     return $v->isSuccess();
   }
@@ -571,25 +616,31 @@ class _Persona extends EntityValues {
   public function checkConexionInternetPaga($value) { 
     $this->_logs->resetLogs("conexion_internet_paga");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("conexion_internet_paga", "error", $error); }
     return $v->isSuccess();
   }
 
   public function checkTelefonoCelular($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("telefono_celular");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("telefono_celular", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkComision2020($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("comision_2020");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("comision_2020", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkArchivo2019($value) { 
     $this->_logs->resetLogs("archivo_2019");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("archivo_2019", "error", $error); }
     return $v->isSuccess();
   }
@@ -597,7 +648,7 @@ class _Persona extends EntityValues {
   public function checkArchivo2020($value) { 
     $this->_logs->resetLogs("archivo_2020");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("archivo_2020", "error", $error); }
     return $v->isSuccess();
   }
@@ -605,20 +656,23 @@ class _Persona extends EntityValues {
   public function checkDrive($value) { 
     $this->_logs->resetLogs("drive");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("drive", "error", $error); }
     return $v->isSuccess();
   }
 
   public function checkCuil($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("cuil");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(255);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("cuil", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkAnaliticoDni($value) { 
     $this->_logs->resetLogs("analitico_dni");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_dni", "error", $error); }
     return $v->isSuccess();
   }
@@ -626,7 +680,7 @@ class _Persona extends EntityValues {
   public function checkAnaliticoCuil($value) { 
     $this->_logs->resetLogs("analitico_cuil");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_cuil", "error", $error); }
     return $v->isSuccess();
   }
@@ -634,7 +688,7 @@ class _Persona extends EntityValues {
   public function checkAnaliticoPartida($value) { 
     $this->_logs->resetLogs("analitico_partida");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_partida", "error", $error); }
     return $v->isSuccess();
   }
@@ -642,7 +696,7 @@ class _Persona extends EntityValues {
   public function checkAnaliticoCertificado($value) { 
     $this->_logs->resetLogs("analitico_certificado");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("analitico_certificado", "error", $error); }
     return $v->isSuccess();
   }
@@ -656,19 +710,25 @@ class _Persona extends EntityValues {
   }
 
   public function checkIngreso($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("ingreso");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("ingreso", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkObservaciones($value) { 
-      if(Validation::is_undefined($value)) return null;
-      return true; 
+    $this->_logs->resetLogs("observaciones");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("observaciones", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkActivo($value) { 
     $this->_logs->resetLogs("activo");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->required();
+    $v = Validation::getInstanceValue($value)->required()->max(3);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("activo", "error", $error); }
     return $v->isSuccess();
   }

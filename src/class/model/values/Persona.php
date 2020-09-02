@@ -133,13 +133,14 @@ class Persona extends _Persona {
     if(Validation::is_undefined($value)) return null;
     
     //advertencias
-    $v = Validation::getInstanceValue($value)->abbreviation();
+    $v = Validation::getInstanceValue($value)->abbreviation()->required();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres", "warning", $error); }
-    
+    return true;
+    /*
     $v = Validation::getInstanceValue($value)->required()->name();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("nombres", "error", $error); }
-    if(!$v->isSuccess()) echo $value;
     return $v->isSuccess();
+    */
   }
 
   public function checkApellidos($value) { 
@@ -147,12 +148,14 @@ class Persona extends _Persona {
     if(Validation::is_undefined($value)) return null;
     
     //advertencias
-    $v = Validation::getInstanceValue($value)->abbreviation();
+    $v = Validation::getInstanceValue($value)->abbreviation()->required();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("apellidos", "warning", $error); }
-    
+    return true;
+    /*
     $v = Validation::getInstanceValue($value)->required()->name();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("apellidos", "error", $error); }
     return $v->isSuccess();
+    */
   }
 
   public function checkNombresApellidos(){
@@ -164,9 +167,9 @@ class Persona extends _Persona {
 
   public function checkNumeroDocumento($value) { 
     $this->_logs->resetLogs("numero_documento");
-   
+    if(strpos($value, "ind") !== false) return true;
     if(Validation::is_undefined($value)) return null;
-        $v = Validation::getInstanceValue($value)->min(7)->max(8)->pattern("int")->required();
+        $v = Validation::getInstanceValue($value)->min(6)->max(8)->pattern("int")->required();
     foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
     
     return $v->isSuccess();
@@ -179,19 +182,6 @@ class Persona extends _Persona {
     if(Validation::is_undefined($value)) return null;
     $v = Validation::getInstanceValue($value)->min(11)->max(11)->pattern("int");
     foreach($v->getErrors() as $error){ $this->_logs->addLog("cuil", "error", $error); }
-    return $v->isSuccess();
-  }
-
-  public function checkTelefono($value) { 
-    $this->_logs->resetLogs("telefono");
-    if(Validation::is_undefined($value)) return null;
-    if(Validation::is_empty($value)) return true;
-
-    $v = Validation::getInstanceValue($value)->min(6);
-    if(!empty($v->getErrors())){
-      foreach($v->getErrors() as $error){ $this->_logs->addLog("telefono", "error", $error . "(no será almacenado)"); }
-      $this->setTelefono(null);
-    }
     return $v->isSuccess();
   }
 
@@ -231,15 +221,18 @@ class Persona extends _Persona {
   public function resetNombres(){
     if(!Validation::is_empty($this->nombres)){
       parent::resetNombres();
-      $this->nombres = strto($this->nombres, "Xx Yy");
+      $source = array("à", "è", "ì", "ò", "ù", "À", "È", "Ì", "Ò", "Ù", "`", "´", "Û", "û");
+      $replace = array("á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú", "'", "'", "Ü","ü");
+      $this->nombres = strto(str_replace($source, $replace, $this->nombres), "Xx Yy");
     }
   }
   
   public function resetApellidos(){
     if(!Validation::is_empty($this->apellidos)){
       parent::resetApellidos(); 
-      $this->apellidos = strto($this->apellidos, "Xx Yy");
-    }
+      $source = array("à", "è", "ì", "ò", "ù", "À", "È", "Ì", "Ò", "Ù", "`", "´", "Û", "û");
+      $replace = array("á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú", "'", "'", "Ü","ü");
+      $this->apellidos = strto(str_replace($source, $replace, $this->apellidos), "Xx Yy");    }
   }
   public function resetDistrito(){
     if(!Validation::is_empty($this->distrito)){
@@ -252,8 +245,9 @@ class Persona extends _Persona {
     if(!Validation::is_empty($this->telefono)){
       parent::resetTelefono();
       $this->telefono = preg_replace( '/[^0-9]/i', '', $this->telefono);
-      if(empty($this->telefono)) $this->telefono = null;
-      elseif($this->telefono[0] == "0") $this->telefono = substr($this->telefono, 1); 
+      if(empty($this->telefono)) $this->telefono = UNDEFINED;
+      elseif($this->telefono[0] == "0") $this->telefono = substr($this->telefono, 1);
+      if(!$this->checkTelefono($this->telefono)) $this->telefono = UNDEFINED; 
     }
   }
 
@@ -270,6 +264,8 @@ class Persona extends _Persona {
     //print_r($b);
     foreach($a as $ka => $va) {
       switch($ka){
+        case "telefono":
+        case "tramo":
         case "inscripcion_men":
         case "identificador":
         case "numero_inscripcion":
