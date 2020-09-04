@@ -53,6 +53,7 @@ class _PersonaSqlo extends EntitySqlo {
     $sql .= "observaciones, " ;
     $sql .= "activo, " ;
     $sql .= "fila, " ;
+    $sql .= "id_comision, " ;
     $sql = substr($sql, 0, -2); //eliminar ultima coma
 
     $sql .= ")
@@ -98,6 +99,7 @@ VALUES ( ";
     $sql .= $row['observaciones'] . ", " ;
     $sql .= $row['activo'] . ", " ;
     $sql .= $row['fila'] . ", " ;
+    $sql .= $row['id_comision'] . ", " ;
     $sql = substr($sql, 0, -2); //eliminar ultima coma
 
     $sql .= ");
@@ -150,6 +152,7 @@ UPDATE " . $this->entity->sn_() . " SET
     if (isset($row['observaciones'] )) $sql .= "observaciones = " . $row['observaciones'] . " ," ;
     if (isset($row['activo'] )) $sql .= "activo = " . $row['activo'] . " ," ;
     if (isset($row['fila'] )) $sql .= "fila = " . $row['fila'] . " ," ;
+    if (isset($row['id_comision'] )) $sql .= "id_comision = " . $row['id_comision'] . " ," ;
     //eliminar ultima coma
     $sql = substr($sql, 0, -2);
 

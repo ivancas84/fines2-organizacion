@@ -45,6 +45,7 @@ class _Persona extends EntityValues {
   protected $observaciones = UNDEFINED;
   protected $activo = UNDEFINED;
   protected $fila = UNDEFINED;
+  protected $idComision = UNDEFINED;
 
   public function _setDefault(){
     if($this->id == UNDEFINED) $this->setId(uniqid());
@@ -88,52 +89,54 @@ class _Persona extends EntityValues {
     if($this->observaciones == UNDEFINED) $this->setObservaciones(null);
     if($this->activo == UNDEFINED) $this->setActivo(true);
     if($this->fila == UNDEFINED) $this->setFila(null);
+    if($this->idComision == UNDEFINED) $this->setIdComision(null);
     return $this;
   }
 
   public function _fromArray(array $row = NULL, string $p = ""){
     if(empty($row)) return;
-    if(isset($row[$p."id"])) $this->setId($row[$p."id"]);
-    if(isset($row[$p."region"])) $this->setRegion($row[$p."region"]);
-    if(isset($row[$p."distrito"])) $this->setDistrito($row[$p."distrito"]);
-    if(isset($row[$p."localidad"])) $this->setLocalidad($row[$p."localidad"]);
-    if(isset($row[$p."programa"])) $this->setPrograma($row[$p."programa"]);
-    if(isset($row[$p."inscripcion_men"])) $this->setInscripcionMen($row[$p."inscripcion_men"]);
-    if(isset($row[$p."cens"])) $this->setCens($row[$p."cens"]);
-    if(isset($row[$p."sede"])) $this->setSede($row[$p."sede"]);
-    if(isset($row[$p."comision"])) $this->setComision($row[$p."comision"]);
-    if(isset($row[$p."tramo"])) $this->setTramo($row[$p."tramo"]);
-    if(isset($row[$p."identificador"])) $this->setIdentificador($row[$p."identificador"]);
-    if(isset($row[$p."numero_inscripcion"])) $this->setNumeroInscripcion($row[$p."numero_inscripcion"]);
-    if(isset($row[$p."numero_documento"])) $this->setNumeroDocumento($row[$p."numero_documento"]);
-    if(isset($row[$p."apellidos"])) $this->setApellidos($row[$p."apellidos"]);
-    if(isset($row[$p."nombres"])) $this->setNombres($row[$p."nombres"]);
-    if(isset($row[$p."genero"])) $this->setGenero($row[$p."genero"]);
-    if(isset($row[$p."telefono"])) $this->setTelefono($row[$p."telefono"]);
-    if(isset($row[$p."correo"])) $this->setCorreo($row[$p."correo"]);
-    if(isset($row[$p."trayectoria_educativa"])) $this->setTrayectoriaEducativa($row[$p."trayectoria_educativa"]);
-    if(isset($row[$p."turno"])) $this->setTurno($row[$p."turno"]);
-    if(isset($row[$p."pc_escritorio"])) $this->setPcEscritorio($row[$p."pc_escritorio"]);
-    if(isset($row[$p."net_notebook"])) $this->setNetNotebook($row[$p."net_notebook"]);
-    if(isset($row[$p."tablet"])) $this->setTablet($row[$p."tablet"]);
-    if(isset($row[$p."pc_tablet"])) $this->setPcTablet($row[$p."pc_tablet"]);
-    if(isset($row[$p."impresora"])) $this->setImpresora($row[$p."impresora"]);
-    if(isset($row[$p."conexion_internet_paga"])) $this->setConexionInternetPaga($row[$p."conexion_internet_paga"]);
-    if(isset($row[$p."telefono_celular"])) $this->setTelefonoCelular($row[$p."telefono_celular"]);
-    if(isset($row[$p."comision_2020"])) $this->setComision2020($row[$p."comision_2020"]);
-    if(isset($row[$p."archivo_2019"])) $this->setArchivo2019($row[$p."archivo_2019"]);
-    if(isset($row[$p."archivo_2020"])) $this->setArchivo2020($row[$p."archivo_2020"]);
-    if(isset($row[$p."drive"])) $this->setDrive($row[$p."drive"]);
-    if(isset($row[$p."cuil"])) $this->setCuil($row[$p."cuil"]);
-    if(isset($row[$p."analitico_dni"])) $this->setAnaliticoDni($row[$p."analitico_dni"]);
-    if(isset($row[$p."analitico_cuil"])) $this->setAnaliticoCuil($row[$p."analitico_cuil"]);
-    if(isset($row[$p."analitico_partida"])) $this->setAnaliticoPartida($row[$p."analitico_partida"]);
-    if(isset($row[$p."analitico_certificado"])) $this->setAnaliticoCertificado($row[$p."analitico_certificado"]);
-    if(isset($row[$p."fecha_nacimiento"])) $this->setFechaNacimiento($row[$p."fecha_nacimiento"]);
-    if(isset($row[$p."ingreso"])) $this->setIngreso($row[$p."ingreso"]);
-    if(isset($row[$p."observaciones"])) $this->setObservaciones($row[$p."observaciones"]);
-    if(isset($row[$p."activo"])) $this->setActivo($row[$p."activo"]);
-    if(isset($row[$p."fila"])) $this->setFila($row[$p."fila"]);
+    if(key_exists($p."id", $row)) $this->setId($row[$p."id"]);
+    if(key_exists($p."region", $row)) $this->setRegion($row[$p."region"]);
+    if(key_exists($p."distrito", $row)) $this->setDistrito($row[$p."distrito"]);
+    if(key_exists($p."localidad", $row)) $this->setLocalidad($row[$p."localidad"]);
+    if(key_exists($p."programa", $row)) $this->setPrograma($row[$p."programa"]);
+    if(key_exists($p."inscripcion_men", $row)) $this->setInscripcionMen($row[$p."inscripcion_men"]);
+    if(key_exists($p."cens", $row)) $this->setCens($row[$p."cens"]);
+    if(key_exists($p."sede", $row)) $this->setSede($row[$p."sede"]);
+    if(key_exists($p."comision", $row)) $this->setComision($row[$p."comision"]);
+    if(key_exists($p."tramo", $row)) $this->setTramo($row[$p."tramo"]);
+    if(key_exists($p."identificador", $row)) $this->setIdentificador($row[$p."identificador"]);
+    if(key_exists($p."numero_inscripcion", $row)) $this->setNumeroInscripcion($row[$p."numero_inscripcion"]);
+    if(key_exists($p."numero_documento", $row)) $this->setNumeroDocumento($row[$p."numero_documento"]);
+    if(key_exists($p."apellidos", $row)) $this->setApellidos($row[$p."apellidos"]);
+    if(key_exists($p."nombres", $row)) $this->setNombres($row[$p."nombres"]);
+    if(key_exists($p."genero", $row)) $this->setGenero($row[$p."genero"]);
+    if(key_exists($p."telefono", $row)) $this->setTelefono($row[$p."telefono"]);
+    if(key_exists($p."correo", $row)) $this->setCorreo($row[$p."correo"]);
+    if(key_exists($p."trayectoria_educativa", $row)) $this->setTrayectoriaEducativa($row[$p."trayectoria_educativa"]);
+    if(key_exists($p."turno", $row)) $this->setTurno($row[$p."turno"]);
+    if(key_exists($p."pc_escritorio", $row)) $this->setPcEscritorio($row[$p."pc_escritorio"]);
+    if(key_exists($p."net_notebook", $row)) $this->setNetNotebook($row[$p."net_notebook"]);
+    if(key_exists($p."tablet", $row)) $this->setTablet($row[$p."tablet"]);
+    if(key_exists($p."pc_tablet", $row)) $this->setPcTablet($row[$p."pc_tablet"]);
+    if(key_exists($p."impresora", $row)) $this->setImpresora($row[$p."impresora"]);
+    if(key_exists($p."conexion_internet_paga", $row)) $this->setConexionInternetPaga($row[$p."conexion_internet_paga"]);
+    if(key_exists($p."telefono_celular", $row)) $this->setTelefonoCelular($row[$p."telefono_celular"]);
+    if(key_exists($p."comision_2020", $row)) $this->setComision2020($row[$p."comision_2020"]);
+    if(key_exists($p."archivo_2019", $row)) $this->setArchivo2019($row[$p."archivo_2019"]);
+    if(key_exists($p."archivo_2020", $row)) $this->setArchivo2020($row[$p."archivo_2020"]);
+    if(key_exists($p."drive", $row)) $this->setDrive($row[$p."drive"]);
+    if(key_exists($p."cuil", $row)) $this->setCuil($row[$p."cuil"]);
+    if(key_exists($p."analitico_dni", $row)) $this->setAnaliticoDni($row[$p."analitico_dni"]);
+    if(key_exists($p."analitico_cuil", $row)) $this->setAnaliticoCuil($row[$p."analitico_cuil"]);
+    if(key_exists($p."analitico_partida", $row)) $this->setAnaliticoPartida($row[$p."analitico_partida"]);
+    if(key_exists($p."analitico_certificado", $row)) $this->setAnaliticoCertificado($row[$p."analitico_certificado"]);
+    if(key_exists($p."fecha_nacimiento", $row)) $this->setFechaNacimiento($row[$p."fecha_nacimiento"]);
+    if(key_exists($p."ingreso", $row)) $this->setIngreso($row[$p."ingreso"]);
+    if(key_exists($p."observaciones", $row)) $this->setObservaciones($row[$p."observaciones"]);
+    if(key_exists($p."activo", $row)) $this->setActivo($row[$p."activo"]);
+    if(key_exists($p."fila", $row)) $this->setFila($row[$p."fila"]);
+    if(key_exists($p."id_comision", $row)) $this->setIdComision($row[$p."id_comision"]);
     return $this;
   }
 
@@ -180,6 +183,7 @@ class _Persona extends EntityValues {
     if($this->observaciones !== UNDEFINED) $row[$p."observaciones"] = $this->observaciones();
     if($this->activo !== UNDEFINED) $row[$p."activo"] = $this->activo();
     if($this->fila !== UNDEFINED) $row[$p."fila"] = $this->fila();
+    if($this->idComision !== UNDEFINED) $row[$p."id_comision"] = $this->idComision();
     return $row;
   }
 
@@ -225,6 +229,7 @@ class _Persona extends EntityValues {
     if(!Validation::is_empty($this->observaciones)) return false;
     if(!Validation::is_empty($this->activo)) return false;
     if(!Validation::is_empty($this->fila)) return false;
+    if(!Validation::is_empty($this->idComision)) return false;
     return true;
   }
 
@@ -269,6 +274,7 @@ class _Persona extends EntityValues {
   public function observaciones($format = null) { return Format::convertCase($this->observaciones, $format); }
   public function activo($format = null) { return Format::boolean($this->activo, $format); }
   public function fila() { return $this->fila; }
+  public function idComision($format = null) { return Format::convertCase($this->idComision, $format); }
 
   public function _setId(string $p = null) { return $this->id = $p; }  
   public function setId($p) { return $this->id = (is_null($p)) ? null : (string)$p; }
@@ -400,6 +406,9 @@ class _Persona extends EntityValues {
   public function _setFila(integer $p = null) { return $this->fila = $p; }    
   public function setFila($p) { return $this->fila = (is_null($p)) ? null : intval($p); }
 
+  public function _setIdComision(string $p = null) { return $this->idComision = $p; }  
+  public function setIdComision($p) { return $this->idComision = (is_null($p)) ? null : (string)$p; }
+
 
   public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
   public function resetDistrito() { if(!Validation::is_empty($this->distrito)) $this->distrito = preg_replace('/\s\s+/', ' ', trim($this->distrito)); }
@@ -424,6 +433,7 @@ class _Persona extends EntityValues {
   public function resetCuil() { if(!Validation::is_empty($this->cuil)) $this->cuil = preg_replace('/\s\s+/', ' ', trim($this->cuil)); }
   public function resetIngreso() { if(!Validation::is_empty($this->ingreso)) $this->ingreso = preg_replace('/\s\s+/', ' ', trim($this->ingreso)); }
   public function resetObservaciones() { if(!Validation::is_empty($this->observaciones)) $this->observaciones = preg_replace('/\s\s+/', ' ', trim($this->observaciones)); }
+  public function resetIdComision() { if(!Validation::is_empty($this->idComision)) $this->idComision = preg_replace('/\s\s+/', ' ', trim($this->idComision)); }
 
   public function checkId($value) { 
       if(Validation::is_undefined($value)) return null;
@@ -750,6 +760,14 @@ class _Persona extends EntityValues {
     return $v->isSuccess();
   }
 
+  public function checkIdComision($value) { 
+    $this->_logs->resetLogs("id_comision");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(45);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("id_comision", "error", $error); }
+    return $v->isSuccess();
+  }
+
   public function _check(){
     $this->checkId($this->id);
     $this->checkRegion($this->region);
@@ -792,6 +810,7 @@ class _Persona extends EntityValues {
     $this->checkObservaciones($this->observaciones);
     $this->checkActivo($this->activo);
     $this->checkFila($this->fila);
+    $this->checkIdComision($this->idComision);
     return !$this->_getLogs()->isError();
   }
 
@@ -819,6 +838,7 @@ class _Persona extends EntityValues {
     $this->resetCuil();
     $this->resetIngreso();
     $this->resetObservaciones();
+    $this->resetIdComision();
     return $this;
   }
 
