@@ -38,3 +38,4 @@ fecha_nacimiento (fn): date nf.
 ingreso (ing): string nf.
 observaciones (obs): string nf.
 activo (act): boolean nf. NOT NULL. DEFAULT: 1.
+fila (fil): integer nf.

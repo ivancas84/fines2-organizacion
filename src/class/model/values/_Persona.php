@@ -44,6 +44,7 @@ class _Persona extends EntityValues {
   protected $ingreso = UNDEFINED;
   protected $observaciones = UNDEFINED;
   protected $activo = UNDEFINED;
+  protected $fila = UNDEFINED;
 
   public function _setDefault(){
     if($this->id == UNDEFINED) $this->setId(uniqid());
@@ -86,6 +87,7 @@ class _Persona extends EntityValues {
     if($this->ingreso == UNDEFINED) $this->setIngreso(null);
     if($this->observaciones == UNDEFINED) $this->setObservaciones(null);
     if($this->activo == UNDEFINED) $this->setActivo(true);
+    if($this->fila == UNDEFINED) $this->setFila(null);
     return $this;
   }
 
@@ -131,6 +133,7 @@ class _Persona extends EntityValues {
     if(isset($row[$p."ingreso"])) $this->setIngreso($row[$p."ingreso"]);
     if(isset($row[$p."observaciones"])) $this->setObservaciones($row[$p."observaciones"]);
     if(isset($row[$p."activo"])) $this->setActivo($row[$p."activo"]);
+    if(isset($row[$p."fila"])) $this->setFila($row[$p."fila"]);
     return $this;
   }
 
@@ -176,6 +179,7 @@ class _Persona extends EntityValues {
     if($this->ingreso !== UNDEFINED) $row[$p."ingreso"] = $this->ingreso();
     if($this->observaciones !== UNDEFINED) $row[$p."observaciones"] = $this->observaciones();
     if($this->activo !== UNDEFINED) $row[$p."activo"] = $this->activo();
+    if($this->fila !== UNDEFINED) $row[$p."fila"] = $this->fila();
     return $row;
   }
 
@@ -220,6 +224,7 @@ class _Persona extends EntityValues {
     if(!Validation::is_empty($this->ingreso)) return false;
     if(!Validation::is_empty($this->observaciones)) return false;
     if(!Validation::is_empty($this->activo)) return false;
+    if(!Validation::is_empty($this->fila)) return false;
     return true;
   }
 
@@ -263,6 +268,7 @@ class _Persona extends EntityValues {
   public function ingreso($format = null) { return Format::convertCase($this->ingreso, $format); }
   public function observaciones($format = null) { return Format::convertCase($this->observaciones, $format); }
   public function activo($format = null) { return Format::boolean($this->activo, $format); }
+  public function fila() { return $this->fila; }
 
   public function _setId(string $p = null) { return $this->id = $p; }  
   public function setId($p) { return $this->id = (is_null($p)) ? null : (string)$p; }
@@ -390,6 +396,9 @@ class _Persona extends EntityValues {
 
   public function _setActivo(boolean $p = null) { return $this->activo = $p; }  
   public function setActivo($p) { return $this->activo = settypebool($p); }
+
+  public function _setFila(integer $p = null) { return $this->fila = $p; }    
+  public function setFila($p) { return $this->fila = (is_null($p)) ? null : intval($p); }
 
 
   public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
@@ -733,6 +742,14 @@ class _Persona extends EntityValues {
     return $v->isSuccess();
   }
 
+  public function checkFila($value) { 
+    $this->_logs->resetLogs("fila");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(10);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("fila", "error", $error); }
+    return $v->isSuccess();
+  }
+
   public function _check(){
     $this->checkId($this->id);
     $this->checkRegion($this->region);
@@ -774,6 +791,7 @@ class _Persona extends EntityValues {
     $this->checkIngreso($this->ingreso);
     $this->checkObservaciones($this->observaciones);
     $this->checkActivo($this->activo);
+    $this->checkFila($this->fila);
     return !$this->_getLogs()->isError();
   }
 
