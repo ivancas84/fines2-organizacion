@@ -8,16 +8,21 @@
  */
 require_once("../config/config.php");
 
-require_once("class/import/personaDrive/PersonaDrive.php");
+require_once("class/import/personaDrive/Import.php");
 set_time_limit ( 0 );
 
-$import = new ImportPersonaDrive();
-
+$import = new PersonaDriveImport();
+$import->container = new Container();
+$import->start = 3;
 $import->id = $_REQUEST["id"]; //Identificacion del documento a procesar para almacenar los resultados
 $import->headers = array_map('trim', explode(",",$_REQUEST["headers"])); //encabezados a procesar
 $import->source = $_REQUEST["source"]; //informacion a procesar
 $import->mode ="tab"; //modo de procesamiento
 $import->pathSummary = $_SERVER["DOCUMENT_ROOT"] ."/".PATH_ROOT . "/info/import/" . $import->id; //resultados
 $import->comision = $_REQUEST["comision"];
+$import->idComision = $_REQUEST["idComision"];
+$import->tramo = $_REQUEST["tramo"];
+$import->actualizado = new DateTime();
+echo $import->actualizado->format("Y-m-d H:i:s") . " " . $import->comision;
 $import->main();
 

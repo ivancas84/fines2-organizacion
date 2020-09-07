@@ -167,18 +167,19 @@ class Persona extends _Persona {
 
   public function checkNumeroDocumento($value) { 
     $this->_logs->resetLogs("numero_documento");
-    if(strpos($value, "ind") !== false) return true;
     if(Validation::is_undefined($value)) return null;
-        $v = Validation::getInstanceValue($value)->min(6)->max(8)->pattern("int")->required();
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
     
-    return $v->isSuccess();
+    if(is_numeric($value) || Validation::is_empty($value)){
+      $v = Validation::getInstanceValue($value)->min(6)->max(8)->pattern("int")->required();
+      foreach($v->getErrors() as $error){ $this->_logs->addLog("numero_documento", "error", $error); }
+      return $v->isSuccess();
+    }
+    return true;
+    
   }
-
   
   public function checkCuil($value) { 
     $this->_logs->resetLogs("cuil");
-   
     if(Validation::is_undefined($value)) return null;
     $v = Validation::getInstanceValue($value)->min(11)->max(11)->pattern("int");
     foreach($v->getErrors() as $error){ $this->_logs->addLog("cuil", "error", $error); }
@@ -189,6 +190,11 @@ class Persona extends _Persona {
     $this->_logs->resetLogs("correo");
     if(Validation::is_undefined($value)) return null;
     if(Validation::is_empty($value)) return true;
+    if(strtolower($value) == "no tiene"){
+      $this->setCorreo(null);
+      return true;
+    }
+
     $v = Validation::getInstanceValue($value)->email();
     if(!empty($v->getErrors())){
       foreach($v->getErrors() as $error){ $this->_logs->addLog("correo", "error", $error . "(no será almacenado)"); }

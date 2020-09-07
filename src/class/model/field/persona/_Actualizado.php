@@ -2,17 +2,17 @@
 
 require_once("class/model/Field.php");
 
-class _FieldPersonaObservaciones extends Field {
+class _FieldPersonaActualizado extends Field {
 
-  public $type = "text";
+  public $type = "timestamp";
   public $fieldType = "nf";
   public $unique = false;
   public $notNull = false;
   public $default = null;
-  public $length = "65535";
+  public $length = false;
   public $main = false;
-  public $name = "observaciones";
-  public $alias = "obs";
+  public $name = "actualizado";
+  public $alias = "acb";
 
 
   public function getEntity(){ return $this->container->getEntity('persona'); }

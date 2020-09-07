@@ -50,7 +50,10 @@ class _PersonaSql extends EntitySql{
       case $p.'observaciones': return $t.".observaciones";
       case $p.'activo': return $t.".activo";
       case $p.'fila': return $t.".fila";
+      case $p.'error': return $t.".error";
       case $p.'id_comision': return $t.".id_comision";
+      case $p.'actualizado': return $t.".actualizado";
+      case $p.'actualizado_date': return "CAST({$t}.actualizado AS DATE)";
 
       case $p.'min_id': return "MIN({$t}.id)";
       case $p.'max_id': return "MAX({$t}.id)";
@@ -219,9 +222,18 @@ class _PersonaSql extends EntitySql{
       case $p.'max_fila': return "MAX({$t}.fila)";
       case $p.'count_fila': return "COUNT({$t}.fila)";
 
+      case $p.'min_error': return "MIN({$t}.error)";
+      case $p.'max_error': return "MAX({$t}.error)";
+      case $p.'count_error': return "COUNT({$t}.error)";
+
       case $p.'min_id_comision': return "MIN({$t}.id_comision)";
       case $p.'max_id_comision': return "MAX({$t}.id_comision)";
       case $p.'count_id_comision': return "COUNT({$t}.id_comision)";
+
+      case $p.'avg_actualizado': return "AVG({$t}.actualizado)";
+      case $p.'min_actualizado': return "MIN({$t}.actualizado)";
+      case $p.'max_actualizado': return "MAX({$t}.actualizado)";
+      case $p.'count_actualizado': return "COUNT({$t}.actualizado)";
 
       case $p.'_label': return "CONCAT_WS(' ', {$t}.id)";
       default: return null;
@@ -232,13 +244,13 @@ class _PersonaSql extends EntitySql{
     //No todos los campos se extraen de la entidad, por eso es necesario mapearlos
     $p = $this->prf();
     return '
-' . $this->_mappingField($p.'id') . ' AS ' . $p.'id, ' . $this->_mappingField($p.'region') . ' AS ' . $p.'region, ' . $this->_mappingField($p.'distrito') . ' AS ' . $p.'distrito, ' . $this->_mappingField($p.'localidad') . ' AS ' . $p.'localidad, ' . $this->_mappingField($p.'programa') . ' AS ' . $p.'programa, ' . $this->_mappingField($p.'inscripcion_men') . ' AS ' . $p.'inscripcion_men, ' . $this->_mappingField($p.'cens') . ' AS ' . $p.'cens, ' . $this->_mappingField($p.'sede') . ' AS ' . $p.'sede, ' . $this->_mappingField($p.'comision') . ' AS ' . $p.'comision, ' . $this->_mappingField($p.'tramo') . ' AS ' . $p.'tramo, ' . $this->_mappingField($p.'identificador') . ' AS ' . $p.'identificador, ' . $this->_mappingField($p.'numero_inscripcion') . ' AS ' . $p.'numero_inscripcion, ' . $this->_mappingField($p.'numero_documento') . ' AS ' . $p.'numero_documento, ' . $this->_mappingField($p.'apellidos') . ' AS ' . $p.'apellidos, ' . $this->_mappingField($p.'nombres') . ' AS ' . $p.'nombres, ' . $this->_mappingField($p.'genero') . ' AS ' . $p.'genero, ' . $this->_mappingField($p.'telefono') . ' AS ' . $p.'telefono, ' . $this->_mappingField($p.'correo') . ' AS ' . $p.'correo, ' . $this->_mappingField($p.'trayectoria_educativa') . ' AS ' . $p.'trayectoria_educativa, ' . $this->_mappingField($p.'turno') . ' AS ' . $p.'turno, ' . $this->_mappingField($p.'pc_escritorio') . ' AS ' . $p.'pc_escritorio, ' . $this->_mappingField($p.'net_notebook') . ' AS ' . $p.'net_notebook, ' . $this->_mappingField($p.'tablet') . ' AS ' . $p.'tablet, ' . $this->_mappingField($p.'pc_tablet') . ' AS ' . $p.'pc_tablet, ' . $this->_mappingField($p.'impresora') . ' AS ' . $p.'impresora, ' . $this->_mappingField($p.'conexion_internet_paga') . ' AS ' . $p.'conexion_internet_paga, ' . $this->_mappingField($p.'telefono_celular') . ' AS ' . $p.'telefono_celular, ' . $this->_mappingField($p.'comision_2020') . ' AS ' . $p.'comision_2020, ' . $this->_mappingField($p.'archivo_2019') . ' AS ' . $p.'archivo_2019, ' . $this->_mappingField($p.'archivo_2020') . ' AS ' . $p.'archivo_2020, ' . $this->_mappingField($p.'drive') . ' AS ' . $p.'drive, ' . $this->_mappingField($p.'cuil') . ' AS ' . $p.'cuil, ' . $this->_mappingField($p.'analitico_dni') . ' AS ' . $p.'analitico_dni, ' . $this->_mappingField($p.'analitico_cuil') . ' AS ' . $p.'analitico_cuil, ' . $this->_mappingField($p.'analitico_partida') . ' AS ' . $p.'analitico_partida, ' . $this->_mappingField($p.'analitico_certificado') . ' AS ' . $p.'analitico_certificado, ' . $this->_mappingField($p.'fecha_nacimiento') . ' AS ' . $p.'fecha_nacimiento, ' . $this->_mappingField($p.'ingreso') . ' AS ' . $p.'ingreso, ' . $this->_mappingField($p.'observaciones') . ' AS ' . $p.'observaciones, ' . $this->_mappingField($p.'activo') . ' AS ' . $p.'activo, ' . $this->_mappingField($p.'fila') . ' AS ' . $p.'fila, ' . $this->_mappingField($p.'id_comision') . ' AS ' . $p.'id_comision';
+' . $this->_mappingField($p.'id') . ' AS ' . $p.'id, ' . $this->_mappingField($p.'region') . ' AS ' . $p.'region, ' . $this->_mappingField($p.'distrito') . ' AS ' . $p.'distrito, ' . $this->_mappingField($p.'localidad') . ' AS ' . $p.'localidad, ' . $this->_mappingField($p.'programa') . ' AS ' . $p.'programa, ' . $this->_mappingField($p.'inscripcion_men') . ' AS ' . $p.'inscripcion_men, ' . $this->_mappingField($p.'cens') . ' AS ' . $p.'cens, ' . $this->_mappingField($p.'sede') . ' AS ' . $p.'sede, ' . $this->_mappingField($p.'comision') . ' AS ' . $p.'comision, ' . $this->_mappingField($p.'tramo') . ' AS ' . $p.'tramo, ' . $this->_mappingField($p.'identificador') . ' AS ' . $p.'identificador, ' . $this->_mappingField($p.'numero_inscripcion') . ' AS ' . $p.'numero_inscripcion, ' . $this->_mappingField($p.'numero_documento') . ' AS ' . $p.'numero_documento, ' . $this->_mappingField($p.'apellidos') . ' AS ' . $p.'apellidos, ' . $this->_mappingField($p.'nombres') . ' AS ' . $p.'nombres, ' . $this->_mappingField($p.'genero') . ' AS ' . $p.'genero, ' . $this->_mappingField($p.'telefono') . ' AS ' . $p.'telefono, ' . $this->_mappingField($p.'correo') . ' AS ' . $p.'correo, ' . $this->_mappingField($p.'trayectoria_educativa') . ' AS ' . $p.'trayectoria_educativa, ' . $this->_mappingField($p.'turno') . ' AS ' . $p.'turno, ' . $this->_mappingField($p.'pc_escritorio') . ' AS ' . $p.'pc_escritorio, ' . $this->_mappingField($p.'net_notebook') . ' AS ' . $p.'net_notebook, ' . $this->_mappingField($p.'tablet') . ' AS ' . $p.'tablet, ' . $this->_mappingField($p.'pc_tablet') . ' AS ' . $p.'pc_tablet, ' . $this->_mappingField($p.'impresora') . ' AS ' . $p.'impresora, ' . $this->_mappingField($p.'conexion_internet_paga') . ' AS ' . $p.'conexion_internet_paga, ' . $this->_mappingField($p.'telefono_celular') . ' AS ' . $p.'telefono_celular, ' . $this->_mappingField($p.'comision_2020') . ' AS ' . $p.'comision_2020, ' . $this->_mappingField($p.'archivo_2019') . ' AS ' . $p.'archivo_2019, ' . $this->_mappingField($p.'archivo_2020') . ' AS ' . $p.'archivo_2020, ' . $this->_mappingField($p.'drive') . ' AS ' . $p.'drive, ' . $this->_mappingField($p.'cuil') . ' AS ' . $p.'cuil, ' . $this->_mappingField($p.'analitico_dni') . ' AS ' . $p.'analitico_dni, ' . $this->_mappingField($p.'analitico_cuil') . ' AS ' . $p.'analitico_cuil, ' . $this->_mappingField($p.'analitico_partida') . ' AS ' . $p.'analitico_partida, ' . $this->_mappingField($p.'analitico_certificado') . ' AS ' . $p.'analitico_certificado, ' . $this->_mappingField($p.'fecha_nacimiento') . ' AS ' . $p.'fecha_nacimiento, ' . $this->_mappingField($p.'ingreso') . ' AS ' . $p.'ingreso, ' . $this->_mappingField($p.'observaciones') . ' AS ' . $p.'observaciones, ' . $this->_mappingField($p.'activo') . ' AS ' . $p.'activo, ' . $this->_mappingField($p.'fila') . ' AS ' . $p.'fila, ' . $this->_mappingField($p.'error') . ' AS ' . $p.'error, ' . $this->_mappingField($p.'id_comision') . ' AS ' . $p.'id_comision, ' . $this->_mappingField($p.'actualizado') . ' AS ' . $p.'actualizado';
   }
 
   public function _fieldsExclusive(){
     $p = $this->prf();
     return '
-' . $this->_mappingField($p.'id') . ', ' . $this->_mappingField($p.'region') . ', ' . $this->_mappingField($p.'distrito') . ', ' . $this->_mappingField($p.'localidad') . ', ' . $this->_mappingField($p.'programa') . ', ' . $this->_mappingField($p.'inscripcion_men') . ', ' . $this->_mappingField($p.'cens') . ', ' . $this->_mappingField($p.'sede') . ', ' . $this->_mappingField($p.'comision') . ', ' . $this->_mappingField($p.'tramo') . ', ' . $this->_mappingField($p.'identificador') . ', ' . $this->_mappingField($p.'numero_inscripcion') . ', ' . $this->_mappingField($p.'numero_documento') . ', ' . $this->_mappingField($p.'apellidos') . ', ' . $this->_mappingField($p.'nombres') . ', ' . $this->_mappingField($p.'genero') . ', ' . $this->_mappingField($p.'telefono') . ', ' . $this->_mappingField($p.'correo') . ', ' . $this->_mappingField($p.'trayectoria_educativa') . ', ' . $this->_mappingField($p.'turno') . ', ' . $this->_mappingField($p.'pc_escritorio') . ', ' . $this->_mappingField($p.'net_notebook') . ', ' . $this->_mappingField($p.'tablet') . ', ' . $this->_mappingField($p.'pc_tablet') . ', ' . $this->_mappingField($p.'impresora') . ', ' . $this->_mappingField($p.'conexion_internet_paga') . ', ' . $this->_mappingField($p.'telefono_celular') . ', ' . $this->_mappingField($p.'comision_2020') . ', ' . $this->_mappingField($p.'archivo_2019') . ', ' . $this->_mappingField($p.'archivo_2020') . ', ' . $this->_mappingField($p.'drive') . ', ' . $this->_mappingField($p.'cuil') . ', ' . $this->_mappingField($p.'analitico_dni') . ', ' . $this->_mappingField($p.'analitico_cuil') . ', ' . $this->_mappingField($p.'analitico_partida') . ', ' . $this->_mappingField($p.'analitico_certificado') . ', ' . $this->_mappingField($p.'fecha_nacimiento') . ', ' . $this->_mappingField($p.'ingreso') . ', ' . $this->_mappingField($p.'observaciones') . ', ' . $this->_mappingField($p.'activo') . ', ' . $this->_mappingField($p.'fila') . ', ' . $this->_mappingField($p.'id_comision') . '';
+' . $this->_mappingField($p.'id') . ', ' . $this->_mappingField($p.'region') . ', ' . $this->_mappingField($p.'distrito') . ', ' . $this->_mappingField($p.'localidad') . ', ' . $this->_mappingField($p.'programa') . ', ' . $this->_mappingField($p.'inscripcion_men') . ', ' . $this->_mappingField($p.'cens') . ', ' . $this->_mappingField($p.'sede') . ', ' . $this->_mappingField($p.'comision') . ', ' . $this->_mappingField($p.'tramo') . ', ' . $this->_mappingField($p.'identificador') . ', ' . $this->_mappingField($p.'numero_inscripcion') . ', ' . $this->_mappingField($p.'numero_documento') . ', ' . $this->_mappingField($p.'apellidos') . ', ' . $this->_mappingField($p.'nombres') . ', ' . $this->_mappingField($p.'genero') . ', ' . $this->_mappingField($p.'telefono') . ', ' . $this->_mappingField($p.'correo') . ', ' . $this->_mappingField($p.'trayectoria_educativa') . ', ' . $this->_mappingField($p.'turno') . ', ' . $this->_mappingField($p.'pc_escritorio') . ', ' . $this->_mappingField($p.'net_notebook') . ', ' . $this->_mappingField($p.'tablet') . ', ' . $this->_mappingField($p.'pc_tablet') . ', ' . $this->_mappingField($p.'impresora') . ', ' . $this->_mappingField($p.'conexion_internet_paga') . ', ' . $this->_mappingField($p.'telefono_celular') . ', ' . $this->_mappingField($p.'comision_2020') . ', ' . $this->_mappingField($p.'archivo_2019') . ', ' . $this->_mappingField($p.'archivo_2020') . ', ' . $this->_mappingField($p.'drive') . ', ' . $this->_mappingField($p.'cuil') . ', ' . $this->_mappingField($p.'analitico_dni') . ', ' . $this->_mappingField($p.'analitico_cuil') . ', ' . $this->_mappingField($p.'analitico_partida') . ', ' . $this->_mappingField($p.'analitico_certificado') . ', ' . $this->_mappingField($p.'fecha_nacimiento') . ', ' . $this->_mappingField($p.'ingreso') . ', ' . $this->_mappingField($p.'observaciones') . ', ' . $this->_mappingField($p.'activo') . ', ' . $this->_mappingField($p.'fila') . ', ' . $this->_mappingField($p.'error') . ', ' . $this->_mappingField($p.'id_comision') . ', ' . $this->_mappingField($p.'actualizado') . '';
   }
 
   public function _conditionFieldStruct($field, $option, $value){
@@ -368,8 +380,15 @@ class _PersonaSql extends EntitySql{
       case "{$p}fila": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
       case "{$p}fila_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}fila"), $value, $option);
 
+      case "{$p}error": return $this->format->conditionText($this->_mappingField($field), $value, $option);
+      case "{$p}error_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}error"), $value, $option);
+
       case "{$p}id_comision": return $this->format->conditionText($this->_mappingField($field), $value, $option);
       case "{$p}id_comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}id_comision"), $value, $option);
+
+      case "{$p}actualizado": return $this->format->conditionTimestamp($this->_mappingField($field), $value, $option);
+      case "{$p}actualizado_date": return $this->format->conditionDate($this->_mappingField($field), $value, $option);
+      case "{$p}actualizado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}actualizado"), $value, $option);
 
 
       case "{$p}max_id": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
@@ -791,6 +810,16 @@ class _PersonaSql extends EntitySql{
       case "{$p}count_fila_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_fila"), $value, $option);
 
 
+      case "{$p}max_error": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_error_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_error"), $value, $option);
+
+      case "{$p}min_error": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_error_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_error"), $value, $option);
+
+      case "{$p}count_error": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_error_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_error"), $value, $option);
+
+
       case "{$p}max_id_comision": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
       case "{$p}max_id_comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_id_comision"), $value, $option);
 
@@ -799,6 +828,19 @@ class _PersonaSql extends EntitySql{
 
       case "{$p}count_id_comision": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
       case "{$p}count_id_comision_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_id_comision"), $value, $option);
+
+
+      case "{$p}avg_actualizado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}avg_actualizado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}avg_actualizado"), $value, $option);
+
+      case "{$p}max_actualizado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}max_actualizado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}max_actualizado"), $value, $option);
+
+      case "{$p}min_actualizado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}min_actualizado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}min_actualizado"), $value, $option);
+
+      case "{$p}count_actualizado": return $this->format->conditionNumber($this->_mappingField($field), $value, $option);
+      case "{$p}count_actualizado_is_set": return $this->format->conditionIsSet($this->_mappingField("{$p}count_actualizado"), $value, $option);
 
 
       default: return $this->_conditionFieldStructMain($field, $option, $value);
@@ -849,7 +891,9 @@ class _PersonaSql extends EntitySql{
     if(array_key_exists('observaciones', $row)) $row_['observaciones'] = $this->format->string($row['observaciones']);
     if(array_key_exists('activo', $row)) $row_['activo'] = $this->format->boolean($row['activo']);
     if(array_key_exists('fila', $row)) $row_['fila'] = $this->format->numeric($row['fila']);
+    if(array_key_exists('error', $row)) $row_['error'] = $this->format->string($row['error']);
     if(array_key_exists('id_comision', $row)) $row_['id_comision'] = $this->format->string($row['id_comision']);
+    if(array_key_exists('actualizado', $row)) $row_['actualizado'] = $this->format->timestamp($row['actualizado']);
 
     return $row_;
   }

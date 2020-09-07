@@ -45,7 +45,9 @@ class _Persona extends EntityValues {
   protected $observaciones = UNDEFINED;
   protected $activo = UNDEFINED;
   protected $fila = UNDEFINED;
+  protected $error = UNDEFINED;
   protected $idComision = UNDEFINED;
+  protected $actualizado = UNDEFINED;
 
   public function _setDefault(){
     if($this->id == UNDEFINED) $this->setId(uniqid());
@@ -89,7 +91,9 @@ class _Persona extends EntityValues {
     if($this->observaciones == UNDEFINED) $this->setObservaciones(null);
     if($this->activo == UNDEFINED) $this->setActivo(true);
     if($this->fila == UNDEFINED) $this->setFila(null);
+    if($this->error == UNDEFINED) $this->setError(null);
     if($this->idComision == UNDEFINED) $this->setIdComision(null);
+    if($this->actualizado == UNDEFINED) $this->setActualizado(null);
     return $this;
   }
 
@@ -136,7 +140,9 @@ class _Persona extends EntityValues {
     if(key_exists($p."observaciones", $row)) $this->setObservaciones($row[$p."observaciones"]);
     if(key_exists($p."activo", $row)) $this->setActivo($row[$p."activo"]);
     if(key_exists($p."fila", $row)) $this->setFila($row[$p."fila"]);
+    if(key_exists($p."error", $row)) $this->setError($row[$p."error"]);
     if(key_exists($p."id_comision", $row)) $this->setIdComision($row[$p."id_comision"]);
+    if(key_exists($p."actualizado", $row)) $this->setActualizado($row[$p."actualizado"]);
     return $this;
   }
 
@@ -183,7 +189,9 @@ class _Persona extends EntityValues {
     if($this->observaciones !== UNDEFINED) $row[$p."observaciones"] = $this->observaciones();
     if($this->activo !== UNDEFINED) $row[$p."activo"] = $this->activo();
     if($this->fila !== UNDEFINED) $row[$p."fila"] = $this->fila();
+    if($this->error !== UNDEFINED) $row[$p."error"] = $this->error();
     if($this->idComision !== UNDEFINED) $row[$p."id_comision"] = $this->idComision();
+    if($this->actualizado !== UNDEFINED) $row[$p."actualizado"] = $this->actualizado("c");
     return $row;
   }
 
@@ -229,7 +237,9 @@ class _Persona extends EntityValues {
     if(!Validation::is_empty($this->observaciones)) return false;
     if(!Validation::is_empty($this->activo)) return false;
     if(!Validation::is_empty($this->fila)) return false;
+    if(!Validation::is_empty($this->error)) return false;
     if(!Validation::is_empty($this->idComision)) return false;
+    if(!Validation::is_empty($this->actualizado)) return false;
     return true;
   }
 
@@ -274,7 +284,9 @@ class _Persona extends EntityValues {
   public function observaciones($format = null) { return Format::convertCase($this->observaciones, $format); }
   public function activo($format = null) { return Format::boolean($this->activo, $format); }
   public function fila() { return $this->fila; }
+  public function error($format = null) { return Format::convertCase($this->error, $format); }
   public function idComision($format = null) { return Format::convertCase($this->idComision, $format); }
+  public function actualizado($format = null) { return Format::date($this->actualizado, $format); }
 
   public function _setId(string $p = null) { return $this->id = $p; }  
   public function setId($p) { return $this->id = (is_null($p)) ? null : (string)$p; }
@@ -406,8 +418,18 @@ class _Persona extends EntityValues {
   public function _setFila(integer $p = null) { return $this->fila = $p; }    
   public function setFila($p) { return $this->fila = (is_null($p)) ? null : intval($p); }
 
+  public function _setError(string $p = null) { return $this->error = $p; }  
+  public function setError($p) { return $this->error = (is_null($p)) ? null : (string)$p; }
+
   public function _setIdComision(string $p = null) { return $this->idComision = $p; }  
   public function setIdComision($p) { return $this->idComision = (is_null($p)) ? null : (string)$p; }
+
+  public function _setActualizado(DateTime $p = null) { return $this->actualizado = $p; }  
+  public function setActualizado($p) {
+    if(!is_null($p) && !($p instanceof DateTime)) $p = new SpanishDateTime($p);
+    if($p instanceof DateTime) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+    return $this->actualizado = $p;
+  }
 
 
   public function resetRegion() { if(!Validation::is_empty($this->region)) $this->region = preg_replace('/\s\s+/', ' ', trim($this->region)); }
@@ -433,6 +455,7 @@ class _Persona extends EntityValues {
   public function resetCuil() { if(!Validation::is_empty($this->cuil)) $this->cuil = preg_replace('/\s\s+/', ' ', trim($this->cuil)); }
   public function resetIngreso() { if(!Validation::is_empty($this->ingreso)) $this->ingreso = preg_replace('/\s\s+/', ' ', trim($this->ingreso)); }
   public function resetObservaciones() { if(!Validation::is_empty($this->observaciones)) $this->observaciones = preg_replace('/\s\s+/', ' ', trim($this->observaciones)); }
+  public function resetError() { if(!Validation::is_empty($this->error)) $this->error = preg_replace('/\s\s+/', ' ', trim($this->error)); }
   public function resetIdComision() { if(!Validation::is_empty($this->idComision)) $this->idComision = preg_replace('/\s\s+/', ' ', trim($this->idComision)); }
 
   public function checkId($value) { 
@@ -739,7 +762,7 @@ class _Persona extends EntityValues {
   public function checkObservaciones($value) { 
     $this->_logs->resetLogs("observaciones");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->max(45);
+    $v = Validation::getInstanceValue($value)->max(65535);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("observaciones", "error", $error); }
     return $v->isSuccess();
   }
@@ -754,9 +777,18 @@ class _Persona extends EntityValues {
 
   public function checkFila($value) { 
     $this->_logs->resetLogs("fila");
+    return true;
+    //if(Validation::is_undefined($value)) return null;
+    //$v = Validation::getInstanceValue($value)->max(10);
+    //foreach($v->getErrors() as $error){ $this->_logs->addLog("fila", "error", $error); }
+    //return $v->isSuccess();
+  }
+
+  public function checkError($value) { 
+    $this->_logs->resetLogs("error");
     if(Validation::is_undefined($value)) return null;
-    $v = Validation::getInstanceValue($value)->max(10);
-    foreach($v->getErrors() as $error){ $this->_logs->addLog("fila", "error", $error); }
+    $v = Validation::getInstanceValue($value)->max(65535);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("error", "error", $error); }
     return $v->isSuccess();
   }
 
@@ -765,6 +797,14 @@ class _Persona extends EntityValues {
     if(Validation::is_undefined($value)) return null;
     $v = Validation::getInstanceValue($value)->max(45);
     foreach($v->getErrors() as $error){ $this->_logs->addLog("id_comision", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkActualizado($value) { 
+    $this->_logs->resetLogs("actualizado");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->isA('DateTime');
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("actualizado", "error", $error); }
     return $v->isSuccess();
   }
 
@@ -810,7 +850,9 @@ class _Persona extends EntityValues {
     $this->checkObservaciones($this->observaciones);
     $this->checkActivo($this->activo);
     $this->checkFila($this->fila);
+    $this->checkError($this->error);
     $this->checkIdComision($this->idComision);
+    $this->checkActualizado($this->actualizado);
     return !$this->_getLogs()->isError();
   }
 
@@ -838,6 +880,7 @@ class _Persona extends EntityValues {
     $this->resetCuil();
     $this->resetIngreso();
     $this->resetObservaciones();
+    $this->resetError();
     $this->resetIdComision();
     return $this;
   }

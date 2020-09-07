@@ -2,7 +2,7 @@
 
 require_once("class/model/Field.php");
 
-class _FieldPersonaObservaciones extends Field {
+class _FieldPersonaError extends Field {
 
   public $type = "text";
   public $fieldType = "nf";
@@ -11,8 +11,8 @@ class _FieldPersonaObservaciones extends Field {
   public $default = null;
   public $length = "65535";
   public $main = false;
-  public $name = "observaciones";
-  public $alias = "obs";
+  public $name = "error";
+  public $alias = "err";
 
 
   public function getEntity(){ return $this->container->getEntity('persona'); }

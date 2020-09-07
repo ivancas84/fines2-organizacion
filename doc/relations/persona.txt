@@ -36,7 +36,9 @@ analitico_partida (ap): boolean nf. NOT NULL.
 analitico_certificado (aca): boolean nf. NOT NULL.
 fecha_nacimiento (fn): date nf.
 ingreso (ing): string nf.
-observaciones (obs): string nf.
+observaciones (obs): text nf.
 activo (act): boolean nf. NOT NULL. DEFAULT: 1.
 fila (fil): integer nf.
+error (err): text nf.
 id_comision (ic): string nf.
+actualizado (acb): timestamp nf.

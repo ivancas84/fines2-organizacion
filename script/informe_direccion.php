@@ -9,6 +9,8 @@ $render->setSize(false);
 $render->setCondition([
   ["cens","=",'456'],
   ["fila","=", true],
+  ["id_comision","=", true],
+  ["error","=",false],
 ]);
 
 $container = new Container();
@@ -21,18 +23,6 @@ $personas = array_combine_key($personas, "fila");
 
 function renglonVacio(){
   echo "<tr>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
     <td></td>
     <td></td>
     <td></td>
@@ -74,37 +64,25 @@ table, tr, th, td {
 <?=renglonVacio()?>
 <?=renglonVacio()?>
 <tr>
-  <td>REGIÓN</td>	
+  <td>REGION</td>	
   <td>DISTRITO</td>	
-  <td>LOCALIDAD</td>
-  <td>PROGRAMA</td>
-  <td>INSCRIPCIÓN  MEN</td>
-  <td>CENS</td>	
+  <td>CENS</td>
   <td>SEDE</td>
-  <td>COMISIÓN</td>
   <td>AÑO/CUATRI</td>
-  <td>ID</td>
-  <td>N° INSCRIPCIÓN</td>
+  <td>ID</td>	
+  <td>N° INSCRIPCION</td>
   <td>DNI</td>
   <td>APELLIDO</td>
   <td>NOMBRE</td>
-  <td>GÉNERO</td>
   <td>TELEFONO</td>
   <td>CORREO</td>
-  <td>TRAYECTORIA
-  <td>EDUCATIVA</td>
-  <td>TURNO</td>
-  <td>PC_ESCRITORIO</td>
-  <td>NET_NOTEBOOK</td>
-  <td>TABLET</td>
   <td>COMPUTADORA</td>
-  <td>IMPRESORA</td>
-  <td>CONEXIÓN A INTERNET</td>
+  <td>CONEXION A INTERNET</td>
   <td>CELULAR</td>
   <td>FECHA DE NACIMIENTO</td>
-  <td>COMISIÓN</td>
-  <td>SITUACIÓN DEL/DE LA ESTUDIANTE</td>
-  <td>TIPO DE INSCRIPCIÓN</td>
+  <td>COMISION</td>
+  <td>SITUACION DEL ESTUDIANTE</td>
+  <td>TIPO DE INSCRIPCION</td>
 </tr>
 
 <?for($i = 5; $i <= $cantidad; $i++):?>
@@ -114,34 +92,26 @@ table, tr, th, td {
       <td>1</td>
       <td>LA PLATA</td>
       <td><?=$p->cens()?></td>
-      <td><?=$p->sede()?></td>
+      <td><?=$p->idComision()?></td>
       <td><?=$p->tramo()?></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
+      <td><?=$p->identificador()?></td>
+      <td><?=$p->numeroInscripcion()?></td>
+      <td><?=$p->numeroDocumento()?></td>
+      <td><?=$p->apellidos()?></td>
+      <td><?=$p->nombres()?></td>
+      <td><?=$p->telefono()?></td>
+      <td><?=$p->correo()?></td>
+      <td><?=($p->netNotebook() || $p->pcEscritorio()) ? "Si":"No"?></td>
+      <td><?=($p->conexionInternetPaga()) ? "Si":"No"?></td>
+      <td><?=(strpos($p->telefonoCelular(), "Plan") !== false) ? "Si":"No"?></td>
+      <td><?=$p->fechaNacimiento("d/m/Y")?></td>
+      <td><?=$p->idComision()?></td>
+      <td>CORRECTO</td>
+      <td>
+        <?if($p->identificador()) { echo "EN NACIÓN CON ID"; } 
+        elseif($p->comision()) { echo "CONTINUIDAD 2019 SIN ID"; } 
+        else { echo "EN TERRITORIO SIN ID"; }?>
+        </td>      
     </tr>
   <?else:?>
     <?=renglonVacio()?>

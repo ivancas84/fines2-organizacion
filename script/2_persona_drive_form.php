@@ -1,5 +1,5 @@
 <? require_once("../config/config.php"); 
-$headers = (isset($_GET["headers"]))? $_GET["headers"] : "apellidos, nombres, cuil_dni, fecha_nacimiento_aux, sexo, teléfono, analitico_dni, analitico_cuil, analitico_partida, analitico_certificado, ingreso, observaciones"; 
+$headers = (isset($_GET["headers"]))? $_GET["headers"] : "apellidos, nombres, cuil_dni, fecha_nacimiento_aux, sexo, teléfono, analitico_dni, analitico_cuil, analitico_partida, analitico_certificado, ingreso, observaciones, programa, activo, correo"; 
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +22,10 @@ textarea {
   <input type="text" name="id" value="<?=date('YmdHis')?>persona"/>
   <br>Comisión:<br>
   <input type="text" name="comision"></input>
+  <br>Tramo:<br>
+  <input type="text" name="tramo"></input>
+  <br>Id Comisión:<br>
+  <input type="text" name="idComision"></input>
   <br>Encabezados:<br>
   <textarea name="headers"><?=$headers?>
   </textarea>

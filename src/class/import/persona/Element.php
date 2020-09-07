@@ -1,7 +1,7 @@
 <?php
 require_once("class/import/Element.php");
 
-class PersonaElementImport extends ImportElement {
+class PersonaElementImportElement extends ImportElement {
     
   public function setEntities($row) {
       $this->entities["persona"] = null;

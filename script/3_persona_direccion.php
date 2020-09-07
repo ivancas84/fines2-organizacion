@@ -11,9 +11,9 @@ require_once("class/Container.php");
 require_once("class/import/personaDireccion/Import.php");
 set_time_limit ( 0 );
 
-$import = new PersonaDireccionImport();
+$container = new Container();
+$import = $container->getImport("persona_direccion");
 $import->start = 5;
-$import->container = new Container();
 $import->id = $_REQUEST["id"]; //Identificacion del documento a procesar para almacenar los resultados
 $import->headers = array_map('trim', explode(",",$_REQUEST["headers"])); //encabezados a procesar
 $import->source = $_REQUEST["source"]; //informacion a procesar

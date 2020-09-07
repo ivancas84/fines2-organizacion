@@ -1,22 +1,35 @@
 <?php
 require_once("class/import/Element.php");
 
-class PersonaDireccionElementImport extends ImportElement {
+class PersonaDireccionImportElement extends ImportElement {
     
   public function setEntities($row) {
       $this->entities["persona"] = null;
 
       $this->setEntity($row, "persona");
-      $this->entities["persona"]->setFila($this->index);
+      if($row){
+        $this->entities["persona"]->setFila($this->index);
+        $this->entities["persona"]->setFechaNacimientoAux($row["fecha_nacimiento_aux"]);
+      } else {
+        echo "Que paso con " . $this->index;
+      }
   }
 
   public function update($name, $existente){
     $this->entities[$name]->setId($existente->id());
     
     if(($compare = $this->compare($this->entities[$name], $existente)) !== true) {
-      $this->process = false;
+      $error = [];
+      if(strpos($compare, "cens") !== false) array_push($error, "CENS (nuevo: " . $this->entities[$name]->cens() . " existente: " . $existente->cens() . ")");
       
-      $this->logs->addLog("persona","error","El registro debe ser actualizado, comparar {$compare}");
+      $this->logs->addLog("persona","error","Error al comparar {$compare}:" . implode(", ", $error));
+      $persona = $this->container->getValues("persona");
+      $persona->setId($this->entities[$name]->id());
+      if(!Validation::is_empty($existente->error())) array_push($error, "ERROR ANTERIOR: (" . $existente->error(). ")");
+      $persona->setError(implode(", ", $error));
+
+      $persist = $this->container->getSqlo($name)->update($persona->_toArray());
+      $this->sql .= $persist["sql"];
     } elseif (($compare = $this->compareUpdate($this->entities[$name], $existente)) !== true) {
         $this->logs->addLog("persona","info","Registro existente, se actualizara campos {$compare}");
 
@@ -28,10 +41,18 @@ class PersonaDireccionElementImport extends ImportElement {
         if(!Validation::is_empty($this->entities[$name]->nombres())) $persona->setNombres($this->entities[$name]->nombres());
         if(!Validation::is_empty($this->entities[$name]->apellidos())) $persona->setApellidos($this->entities[$name]->apellidos());
         if(!Validation::is_empty($this->entities[$name]->correo())) $persona->setCorreo($this->entities[$name]->correo());
-        if(!Validation::is_empty($this->entities[$name]->telefonoCelular())) $persona->setTelefonoCelular($this->entities[$name]->telefonoCelular());
+        //if(!Validation::is_empty($this->entities[$name]->telefonoCelular())) $persona->setTelefonoCelular($this->entities[$name]->telefonoCelular());
         if(!Validation::is_empty($this->entities[$name]->fila())) $persona->setFila($this->entities[$name]->fila());
-        if(settypebool(!Validation::is_empty($this->entities[$name]->pcEscritorio()))) $persona->setPcEscritorio($this->entities[$name]->pcEscritorio());
-        if(settypebool(!Validation::is_empty($this->entities[$name]->conexionInternetPaga()))) $persona->setConexionInternetPaga($this->entities[$name]->conexionInternetPaga());
+        
+        if(!Validation::is_empty($this->entities[$name]->fechaNacimiento())) 
+          $persona->setFechaNacimiento($this->entities[$name]->fechaNacimiento());
+
+        if(!Validation::is_empty($this->entities[$name]->conexionInternetPaga()) && settypebool($this->entities[$name]->conexionInternetPaga())) 
+          $persona->setConexionInternetPaga($this->entities[$name]->conexionInternetPaga());
+
+        
+        if(!Validation::is_empty($this->entities[$name]->pcEscritorio()) && settypebool($this->entities[$name]->pcEscritorio())) 
+          $persona->setPcEscritorio($this->entities[$name]->pcEscritorio());
 
         $persist = $this->container->getSqlo($name)->update($persona->_toArray());
         $this->sql .= $persist["sql"];
@@ -62,9 +83,13 @@ class PersonaDireccionElementImport extends ImportElement {
         case "conexion_internet_paga":
         case "telefono_celular":  
         case "fila":
+        case "sede":
+        case "tramo":
+        case "fecha_nacimiento":
+        
           break;
         default:
-          if(is_null($va) || !key_exists($ka, $b)) break;
+          if(is_null($va) || !key_exists($ka, $b) || is_null($b[$ka])) break;
           if($b[$ka] !== $va) array_push($compare, $ka);
       }
       
@@ -86,10 +111,12 @@ class PersonaDireccionElementImport extends ImportElement {
         case "nombres":
         case "telefono":
         case "correo":
-        case "pc_escritorio":
-        case "conexion_internet_paga":
-        case "telefono_celular":
-        case "fila":  
+        //case "telefono_celular":
+        case "fila":
+        case "sede":
+        case "tramo":   
+        case "fecha_nacimiento":
+      
           if(is_null($va)) break;
           
           if(($b[$ka] !== $va) || !key_exists($ka, $b)){

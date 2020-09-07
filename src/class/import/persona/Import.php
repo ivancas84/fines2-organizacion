@@ -5,16 +5,6 @@ require_once("class/tools/Validation.php");
 
 class PersonaImport extends Import {
   
-  public function element($i, $data){
-    
-    /**
-     * Definir elemento a procear
-     */
-    $element = $this->container->getImportElement("persona", $i);; 
-    $element->setEntities($data);
-    array_push($this->elements, $element);
-  }
-
   public function identify(){
     $this->ids["persona"] = [];
 
