@@ -13,8 +13,18 @@ class Persona extends _Persona {
     return empty($array) ? UNDEFINED : implode(" ", $array);
   }
 
+  public function checkFila($value) { 
+    $this->_logs->resetLogs("fila");
+
+    if(Validation::is_undefined($value)) return null;
+    return true;
+    $v = Validation::getInstanceValue($value)->max(10);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("fila", "error", $error); }
+    return $v->isSuccess();
+  }
+
   public function setCuilODni($cuilODni){
-    $cuilODni = str_replace(" ", "", str_replace("-", "", str_replace(".", "", (string)$cuilODni)));
+    $cuilODni = str_replace([" ",".","-",","," "], "", (string)$cuilODni);
     
     if(strlen($cuilODni) == 11){      
       $this->cuil = $cuilODni;
@@ -211,15 +221,21 @@ class Persona extends _Persona {
   public function resetNumeroDocumento(){
     if(!Validation::is_empty($this->numeroDocumento)) { 
       parent::resetNumeroDocumento();
-      $this->numeroDocumento = strto(
-        str_replace("-", "", str_replace(".", "", (string)$this->numeroDocumento)), "x"
-      );
+      $this->numeroDocumento = preg_replace("/[^0-9]/", "", (string)$this->numeroDocumento );
+    }
+  }
+
+  
+  public function resetCuil(){
+    if(!Validation::is_empty($this->numeroDocumento)) { 
+      parent::resetCuil();
+      $this->cuil = preg_replace("/[^0-9]/", "", (string)$this->cuil );
     }
   }
 
   public function resetCorreo(){
     if(!Validation::is_empty($this->correo)){  
-      parent::resetNumeroDocumento();  
+      parent::resetCorreo();  
       $this->correo = strto($this->correo, "xxyy");
     }
   }

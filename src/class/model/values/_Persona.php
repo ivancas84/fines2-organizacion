@@ -48,52 +48,54 @@ class _Persona extends EntityValues {
   protected $error = UNDEFINED;
   protected $idComision = UNDEFINED;
   protected $actualizado = UNDEFINED;
+  protected $informado = UNDEFINED;
 
   public function _setDefault(){
-    if($this->id == UNDEFINED) $this->setId(uniqid());
-    if($this->region == UNDEFINED) $this->setRegion('1');
-    if($this->distrito == UNDEFINED) $this->setDistrito('La Plata');
-    if($this->localidad == UNDEFINED) $this->setLocalidad(null);
-    if($this->programa == UNDEFINED) $this->setPrograma(null);
-    if($this->inscripcionMen == UNDEFINED) $this->setInscripcionMen(false);
-    if($this->cens == UNDEFINED) $this->setCens(null);
-    if($this->sede == UNDEFINED) $this->setSede(null);
-    if($this->comision == UNDEFINED) $this->setComision(null);
-    if($this->tramo == UNDEFINED) $this->setTramo(null);
-    if($this->identificador == UNDEFINED) $this->setIdentificador(null);
-    if($this->numeroInscripcion == UNDEFINED) $this->setNumeroInscripcion(null);
-    if($this->numeroDocumento == UNDEFINED) $this->setNumeroDocumento(null);
-    if($this->apellidos == UNDEFINED) $this->setApellidos(null);
-    if($this->nombres == UNDEFINED) $this->setNombres(null);
-    if($this->genero == UNDEFINED) $this->setGenero(null);
-    if($this->telefono == UNDEFINED) $this->setTelefono(null);
-    if($this->correo == UNDEFINED) $this->setCorreo(null);
-    if($this->trayectoriaEducativa == UNDEFINED) $this->setTrayectoriaEducativa(null);
-    if($this->turno == UNDEFINED) $this->setTurno(null);
-    if($this->pcEscritorio == UNDEFINED) $this->setPcEscritorio(false);
-    if($this->netNotebook == UNDEFINED) $this->setNetNotebook(false);
-    if($this->tablet == UNDEFINED) $this->setTablet(false);
-    if($this->pcTablet == UNDEFINED) $this->setPcTablet(false);
-    if($this->impresora == UNDEFINED) $this->setImpresora(false);
-    if($this->conexionInternetPaga == UNDEFINED) $this->setConexionInternetPaga(false);
-    if($this->telefonoCelular == UNDEFINED) $this->setTelefonoCelular(null);
-    if($this->comision2020 == UNDEFINED) $this->setComision2020(null);
-    if($this->archivo2019 == UNDEFINED) $this->setArchivo2019(false);
-    if($this->archivo2020 == UNDEFINED) $this->setArchivo2020(false);
-    if($this->drive == UNDEFINED) $this->setDrive(false);
-    if($this->cuil == UNDEFINED) $this->setCuil(null);
-    if($this->analiticoDni == UNDEFINED) $this->setAnaliticoDni(false);
-    if($this->analiticoCuil == UNDEFINED) $this->setAnaliticoCuil(false);
-    if($this->analiticoPartida == UNDEFINED) $this->setAnaliticoPartida(false);
-    if($this->analiticoCertificado == UNDEFINED) $this->setAnaliticoCertificado(false);
-    if($this->fechaNacimiento == UNDEFINED) $this->setFechaNacimiento(null);
-    if($this->ingreso == UNDEFINED) $this->setIngreso(null);
-    if($this->observaciones == UNDEFINED) $this->setObservaciones(null);
-    if($this->activo == UNDEFINED) $this->setActivo(true);
-    if($this->fila == UNDEFINED) $this->setFila(null);
-    if($this->error == UNDEFINED) $this->setError(null);
-    if($this->idComision == UNDEFINED) $this->setIdComision(null);
-    if($this->actualizado == UNDEFINED) $this->setActualizado(null);
+    if($this->id === UNDEFINED) $this->setId(uniqid());
+    if($this->region === UNDEFINED) $this->setRegion('1');
+    if($this->distrito === UNDEFINED) $this->setDistrito('La Plata');
+    if($this->localidad === UNDEFINED) $this->setLocalidad(null);
+    if($this->programa === UNDEFINED) $this->setPrograma(null);
+    if($this->inscripcionMen === UNDEFINED) $this->setInscripcionMen(false);
+    if($this->cens === UNDEFINED) $this->setCens(null);
+    if($this->sede === UNDEFINED) $this->setSede(null);
+    if($this->comision === UNDEFINED) $this->setComision(null);
+    if($this->tramo === UNDEFINED) $this->setTramo(null);
+    if($this->identificador === UNDEFINED) $this->setIdentificador(null);
+    if($this->numeroInscripcion === UNDEFINED) $this->setNumeroInscripcion(null);
+    if($this->numeroDocumento === UNDEFINED) $this->setNumeroDocumento(null);
+    if($this->apellidos === UNDEFINED) $this->setApellidos(null);
+    if($this->nombres === UNDEFINED) $this->setNombres(null);
+    if($this->genero === UNDEFINED) $this->setGenero(null);
+    if($this->telefono === UNDEFINED) $this->setTelefono(null);
+    if($this->correo === UNDEFINED) $this->setCorreo(null);
+    if($this->trayectoriaEducativa === UNDEFINED) $this->setTrayectoriaEducativa(null);
+    if($this->turno === UNDEFINED) $this->setTurno(null);
+    if($this->pcEscritorio === UNDEFINED) $this->setPcEscritorio(false);
+    if($this->netNotebook === UNDEFINED) $this->setNetNotebook(false);
+    if($this->tablet === UNDEFINED) $this->setTablet(false);
+    if($this->pcTablet === UNDEFINED) $this->setPcTablet(false);
+    if($this->impresora === UNDEFINED) $this->setImpresora(false);
+    if($this->conexionInternetPaga === UNDEFINED) $this->setConexionInternetPaga(false);
+    if($this->telefonoCelular === UNDEFINED) $this->setTelefonoCelular(null);
+    if($this->comision2020 === UNDEFINED) $this->setComision2020(null);
+    if($this->archivo2019 === UNDEFINED) $this->setArchivo2019(false);
+    if($this->archivo2020 === UNDEFINED) $this->setArchivo2020(false);
+    if($this->drive === UNDEFINED) $this->setDrive(false);
+    if($this->cuil === UNDEFINED) $this->setCuil(null);
+    if($this->analiticoDni === UNDEFINED) $this->setAnaliticoDni(false);
+    if($this->analiticoCuil === UNDEFINED) $this->setAnaliticoCuil(false);
+    if($this->analiticoPartida === UNDEFINED) $this->setAnaliticoPartida(false);
+    if($this->analiticoCertificado === UNDEFINED) $this->setAnaliticoCertificado(false);
+    if($this->fechaNacimiento === UNDEFINED) $this->setFechaNacimiento(null);
+    if($this->ingreso === UNDEFINED) $this->setIngreso(null);
+    if($this->observaciones === UNDEFINED) $this->setObservaciones(null);
+    if($this->activo === UNDEFINED) $this->setActivo(true);
+    if($this->fila === UNDEFINED) $this->setFila(null);
+    if($this->error === UNDEFINED) $this->setError(null);
+    if($this->idComision === UNDEFINED) $this->setIdComision(null);
+    if($this->actualizado === UNDEFINED) $this->setActualizado(null);
+    if($this->informado === UNDEFINED) $this->setInformado(null);
     return $this;
   }
 
@@ -143,6 +145,7 @@ class _Persona extends EntityValues {
     if(key_exists($p."error", $row)) $this->setError($row[$p."error"]);
     if(key_exists($p."id_comision", $row)) $this->setIdComision($row[$p."id_comision"]);
     if(key_exists($p."actualizado", $row)) $this->setActualizado($row[$p."actualizado"]);
+    if(key_exists($p."informado", $row)) $this->setInformado($row[$p."informado"]);
     return $this;
   }
 
@@ -192,6 +195,7 @@ class _Persona extends EntityValues {
     if($this->error !== UNDEFINED) $row[$p."error"] = $this->error();
     if($this->idComision !== UNDEFINED) $row[$p."id_comision"] = $this->idComision();
     if($this->actualizado !== UNDEFINED) $row[$p."actualizado"] = $this->actualizado("c");
+    if($this->informado !== UNDEFINED) $row[$p."informado"] = $this->informado("c");
     return $row;
   }
 
@@ -240,6 +244,7 @@ class _Persona extends EntityValues {
     if(!Validation::is_empty($this->error)) return false;
     if(!Validation::is_empty($this->idComision)) return false;
     if(!Validation::is_empty($this->actualizado)) return false;
+    if(!Validation::is_empty($this->informado)) return false;
     return true;
   }
 
@@ -287,6 +292,7 @@ class _Persona extends EntityValues {
   public function error($format = null) { return Format::convertCase($this->error, $format); }
   public function idComision($format = null) { return Format::convertCase($this->idComision, $format); }
   public function actualizado($format = null) { return Format::date($this->actualizado, $format); }
+  public function informado($format = null) { return Format::date($this->informado, $format); }
 
   public function _setId(string $p = null) { return $this->id = $p; }  
   public function setId($p) { return $this->id = (is_null($p)) ? null : (string)$p; }
@@ -429,6 +435,13 @@ class _Persona extends EntityValues {
     if(!is_null($p) && !($p instanceof DateTime)) $p = new SpanishDateTime($p);
     if($p instanceof DateTime) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
     return $this->actualizado = $p;
+  }
+
+  public function _setInformado(DateTime $p = null) { return $this->informado = $p; }  
+  public function setInformado($p) {
+    if(!is_null($p) && !($p instanceof DateTime)) $p = new SpanishDateTime($p);
+    if($p instanceof DateTime) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
+    return $this->informado = $p;
   }
 
 
@@ -777,11 +790,10 @@ class _Persona extends EntityValues {
 
   public function checkFila($value) { 
     $this->_logs->resetLogs("fila");
-    return true;
-    //if(Validation::is_undefined($value)) return null;
-    //$v = Validation::getInstanceValue($value)->max(10);
-    //foreach($v->getErrors() as $error){ $this->_logs->addLog("fila", "error", $error); }
-    //return $v->isSuccess();
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->max(10);
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("fila", "error", $error); }
+    return $v->isSuccess();
   }
 
   public function checkError($value) { 
@@ -805,6 +817,14 @@ class _Persona extends EntityValues {
     if(Validation::is_undefined($value)) return null;
     $v = Validation::getInstanceValue($value)->isA('DateTime');
     foreach($v->getErrors() as $error){ $this->_logs->addLog("actualizado", "error", $error); }
+    return $v->isSuccess();
+  }
+
+  public function checkInformado($value) { 
+    $this->_logs->resetLogs("informado");
+    if(Validation::is_undefined($value)) return null;
+    $v = Validation::getInstanceValue($value)->isA('DateTime');
+    foreach($v->getErrors() as $error){ $this->_logs->addLog("informado", "error", $error); }
     return $v->isSuccess();
   }
 
@@ -853,6 +873,7 @@ class _Persona extends EntityValues {
     $this->checkError($this->error);
     $this->checkIdComision($this->idComision);
     $this->checkActualizado($this->actualizado);
+    $this->checkInformado($this->informado);
     return !$this->_getLogs()->isError();
   }
 

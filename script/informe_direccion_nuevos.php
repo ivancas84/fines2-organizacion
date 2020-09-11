@@ -8,19 +8,20 @@ $render = new Render();
 $render->setSize(false);
 $render->setCondition([
   ["cens","=",'456'],
-  ["fila","=", true],
+  ["fila","=", false],
   ["id_comision","=", true],
   ["error","=",false],
-  ["informado","=",false]
+  ["informado","=",false],
+
 ]);
 
 $container = new Container();
 $personas = $container->getDb()->all("persona", $render);
-$render = new Render();
-$render->setAggregate(["max_fila"]);
-$result = $container->getDb()->advanced("persona", $render);
-$cantidad = intval($result[0]["max_fila"]);
-$personas = array_combine_key($personas, "fila");
+//$render = new Render();
+//$render->setAggregate(["max_fila"]);
+//$result = $container->getDb()->advanced("persona", $render);
+//$cantidad = intval($result[0]["max_fila"]);
+//$personas = array_combine_key($personas, "fila");
 
 function renglonVacio(){
   echo "<tr>
@@ -86,9 +87,8 @@ table, tr, th, td {
   <td>TIPO DE INSCRIPCION</td>
 </tr>
 
-<?for($i = 5; $i <= $cantidad; $i++):?>
-  <?if (array_key_exists($i, $personas)):?>
-  <? $p = $container->getSqlo("persona")->values($personas[$i])["persona"] ?>
+<?foreach($personas as $persona):?>
+  <? $p = $container->getSqlo("persona")->values($persona)["persona"] ?>
     <tr>
       <td>1</td>
       <td>LA PLATA</td>
@@ -114,10 +114,7 @@ table, tr, th, td {
         else { echo "EN TERRITORIO SIN ID"; }?>
         </td>      
     </tr>
-  <?else:?>
-    <?=renglonVacio()?>
-  <?endif?>
-<?endfor?>
+<?endforeach?>
 </table>
 </body>
 </html>

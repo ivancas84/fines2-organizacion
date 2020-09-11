@@ -43,6 +43,7 @@ class PersonaDireccionImportElement extends ImportElement {
         if(!Validation::is_empty($this->entities[$name]->correo())) $persona->setCorreo($this->entities[$name]->correo());
         //if(!Validation::is_empty($this->entities[$name]->telefonoCelular())) $persona->setTelefonoCelular($this->entities[$name]->telefonoCelular());
         if(!Validation::is_empty($this->entities[$name]->fila())) $persona->setFila($this->entities[$name]->fila());
+        if(!Validation::is_empty($this->entities[$name]->idComision())) $persona->setIdComision($this->entities[$name]->idComision());
         
         if(!Validation::is_empty($this->entities[$name]->fechaNacimiento())) 
           $persona->setFechaNacimiento($this->entities[$name]->fechaNacimiento());
@@ -86,7 +87,6 @@ class PersonaDireccionImportElement extends ImportElement {
         case "sede":
         case "tramo":
         case "fecha_nacimiento":
-        
           break;
         default:
           if(is_null($va) || !key_exists($ka, $b) || is_null($b[$ka])) break;
@@ -116,7 +116,7 @@ class PersonaDireccionImportElement extends ImportElement {
         case "sede":
         case "tramo":   
         case "fecha_nacimiento":
-      
+        case "id_comision":
           if(is_null($va)) break;
           
           if(($b[$ka] !== $va) || !key_exists($ka, $b)){

@@ -1,7 +1,7 @@
 <?php
 require_once("class/import/persona/Element.php");
 
-class PersonaDriveImportElement extends PersonaElementImport {
+class PersonaDriveImportElement extends PersonaImportElement {
 
 
   public $comision;
@@ -20,10 +20,8 @@ class PersonaDriveImportElement extends PersonaElementImport {
       $this->entities["persona"]->setIdComision($this->idComision);
       $this->entities["persona"]->setTramo($this->tramo);
       $this->entities["persona"]->setDrive(true);
-      $this->entities["persona"]->setActivo(true);
       $this->entities["persona"]->setCens('456');
       $this->entities["persona"]->setActualizado($this->actualizado);
-
     }
   }
 
@@ -58,20 +56,20 @@ class PersonaDriveImportElement extends PersonaElementImport {
       $persona->setCens('456');
       $persona->setActualizado($this->entities[$name]->actualizado());
 
-
-      if(!Validation::is_empty($this->entities[$name]->activo()) && settypebool($this->entities[$name]->activo())) 
+      if(!Validation::is_undefined($this->entities[$name]->activo())){
         $persona->setActivo($this->entities[$name]->activo());
+      }
 
-      if(!Validation::is_empty($this->entities[$name]->analiticoDni()) && settypebool($this->entities[$name]->analiticoDni())) 
+      if(!Validation::is_undefined($this->entities[$name]->analiticoDni())) 
         $persona->setAnaliticoDni($this->entities[$name]->analiticoDni());
 
-      if(!Validation::is_empty($this->entities[$name]->analiticoCuil()) && settypebool($this->entities[$name]->analiticoCuil())) 
+      if(!Validation::is_undefined($this->entities[$name]->analiticoCuil())) 
         $persona->setAnaliticoCuil($this->entities[$name]->analiticoCuil());
 
-      if(!Validation::is_empty($this->entities[$name]->analiticoPartida()) && settypebool($this->entities[$name]->analiticoPartida())) 
+      if(!Validation::is_undefined($this->entities[$name]->analiticoPartida())) 
         $persona->setAnaliticoPartida($this->entities[$name]->analiticoPartida());
 
-      if(!Validation::is_empty($this->entities[$name]->analiticoCertificado()) && settypebool($this->entities[$name]->analiticoCertificado())) 
+      if(!Validation::is_undefined($this->entities[$name]->analiticoCertificado())) 
         $persona->setAnaliticoCertificado($this->entities[$name]->analiticoCertificado());
 
       if(!Validation::is_empty($this->entities[$name]->fechaNacimiento())) 
@@ -103,7 +101,6 @@ class PersonaDriveImportElement extends PersonaElementImport {
       
       if(!Validation::is_empty($this->entities[$name]->genero())) 
         $persona->setGenero($this->entities[$name]->genero());
-      
       $persist = $this->container->getSqlo($name)->update($persona->_toArray());
       $this->sql .= $persist["sql"];
     } else {

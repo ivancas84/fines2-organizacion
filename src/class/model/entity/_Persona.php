@@ -56,6 +56,7 @@ class _PersonaEntity extends Entity {
       $this->container->getField("persona", "error"),
       $this->container->getField("persona", "id_comision"),
       $this->container->getField("persona", "actualizado"),
+      $this->container->getField("persona", "informado"),
     );
   }
 

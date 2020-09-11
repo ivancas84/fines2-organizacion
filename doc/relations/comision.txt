@@ -1,0 +1,10 @@
+id (id): string pk. NOT NULL. MAIN. UNIQUE.
+id_comision (ic): string nf.
+sede (sed): string nf.
+tramo (tra): string nf.
+comision_2020 (c2): string nf.
+cens (cen): string nf.
+domicilio (dom): string nf.
+clasificacion (cla): string nf.
+orientacion (ori): string nf.
+turno (tur): string nf.

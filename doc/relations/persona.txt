@@ -42,3 +42,4 @@ fila (fil): integer nf.
 error (err): text nf.
 id_comision (ic): string nf.
 actualizado (acb): timestamp nf.
+informado (inf): timestamp nf.
