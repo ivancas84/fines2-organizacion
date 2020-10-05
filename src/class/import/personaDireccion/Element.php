@@ -8,6 +8,14 @@ class PersonaDireccionImportElement extends ImportElement {
 
       $this->setEntity($row, "persona");
       if($row){
+
+        if(!empty($row["fecha_nacimiento_aux"]) && strpos(strtolower($row["fecha_nacimiento_aux"]), "dup") !== false) {
+          $this->process = false;
+        }
+        if(empty($row["nombres"]) && empty($row["numero_documento"]) && empty($row["apellidos"])){
+          $this->process = false;
+        }
+        $this->entities["persona"]->setCuilODni($row["cuil_dni"]);
         $this->entities["persona"]->setFila($this->index);
         $this->entities["persona"]->setFechaNacimientoAux($row["fecha_nacimiento_aux"]);
       } else {
@@ -25,7 +33,7 @@ class PersonaDireccionImportElement extends ImportElement {
       $this->logs->addLog("persona","error","Error al comparar {$compare}:" . implode(", ", $error));
       $persona = $this->container->getValues("persona");
       $persona->setId($this->entities[$name]->id());
-      if(!Validation::is_empty($existente->error())) array_push($error, "ERROR ANTERIOR: (" . $existente->error(). ")");
+      //if(!Validation::is_empty($existente->error())) array_push($error, "ERROR ANTERIOR: (" . $existente->error(). ")");
       $persona->setError(implode(", ", $error));
 
       $persist = $this->container->getSqlo($name)->update($persona->_toArray());
@@ -35,6 +43,7 @@ class PersonaDireccionImportElement extends ImportElement {
 
         $persona = $this->container->getValues("persona");
         $persona->setId($this->entities[$name]->id());
+        if(!Validation::is_empty($this->entities[$name]->cens())) $persona->setCens($this->entities[$name]->cens());
         if(!Validation::is_empty($this->entities[$name]->telefono())) $persona->setTelefono($this->entities[$name]->telefono());
         if(!Validation::is_empty($this->entities[$name]->tramo())) $persona->setTramo($this->entities[$name]->tramo());
         if(!Validation::is_empty($this->entities[$name]->sede())) $persona->setSede($this->entities[$name]->sede());
@@ -87,7 +96,12 @@ class PersonaDireccionImportElement extends ImportElement {
         case "sede":
         case "tramo":
         case "fecha_nacimiento":
+        case "id_comision":
           break;
+        case "cens":
+          if(is_null($va) || !key_exists($ka, $b) || is_null($b[$ka])) break;
+          if((($va == "456") || ($b[$ka] == "456")) && ($b[$ka] !== $va)) array_push($compare, $ka);
+          else break;
         default:
           if(is_null($va) || !key_exists($ka, $b) || is_null($b[$ka])) break;
           if($b[$ka] !== $va) array_push($compare, $ka);
@@ -117,9 +131,14 @@ class PersonaDireccionImportElement extends ImportElement {
         case "tramo":   
         case "fecha_nacimiento":
         case "id_comision":
+        case "cens":
           if(is_null($va)) break;
-          
-          if(($b[$ka] !== $va) || !key_exists($ka, $b)){
+
+          if($ka == "456") {
+            if(($va == "456") || (key_exists($ka, $b) && $b[$ka] == "456")) break;
+          }
+
+          if(!key_exists($ka, $b) || ($b[$ka] !== $va)){
             array_push($compare, $ka);
           }
       }

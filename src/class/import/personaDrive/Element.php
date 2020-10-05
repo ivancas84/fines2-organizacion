@@ -39,7 +39,7 @@ class PersonaDriveImportElement extends PersonaImportElement {
       $this->logs->addLog("persona","error","Error al comparar " . implode(", ", $error));
       $persona = $this->container->getValues("persona");
       $persona->setId($this->entities[$name]->id());
-      if(!Validation::is_empty($existente->error())) array_push($error, "ERROR ANTERIOR: (" . $existente->error(). ")");
+      //if(!Validation::is_empty($existente->error())) array_push($error, "ERROR ANTERIOR: (" . $existente->error(). ")");
       $persona->setError(implode(", ", $error));
 
       $persist = $this->container->getSqlo($name)->update($persona->_toArray());
@@ -55,6 +55,7 @@ class PersonaDriveImportElement extends PersonaImportElement {
       $persona->setTramo($this->entities[$name]->tramo());
       $persona->setCens('456');
       $persona->setActualizado($this->entities[$name]->actualizado());
+      $persona->setError(null);
 
       if(!Validation::is_undefined($this->entities[$name]->activo())){
         $persona->setActivo($this->entities[$name]->activo());
@@ -173,6 +174,7 @@ class PersonaDriveImportElement extends PersonaImportElement {
         case "correo":
         case "fecha_nacimiento":
         case "drive": 
+        case "error":
           if(is_null($va)) break;
           
           if(($b[$ka] !== $va) || !key_exists($ka, $b)){

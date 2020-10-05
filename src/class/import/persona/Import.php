@@ -9,6 +9,7 @@ class PersonaImport extends Import {
     $this->ids["persona"] = [];
 
     foreach($this->elements as &$element){
+      if($element->process == false) continue;
       $element->entities["persona"]->resetNumeroDocumento();
       $dni = $element->entities["persona"]->numeroDocumento();
       if(Validation::is_empty($dni)){
@@ -18,7 +19,7 @@ class PersonaImport extends Import {
       }
 
       if(in_array($dni, $this->ids["persona"])) {
-        $element->process = false;                
+        $element->process = false;
         $element->logs->addLog("persona", "error", "El número de documento está duplicado");
         continue;
       }

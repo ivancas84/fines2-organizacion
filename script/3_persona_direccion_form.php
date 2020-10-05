@@ -1,5 +1,5 @@
 <? require_once("../config/config.php"); 
-$headers = (isset($_GET["headers"]))? $_GET["headers"] : "region, distrito, cens, sede, tramo, identificador, numero_inscripcion, numero_documento, apellidos, nombres, telefono, correo, pc_escritorio, conexion_internet_paga, telefono_celular, fecha_nacimiento_aux, id_comision"; 
+$headers = (isset($_GET["headers"]))? $_GET["headers"] : "region, distrito, cens, sede, tramo, identificador, numero_inscripcion, cuil_dni, apellidos, nombres, telefono, correo, pc_escritorio, conexion_internet_paga, telefono_celular, fecha_nacimiento_aux, id_comision"; 
 ?>
 
 <!DOCTYPE html>

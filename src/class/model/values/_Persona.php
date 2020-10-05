@@ -187,7 +187,7 @@ class _Persona extends EntityValues {
     if($this->analiticoCuil !== UNDEFINED) $row[$p."analitico_cuil"] = $this->analiticoCuil();
     if($this->analiticoPartida !== UNDEFINED) $row[$p."analitico_partida"] = $this->analiticoPartida();
     if($this->analiticoCertificado !== UNDEFINED) $row[$p."analitico_certificado"] = $this->analiticoCertificado();
-    if($this->fechaNacimiento !== UNDEFINED) $row[$p."fecha_nacimiento"] = $this->fechaNacimiento("c");
+    if($this->fechaNacimiento !== UNDEFINED) $row[$p."fecha_nacimiento"] = $this->fechaNacimiento("Y-m-d");
     if($this->ingreso !== UNDEFINED) $row[$p."ingreso"] = $this->ingreso();
     if($this->observaciones !== UNDEFINED) $row[$p."observaciones"] = $this->observaciones();
     if($this->activo !== UNDEFINED) $row[$p."activo"] = $this->activo();
@@ -402,13 +402,10 @@ class _Persona extends EntityValues {
   public function _setAnaliticoCertificado(boolean $p = null) { return $this->analiticoCertificado = $p; }  
   public function setAnaliticoCertificado($p) { return $this->analiticoCertificado = settypebool($p); }
 
-  public function _setFechaNacimiento(DateTime $p = null) { return $this->fechaNacimiento = $p; }
+  public function _setFechaNacimiento(DateTime $p = null) { return $this->fechaNacimiento = $p; }  
   public function setFechaNacimiento($p) {
     if(!is_null($p) && !($p instanceof DateTime)) $p = new SpanishDateTime($p);
-    if($p instanceof DateTime) {
-      $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
-      $p->setTime(0,0,0);
-    }
+    if($p instanceof DateTime) $p->setTimeZone(new DateTimeZone(date_default_timezone_get()));
     return $this->fechaNacimiento = $p;
   }
 

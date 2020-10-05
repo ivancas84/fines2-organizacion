@@ -25,12 +25,14 @@ class Persona extends _Persona {
 
   public function setCuilODni($cuilODni){
     $cuilODni = str_replace([" ",".","-",","," "], "", (string)$cuilODni);
-    
+    if(strpos($cuilODni, "IND") !== false) {
+      return $this->numeroDocumento = $cuilODni;
+    }
     if(strlen($cuilODni) == 11){      
       $this->cuil = $cuilODni;
-      $this->numeroDocumento = substr($cuilODni, 2, 8);
+      return $this->numeroDocumento = substr($cuilODni, 2, 8);
     } else {
-      $this->numeroDocumento = $cuilODni;
+      return $this->numeroDocumento = $cuilODni;
     }
   }
 
