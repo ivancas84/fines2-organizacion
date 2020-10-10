@@ -6,16 +6,11 @@ class _FieldPersonaAnaliticoCuil extends Field {
 
   public $type = "tinyint";
   public $fieldType = "nf";
-  public $unique = false;
-  public $notNull = true;
   public $default = "0";
-  public $length = "3";
-  public $main = false;
+  public $length = "3";  
   public $name = "analitico_cuil";
   public $alias = "ac";
-
-
-  public function getEntity(){ return $this->container->getEntity('persona'); }
+  public $entityName = "persona";
 
 
 }

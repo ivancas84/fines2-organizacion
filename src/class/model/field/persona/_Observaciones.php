@@ -6,16 +6,11 @@ class _FieldPersonaObservaciones extends Field {
 
   public $type = "text";
   public $fieldType = "nf";
-  public $unique = false;
-  public $notNull = false;
   public $default = null;
-  public $length = "65535";
-  public $main = false;
+  public $length = "65535";  
   public $name = "observaciones";
   public $alias = "obs";
-
-
-  public function getEntity(){ return $this->container->getEntity('persona'); }
+  public $entityName = "persona";
 
 
 }

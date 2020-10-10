@@ -6,16 +6,11 @@ class _FieldPersonaActualizado extends Field {
 
   public $type = "timestamp";
   public $fieldType = "nf";
-  public $unique = false;
-  public $notNull = false;
   public $default = null;
-  public $length = false;
-  public $main = false;
+  public $length = false;  
   public $name = "actualizado";
   public $alias = "acb";
-
-
-  public function getEntity(){ return $this->container->getEntity('persona'); }
+  public $entityName = "persona";
 
 
 }

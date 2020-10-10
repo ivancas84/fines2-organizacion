@@ -6,16 +6,11 @@ class _FieldPersonaTrayectoriaEducativa extends Field {
 
   public $type = "varchar";
   public $fieldType = "nf";
-  public $unique = false;
-  public $notNull = false;
   public $default = null;
-  public $length = "255";
-  public $main = false;
+  public $length = "255";  
   public $name = "trayectoria_educativa";
   public $alias = "te";
-
-
-  public function getEntity(){ return $this->container->getEntity('persona'); }
+  public $entityName = "persona";
 
 
 }

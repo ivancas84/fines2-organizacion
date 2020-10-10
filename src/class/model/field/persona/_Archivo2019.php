@@ -6,16 +6,11 @@ class _FieldPersonaArchivo2019 extends Field {
 
   public $type = "tinyint";
   public $fieldType = "nf";
-  public $unique = false;
-  public $notNull = true;
   public $default = "0";
-  public $length = "3";
-  public $main = false;
+  public $length = "3";  
   public $name = "archivo_2019";
   public $alias = "a2";
-
-
-  public function getEntity(){ return $this->container->getEntity('persona'); }
+  public $entityName = "persona";
 
 
 }

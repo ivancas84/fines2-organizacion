@@ -6,59 +6,13 @@ require_once("class/model/Field.php");
 class _PersonaEntity extends Entity {
   public $name = "persona";
   public $alias = "pers";
- 
-  public function getPk(){
-    return $this->container->getField("persona", "id");
-  }
+  public $nf = ['region', 'distrito', 'localidad', 'programa', 'inscripcion_men', 'cens', 'sede', 'comision', 'tramo', 'identificador', 'numero_inscripcion', 'numero_documento', 'apellidos', 'nombres', 'genero', 'telefono', 'correo', 'trayectoria_educativa', 'turno', 'pc_escritorio', 'net_notebook', 'tablet', 'pc_tablet', 'impresora', 'conexion_internet_paga', 'telefono_celular', 'comision_2020', 'archivo_2019', 'archivo_2020', 'drive', 'cuil', 'analitico_dni', 'analitico_cuil', 'analitico_partida', 'analitico_certificado', 'fecha_nacimiento', 'ingreso', 'observaciones', 'activo', 'fila', 'error', 'id_comision', 'actualizado', 'informado'];
+  public $mu = [];
+  public $_u = [];
+  public $notNull = ['id', 'region', 'distrito', 'inscripcion_men', 'numero_documento', 'pc_escritorio', 'net_notebook', 'tablet', 'pc_tablet', 'impresora', 'conexion_internet_paga', 'archivo_2019', 'archivo_2020', 'drive', 'analitico_dni', 'analitico_cuil', 'analitico_partida', 'analitico_certificado', 'activo'];
+  public $unique = ['id', 'numero_documento'];
+  public $admin = ['id', 'region', 'distrito', 'localidad', 'programa', 'inscripcion_men', 'cens', 'sede', 'comision', 'tramo', 'identificador', 'numero_inscripcion', 'numero_documento', 'apellidos', 'nombres', 'genero', 'telefono', 'correo', 'trayectoria_educativa', 'turno', 'pc_escritorio', 'net_notebook', 'tablet', 'pc_tablet', 'impresora', 'conexion_internet_paga', 'telefono_celular', 'comision_2020', 'archivo_2019', 'archivo_2020', 'drive', 'cuil', 'analitico_dni', 'analitico_cuil', 'analitico_partida', 'analitico_certificado', 'fecha_nacimiento', 'ingreso', 'observaciones', 'activo', 'fila', 'error', 'id_comision', 'actualizado', 'informado'];
 
-  public function getFieldsNf(){
-    return array(
-      $this->container->getField("persona", "region"),
-      $this->container->getField("persona", "distrito"),
-      $this->container->getField("persona", "localidad"),
-      $this->container->getField("persona", "programa"),
-      $this->container->getField("persona", "inscripcion_men"),
-      $this->container->getField("persona", "cens"),
-      $this->container->getField("persona", "sede"),
-      $this->container->getField("persona", "comision"),
-      $this->container->getField("persona", "tramo"),
-      $this->container->getField("persona", "identificador"),
-      $this->container->getField("persona", "numero_inscripcion"),
-      $this->container->getField("persona", "numero_documento"),
-      $this->container->getField("persona", "apellidos"),
-      $this->container->getField("persona", "nombres"),
-      $this->container->getField("persona", "genero"),
-      $this->container->getField("persona", "telefono"),
-      $this->container->getField("persona", "correo"),
-      $this->container->getField("persona", "trayectoria_educativa"),
-      $this->container->getField("persona", "turno"),
-      $this->container->getField("persona", "pc_escritorio"),
-      $this->container->getField("persona", "net_notebook"),
-      $this->container->getField("persona", "tablet"),
-      $this->container->getField("persona", "pc_tablet"),
-      $this->container->getField("persona", "impresora"),
-      $this->container->getField("persona", "conexion_internet_paga"),
-      $this->container->getField("persona", "telefono_celular"),
-      $this->container->getField("persona", "comision_2020"),
-      $this->container->getField("persona", "archivo_2019"),
-      $this->container->getField("persona", "archivo_2020"),
-      $this->container->getField("persona", "drive"),
-      $this->container->getField("persona", "cuil"),
-      $this->container->getField("persona", "analitico_dni"),
-      $this->container->getField("persona", "analitico_cuil"),
-      $this->container->getField("persona", "analitico_partida"),
-      $this->container->getField("persona", "analitico_certificado"),
-      $this->container->getField("persona", "fecha_nacimiento"),
-      $this->container->getField("persona", "ingreso"),
-      $this->container->getField("persona", "observaciones"),
-      $this->container->getField("persona", "activo"),
-      $this->container->getField("persona", "fila"),
-      $this->container->getField("persona", "error"),
-      $this->container->getField("persona", "id_comision"),
-      $this->container->getField("persona", "actualizado"),
-      $this->container->getField("persona", "informado"),
-    );
-  }
 
 
 }
