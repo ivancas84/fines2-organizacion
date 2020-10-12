@@ -14,16 +14,27 @@ class _ComisionValue extends ValueEntityOptions{
   protected $orientacion = UNDEFINED;
   protected $turno = UNDEFINED;
 
-  public function setDefaultId() { if($this->id === UNDEFINED) $this->setId(uniqid()); }
-  public function setDefaultIdComision() { if($this->idComision === UNDEFINED) $this->setIdComision(null); }
-  public function setDefaultSede() { if($this->sede === UNDEFINED) $this->setSede(null); }
-  public function setDefaultTramo() { if($this->tramo === UNDEFINED) $this->setTramo(null); }
-  public function setDefaultComision2020() { if($this->comision2020 === UNDEFINED) $this->setComision2020(null); }
-  public function setDefaultCens() { if($this->cens === UNDEFINED) $this->setCens(null); }
-  public function setDefaultDomicilio() { if($this->domicilio === UNDEFINED) $this->setDomicilio(null); }
-  public function setDefaultClasificacion() { if($this->clasificacion === UNDEFINED) $this->setClasificacion(null); }
-  public function setDefaultOrientacion() { if($this->orientacion === UNDEFINED) $this->setOrientacion(null); }
-  public function setDefaultTurno() { if($this->turno === UNDEFINED) $this->setTurno(null); }
+  public function setDefaultId() { $this->setId(uniqid()); }
+  public function setDefaultIdComision() { $this->setIdComision(null); }
+  public function setDefaultSede() { $this->setSede(null); }
+  public function setDefaultTramo() { $this->setTramo(null); }
+  public function setDefaultComision2020() { $this->setComision2020(null); }
+  public function setDefaultCens() { $this->setCens(null); }
+  public function setDefaultDomicilio() { $this->setDomicilio(null); }
+  public function setDefaultClasificacion() { $this->setClasificacion(null); }
+  public function setDefaultOrientacion() { $this->setOrientacion(null); }
+  public function setDefaultTurno() { $this->setTurno(null); }
+
+  public function setDefaultUndefinedId() { if($this->id === UNDEFINED) $this->setDefaultId(); }
+  public function setDefaultUndefinedIdComision() { if($this->idComision === UNDEFINED) $this->setDefaultIdComision(); }
+  public function setDefaultUndefinedSede() { if($this->sede === UNDEFINED) $this->setDefaultSede(); }
+  public function setDefaultUndefinedTramo() { if($this->tramo === UNDEFINED) $this->setDefaultTramo(); }
+  public function setDefaultUndefinedComision2020() { if($this->comision2020 === UNDEFINED) $this->setDefaultComision2020(); }
+  public function setDefaultUndefinedCens() { if($this->cens === UNDEFINED) $this->setDefaultCens(); }
+  public function setDefaultUndefinedDomicilio() { if($this->domicilio === UNDEFINED) $this->setDefaultDomicilio(); }
+  public function setDefaultUndefinedClasificacion() { if($this->clasificacion === UNDEFINED) $this->setDefaultClasificacion(); }
+  public function setDefaultUndefinedOrientacion() { if($this->orientacion === UNDEFINED) $this->setDefaultOrientacion(); }
+  public function setDefaultUndefinedTurno() { if($this->turno === UNDEFINED) $this->setDefaultTurno(); }
 
   public function isEmptyId() { if(!Validation::is_empty($this->id)) return false; }
   public function isEmptyIdComision() { if(!Validation::is_empty($this->idComision)) return false; }
