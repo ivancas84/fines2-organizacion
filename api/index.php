@@ -28,7 +28,7 @@ $index = array_search("api", $param);
 
 $options = array_slice($param, -2);
 
-$entity = $options[0];
+$entity = $options[0]; //si se omite,se ejecuta directamente la api con entidad null, ej .../api/test
 $api = $options[1];
 
 try{
