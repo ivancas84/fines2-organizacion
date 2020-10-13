@@ -49,97 +49,51 @@ class _PersonaValue extends ValueEntityOptions{
   protected $actualizado = UNDEFINED;
   protected $informado = UNDEFINED;
 
-  public function setDefaultId() { $this->setId(uniqid()); }
-  public function setDefaultRegion() { $this->setRegion('1'); }
-  public function setDefaultDistrito() { $this->setDistrito('La Plata'); }
-  public function setDefaultLocalidad() { $this->setLocalidad(null); }
-  public function setDefaultPrograma() { $this->setPrograma(null); }
-  public function setDefaultInscripcionMen() { $this->setInscripcionMen(false); }
-  public function setDefaultCens() { $this->setCens(null); }
-  public function setDefaultSede() { $this->setSede(null); }
-  public function setDefaultComision() { $this->setComision(null); }
-  public function setDefaultTramo() { $this->setTramo(null); }
-  public function setDefaultIdentificador() { $this->setIdentificador(null); }
-  public function setDefaultNumeroInscripcion() { $this->setNumeroInscripcion(null); }
-  public function setDefaultNumeroDocumento() { $this->setNumeroDocumento(null); }
-  public function setDefaultApellidos() { $this->setApellidos(null); }
-  public function setDefaultNombres() { $this->setNombres(null); }
-  public function setDefaultGenero() { $this->setGenero(null); }
-  public function setDefaultTelefono() { $this->setTelefono(null); }
-  public function setDefaultCorreo() { $this->setCorreo(null); }
-  public function setDefaultTrayectoriaEducativa() { $this->setTrayectoriaEducativa(null); }
-  public function setDefaultTurno() { $this->setTurno(null); }
-  public function setDefaultPcEscritorio() { $this->setPcEscritorio(false); }
-  public function setDefaultNetNotebook() { $this->setNetNotebook(false); }
-  public function setDefaultTablet() { $this->setTablet(false); }
-  public function setDefaultPcTablet() { $this->setPcTablet(false); }
-  public function setDefaultImpresora() { $this->setImpresora(false); }
-  public function setDefaultConexionInternetPaga() { $this->setConexionInternetPaga(false); }
-  public function setDefaultTelefonoCelular() { $this->setTelefonoCelular(null); }
-  public function setDefaultComision2020() { $this->setComision2020(null); }
-  public function setDefaultArchivo2019() { $this->setArchivo2019(false); }
-  public function setDefaultArchivo2020() { $this->setArchivo2020(false); }
-  public function setDefaultDrive() { $this->setDrive(false); }
-  public function setDefaultCuil() { $this->setCuil(null); }
-  public function setDefaultAnaliticoDni() { $this->setAnaliticoDni(false); }
-  public function setDefaultAnaliticoCuil() { $this->setAnaliticoCuil(false); }
-  public function setDefaultAnaliticoPartida() { $this->setAnaliticoPartida(false); }
-  public function setDefaultAnaliticoCertificado() { $this->setAnaliticoCertificado(false); }
-  public function setDefaultFechaNacimiento() { $this->setFechaNacimiento(null); }
-  public function setDefaultIngreso() { $this->setIngreso(null); }
-  public function setDefaultObservaciones() { $this->setObservaciones(null); }
-  public function setDefaultActivo() { $this->setActivo(true); }
-  public function setDefaultFila() { $this->setFila(null); }
-  public function setDefaultError() { $this->setError(null); }
-  public function setDefaultIdComision() { $this->setIdComision(null); }
-  public function setDefaultActualizado() { $this->setActualizado(null); }
-  public function setDefaultInformado() { $this->setInformado(null); }
-
-  public function setDefaultUndefinedId() { if($this->id === UNDEFINED) $this->setDefaultId(); }
-  public function setDefaultUndefinedRegion() { if($this->region === UNDEFINED) $this->setDefaultRegion(); }
-  public function setDefaultUndefinedDistrito() { if($this->distrito === UNDEFINED) $this->setDefaultDistrito(); }
-  public function setDefaultUndefinedLocalidad() { if($this->localidad === UNDEFINED) $this->setDefaultLocalidad(); }
-  public function setDefaultUndefinedPrograma() { if($this->programa === UNDEFINED) $this->setDefaultPrograma(); }
-  public function setDefaultUndefinedInscripcionMen() { if($this->inscripcionMen === UNDEFINED) $this->setDefaultInscripcionMen(); }
-  public function setDefaultUndefinedCens() { if($this->cens === UNDEFINED) $this->setDefaultCens(); }
-  public function setDefaultUndefinedSede() { if($this->sede === UNDEFINED) $this->setDefaultSede(); }
-  public function setDefaultUndefinedComision() { if($this->comision === UNDEFINED) $this->setDefaultComision(); }
-  public function setDefaultUndefinedTramo() { if($this->tramo === UNDEFINED) $this->setDefaultTramo(); }
-  public function setDefaultUndefinedIdentificador() { if($this->identificador === UNDEFINED) $this->setDefaultIdentificador(); }
-  public function setDefaultUndefinedNumeroInscripcion() { if($this->numeroInscripcion === UNDEFINED) $this->setDefaultNumeroInscripcion(); }
-  public function setDefaultUndefinedNumeroDocumento() { if($this->numeroDocumento === UNDEFINED) $this->setDefaultNumeroDocumento(); }
-  public function setDefaultUndefinedApellidos() { if($this->apellidos === UNDEFINED) $this->setDefaultApellidos(); }
-  public function setDefaultUndefinedNombres() { if($this->nombres === UNDEFINED) $this->setDefaultNombres(); }
-  public function setDefaultUndefinedGenero() { if($this->genero === UNDEFINED) $this->setDefaultGenero(); }
-  public function setDefaultUndefinedTelefono() { if($this->telefono === UNDEFINED) $this->setDefaultTelefono(); }
-  public function setDefaultUndefinedCorreo() { if($this->correo === UNDEFINED) $this->setDefaultCorreo(); }
-  public function setDefaultUndefinedTrayectoriaEducativa() { if($this->trayectoriaEducativa === UNDEFINED) $this->setDefaultTrayectoriaEducativa(); }
-  public function setDefaultUndefinedTurno() { if($this->turno === UNDEFINED) $this->setDefaultTurno(); }
-  public function setDefaultUndefinedPcEscritorio() { if($this->pcEscritorio === UNDEFINED) $this->setDefaultPcEscritorio(); }
-  public function setDefaultUndefinedNetNotebook() { if($this->netNotebook === UNDEFINED) $this->setDefaultNetNotebook(); }
-  public function setDefaultUndefinedTablet() { if($this->tablet === UNDEFINED) $this->setDefaultTablet(); }
-  public function setDefaultUndefinedPcTablet() { if($this->pcTablet === UNDEFINED) $this->setDefaultPcTablet(); }
-  public function setDefaultUndefinedImpresora() { if($this->impresora === UNDEFINED) $this->setDefaultImpresora(); }
-  public function setDefaultUndefinedConexionInternetPaga() { if($this->conexionInternetPaga === UNDEFINED) $this->setDefaultConexionInternetPaga(); }
-  public function setDefaultUndefinedTelefonoCelular() { if($this->telefonoCelular === UNDEFINED) $this->setDefaultTelefonoCelular(); }
-  public function setDefaultUndefinedComision2020() { if($this->comision2020 === UNDEFINED) $this->setDefaultComision2020(); }
-  public function setDefaultUndefinedArchivo2019() { if($this->archivo2019 === UNDEFINED) $this->setDefaultArchivo2019(); }
-  public function setDefaultUndefinedArchivo2020() { if($this->archivo2020 === UNDEFINED) $this->setDefaultArchivo2020(); }
-  public function setDefaultUndefinedDrive() { if($this->drive === UNDEFINED) $this->setDefaultDrive(); }
-  public function setDefaultUndefinedCuil() { if($this->cuil === UNDEFINED) $this->setDefaultCuil(); }
-  public function setDefaultUndefinedAnaliticoDni() { if($this->analiticoDni === UNDEFINED) $this->setDefaultAnaliticoDni(); }
-  public function setDefaultUndefinedAnaliticoCuil() { if($this->analiticoCuil === UNDEFINED) $this->setDefaultAnaliticoCuil(); }
-  public function setDefaultUndefinedAnaliticoPartida() { if($this->analiticoPartida === UNDEFINED) $this->setDefaultAnaliticoPartida(); }
-  public function setDefaultUndefinedAnaliticoCertificado() { if($this->analiticoCertificado === UNDEFINED) $this->setDefaultAnaliticoCertificado(); }
-  public function setDefaultUndefinedFechaNacimiento() { if($this->fechaNacimiento === UNDEFINED) $this->setDefaultFechaNacimiento(); }
-  public function setDefaultUndefinedIngreso() { if($this->ingreso === UNDEFINED) $this->setDefaultIngreso(); }
-  public function setDefaultUndefinedObservaciones() { if($this->observaciones === UNDEFINED) $this->setDefaultObservaciones(); }
-  public function setDefaultUndefinedActivo() { if($this->activo === UNDEFINED) $this->setDefaultActivo(); }
-  public function setDefaultUndefinedFila() { if($this->fila === UNDEFINED) $this->setDefaultFila(); }
-  public function setDefaultUndefinedError() { if($this->error === UNDEFINED) $this->setDefaultError(); }
-  public function setDefaultUndefinedIdComision() { if($this->idComision === UNDEFINED) $this->setDefaultIdComision(); }
-  public function setDefaultUndefinedActualizado() { if($this->actualizado === UNDEFINED) $this->setDefaultActualizado(); }
-  public function setDefaultUndefinedInformado() { if($this->informado === UNDEFINED) $this->setDefaultInformado(); }
+  public function setDefaultId() { if($this->id === UNDEFINED) $this->setId(uniqid()); }
+  public function setDefaultRegion() { if($this->region === UNDEFINED) $this->setRegion('1'); }
+  public function setDefaultDistrito() { if($this->distrito === UNDEFINED) $this->setDistrito('La Plata'); }
+  public function setDefaultLocalidad() { if($this->localidad === UNDEFINED) $this->setLocalidad(null); }
+  public function setDefaultPrograma() { if($this->programa === UNDEFINED) $this->setPrograma(null); }
+  public function setDefaultInscripcionMen() { if($this->inscripcionMen === UNDEFINED) $this->setInscripcionMen(false); }
+  public function setDefaultCens() { if($this->cens === UNDEFINED) $this->setCens(null); }
+  public function setDefaultSede() { if($this->sede === UNDEFINED) $this->setSede(null); }
+  public function setDefaultComision() { if($this->comision === UNDEFINED) $this->setComision(null); }
+  public function setDefaultTramo() { if($this->tramo === UNDEFINED) $this->setTramo(null); }
+  public function setDefaultIdentificador() { if($this->identificador === UNDEFINED) $this->setIdentificador(null); }
+  public function setDefaultNumeroInscripcion() { if($this->numeroInscripcion === UNDEFINED) $this->setNumeroInscripcion(null); }
+  public function setDefaultNumeroDocumento() { if($this->numeroDocumento === UNDEFINED) $this->setNumeroDocumento(null); }
+  public function setDefaultApellidos() { if($this->apellidos === UNDEFINED) $this->setApellidos(null); }
+  public function setDefaultNombres() { if($this->nombres === UNDEFINED) $this->setNombres(null); }
+  public function setDefaultGenero() { if($this->genero === UNDEFINED) $this->setGenero(null); }
+  public function setDefaultTelefono() { if($this->telefono === UNDEFINED) $this->setTelefono(null); }
+  public function setDefaultCorreo() { if($this->correo === UNDEFINED) $this->setCorreo(null); }
+  public function setDefaultTrayectoriaEducativa() { if($this->trayectoriaEducativa === UNDEFINED) $this->setTrayectoriaEducativa(null); }
+  public function setDefaultTurno() { if($this->turno === UNDEFINED) $this->setTurno(null); }
+  public function setDefaultPcEscritorio() { if($this->pcEscritorio === UNDEFINED) $this->setPcEscritorio(false); }
+  public function setDefaultNetNotebook() { if($this->netNotebook === UNDEFINED) $this->setNetNotebook(false); }
+  public function setDefaultTablet() { if($this->tablet === UNDEFINED) $this->setTablet(false); }
+  public function setDefaultPcTablet() { if($this->pcTablet === UNDEFINED) $this->setPcTablet(false); }
+  public function setDefaultImpresora() { if($this->impresora === UNDEFINED) $this->setImpresora(false); }
+  public function setDefaultConexionInternetPaga() { if($this->conexionInternetPaga === UNDEFINED) $this->setConexionInternetPaga(false); }
+  public function setDefaultTelefonoCelular() { if($this->telefonoCelular === UNDEFINED) $this->setTelefonoCelular(null); }
+  public function setDefaultComision2020() { if($this->comision2020 === UNDEFINED) $this->setComision2020(null); }
+  public function setDefaultArchivo2019() { if($this->archivo2019 === UNDEFINED) $this->setArchivo2019(false); }
+  public function setDefaultArchivo2020() { if($this->archivo2020 === UNDEFINED) $this->setArchivo2020(false); }
+  public function setDefaultDrive() { if($this->drive === UNDEFINED) $this->setDrive(false); }
+  public function setDefaultCuil() { if($this->cuil === UNDEFINED) $this->setCuil(null); }
+  public function setDefaultAnaliticoDni() { if($this->analiticoDni === UNDEFINED) $this->setAnaliticoDni(false); }
+  public function setDefaultAnaliticoCuil() { if($this->analiticoCuil === UNDEFINED) $this->setAnaliticoCuil(false); }
+  public function setDefaultAnaliticoPartida() { if($this->analiticoPartida === UNDEFINED) $this->setAnaliticoPartida(false); }
+  public function setDefaultAnaliticoCertificado() { if($this->analiticoCertificado === UNDEFINED) $this->setAnaliticoCertificado(false); }
+  public function setDefaultFechaNacimiento() { if($this->fechaNacimiento === UNDEFINED) $this->setFechaNacimiento(null); }
+  public function setDefaultIngreso() { if($this->ingreso === UNDEFINED) $this->setIngreso(null); }
+  public function setDefaultObservaciones() { if($this->observaciones === UNDEFINED) $this->setObservaciones(null); }
+  public function setDefaultActivo() { if($this->activo === UNDEFINED) $this->setActivo(true); }
+  public function setDefaultFila() { if($this->fila === UNDEFINED) $this->setFila(null); }
+  public function setDefaultError() { if($this->error === UNDEFINED) $this->setError(null); }
+  public function setDefaultIdComision() { if($this->idComision === UNDEFINED) $this->setIdComision(null); }
+  public function setDefaultActualizado() { if($this->actualizado === UNDEFINED) $this->setActualizado(null); }
+  public function setDefaultInformado() { if($this->informado === UNDEFINED) $this->setInformado(null); }
 
   public function isEmptyId() { if(!Validation::is_empty($this->id)) return false; }
   public function isEmptyRegion() { if(!Validation::is_empty($this->region)) return false; }

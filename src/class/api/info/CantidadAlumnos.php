@@ -2,7 +2,7 @@
 
 require_once("class/api/Base.php");
 
-class CantidadAlumnosBaseApi extends BaseApi {
+class CantidadAlumnosInfoApi extends BaseApi {
 
 
   public function main(){

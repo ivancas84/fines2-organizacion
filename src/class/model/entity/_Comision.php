@@ -11,8 +11,6 @@ class _ComisionEntity extends Entity {
   public $_u = [];
   public $notNull = ['id'];
   public $unique = ['id'];
-  public $admin = ['id', 'id_comision', 'sede', 'tramo', 'comision_2020', 'cens', 'domicilio', 'clasificacion', 'orientacion', 'turno'];
-
 
 
 }
