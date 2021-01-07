@@ -7,10 +7,12 @@ class _FieldPersonaSede extends Field {
   public $type = "varchar";
   public $fieldType = "nf";
   public $default = null;
-  public $length = "255";  
   public $name = "sede";
   public $alias = "sed";
   public $entityName = "persona";
+  public $dataType = "string";  
+  public $subtype = "text";  
+  public $length = "255";  
 
 
 }

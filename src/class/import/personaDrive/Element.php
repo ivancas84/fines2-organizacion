@@ -45,6 +45,8 @@ class PersonaDriveImportElement extends PersonaImportElement {
       $persist = $this->container->getSqlo($name)->update($persona->_toArray());
       $this->sql .= $persist["sql"];
     } elseif (($compare = $this->compareUpdate($this->entities[$name], $existente)) !== true) {
+
+
       $this->logs->addLog("persona","info","Registro existente, se actualizara campos {$compare}");
 
       $persona = $this->container->getValues("persona");
@@ -79,7 +81,7 @@ class PersonaDriveImportElement extends PersonaImportElement {
       if(!Validation::is_empty($this->entities[$name]->cuil())) 
         $persona->setCuil($this->entities[$name]->cuil());
 
-      if(!Validation::is_empty($this->entities[$name]->telefono()) && Validation::is_empty($existente->telefono())) 
+      if(!Validation::is_empty($this->entities[$name]->telefono()))
         $persona->setTelefono($this->entities[$name]->telefono());
         
       if(!Validation::is_empty($this->entities[$name]->ingreso())) 
@@ -94,7 +96,7 @@ class PersonaDriveImportElement extends PersonaImportElement {
       if(!Validation::is_empty($this->entities[$name]->apellidos())) 
         $persona->setApellidos($this->entities[$name]->apellidos());
       
-        if(!Validation::is_empty($this->entities[$name]->correo()) && Validation::is_empty($existente->correo())) 
+        if(!Validation::is_empty($this->entities[$name]->correo())) 
         $persona->setCorreo($this->entities[$name]->correo());
     
       if(!Validation::is_empty($this->entities[$name]->programa())) 
@@ -178,6 +180,8 @@ class PersonaDriveImportElement extends PersonaImportElement {
           if(is_null($va)) break;
           
           if(($b[$ka] !== $va) || !key_exists($ka, $b)){
+
+            //echo "Diferente " . $ka . ": " . $b[$ka] . " " . $va;
             array_push($compare, $ka);
           }
       }

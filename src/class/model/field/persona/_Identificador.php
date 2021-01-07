@@ -7,10 +7,12 @@ class _FieldPersonaIdentificador extends Field {
   public $type = "varchar";
   public $fieldType = "nf";
   public $default = null;
-  public $length = "45";  
   public $name = "identificador";
   public $alias = "ide";
   public $entityName = "persona";
+  public $dataType = "string";  
+  public $subtype = "text";  
+  public $length = "45";  
 
 
 }

@@ -7,10 +7,12 @@ class _FieldPersonaDistrito extends Field {
   public $type = "varchar";
   public $fieldType = "nf";
   public $default = "La Plata";
-  public $length = "255";  
   public $name = "distrito";
   public $alias = "dis";
   public $entityName = "persona";
+  public $dataType = "string";  
+  public $subtype = "text";  
+  public $length = "255";  
 
 
 }

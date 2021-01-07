@@ -2,7 +2,7 @@
 require_once("class/import/Element.php");
 
 class PersonaImportElement extends ImportElement {
-    
+
   public function setEntities($row) {
       $this->entities["persona"] = null;
 
@@ -17,27 +17,25 @@ class PersonaImportElement extends ImportElement {
       
       $this->logs->addLog("persona","error","El registro debe ser actualizado, comparar {$compare}");
     } elseif (($compare = $this->compareUpdate($this->entities[$name], $existente)) !== true) {
-        $this->logs->addLog("persona","info","Registro existente, se actualizara campos {$compare}");
+      $this->logs->addLog("persona","info","Registro existente, se actualizara campos {$compare}");
 
-        $persona = $this->container->getValues("persona");
-        $persona->setId($this->entities[$name]->id());
-        if(!Validation::is_empty($this->entities[$name]->archivo2019())) $persona->setArchivo2019($this->entities[$name]->archivo2019());
-        if(!Validation::is_empty($this->entities[$name]->archivo2020())) $persona->setArchivo2020($this->entities[$name]->archivo2020());
-        if(!Validation::is_empty($this->entities[$name]->telefono())) $persona->setTelefono($this->entities[$name]->telefono());
-        if(!Validation::is_empty($this->entities[$name]->comision())) $persona->setComision($this->entities[$name]->comision());
-        if(!Validation::is_empty($this->entities[$name]->tramo())) $persona->setTramo($this->entities[$name]->tramo());
-        if(!Validation::is_empty($this->entities[$name]->sede())) $persona->setSede($this->entities[$name]->sede());
-        if(!Validation::is_empty($this->entities[$name]->localidad())) $persona->setLocalidad($this->entities[$name]->localidad());
-        if(!Validation::is_empty($this->entities[$name]->nombres())) $persona->setNombres($this->entities[$name]->nombres());
-        if(!Validation::is_empty($this->entities[$name]->apellidos())) $persona->setApellidos($this->entities[$name]->apellidos());
-        if(!Validation::is_empty($this->entities[$name]->correo())) $persona->setCorreo($this->entities[$name]->correo());
-        
+      $persona = $this->container->getValues("persona");
+      $persona->setId($this->entities[$name]->id());
+      if(!Validation::is_empty($this->entities[$name]->archivo2019())) $persona->setArchivo2019($this->entities[$name]->archivo2019());
+      if(!Validation::is_empty($this->entities[$name]->archivo2020())) $persona->setArchivo2020($this->entities[$name]->archivo2020());
+      if(!Validation::is_empty($this->entities[$name]->telefono())) $persona->setTelefono($this->entities[$name]->telefono());
+      if(!Validation::is_empty($this->entities[$name]->comision())) $persona->setComision($this->entities[$name]->comision());
+      if(!Validation::is_empty($this->entities[$name]->tramo())) $persona->setTramo($this->entities[$name]->tramo());
+      if(!Validation::is_empty($this->entities[$name]->sede())) $persona->setSede($this->entities[$name]->sede());
+      if(!Validation::is_empty($this->entities[$name]->localidad())) $persona->setLocalidad($this->entities[$name]->localidad());
+      if(!Validation::is_empty($this->entities[$name]->nombres())) $persona->setNombres($this->entities[$name]->nombres());
+      if(!Validation::is_empty($this->entities[$name]->apellidos())) $persona->setApellidos($this->entities[$name]->apellidos());
+      if(!Validation::is_empty($this->entities[$name]->correo())) $persona->setCorreo($this->entities[$name]->correo());
 
-        $persist = $this->container->getSqlo($name)->update($persona->_toArray());
-        $this->sql .= $persist["sql"];
-
+      $persist = $this->container->getSqlo($name)->update($persona->_toArray());
+      $this->sql .= $persist["sql"];
     } else {
-        $this->process = false;
+      $this->process = false;
     }
   }
 

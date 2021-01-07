@@ -7,10 +7,12 @@ class _FieldPersonaComision extends Field {
   public $type = "varchar";
   public $fieldType = "nf";
   public $default = null;
-  public $length = "45";  
   public $name = "comision";
   public $alias = "com";
   public $entityName = "persona";
+  public $dataType = "string";  
+  public $subtype = "text";  
+  public $length = "45";  
 
 
 }

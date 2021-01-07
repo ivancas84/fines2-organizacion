@@ -7,10 +7,12 @@ class _FieldPersonaIngreso extends Field {
   public $type = "varchar";
   public $fieldType = "nf";
   public $default = null;
-  public $length = "45";  
   public $name = "ingreso";
   public $alias = "ing";
   public $entityName = "persona";
+  public $dataType = "string";  
+  public $subtype = "text";  
+  public $length = "45";  
 
 
 }

@@ -7,10 +7,12 @@ class _FieldComisionDomicilio extends Field {
   public $type = "varchar";
   public $fieldType = "nf";
   public $default = null;
-  public $length = "255";  
   public $name = "domicilio";
   public $alias = "dom";
   public $entityName = "comision";
+  public $dataType = "string";  
+  public $subtype = "text";  
+  public $length = "255";  
 
 
 }
